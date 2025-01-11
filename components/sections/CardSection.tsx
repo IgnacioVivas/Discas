@@ -33,7 +33,7 @@ const CardSection = () => {
 			<div className="flex flex-col gap-2 md:col-span-2 xl:col-span-4 mb-8">
 				<h2 className="text-3xl text-center text-stone-900 font-bold">Descubre a los compañeros que esperan por ti.</h2>
 				<h3 className="text-lg text-center text-stone-400 font-normal">
-					Haz clic en 'Ver más' para conocer a todos nuestros peluditos disponibles para adopción.
+					Haz clic en &#39;Ver más&#39; para conocer a todos nuestros peluditos disponibles para adopción.
 				</h3>
 			</div>
 			{dogsData.map((dog, index) => (

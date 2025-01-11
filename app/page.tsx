@@ -1,11 +1,8 @@
 import Header from '@/components/layout/Header';
-import NavBar from '@/components/layout/NavBar';
 import CardSection from '@/components/sections/CardSection';
-import SectionCard from '@/components/sections/CardSection';
 import DonateSection from '@/components/sections/DonateSection';
 import SponsorsSection from '@/components/sections/SponsorsSection';
 import { Separator } from '@/components/ui/separator';
-import Image from 'next/image';
 
 export default function Home() {
 	return (

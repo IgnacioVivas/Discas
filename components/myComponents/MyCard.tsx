@@ -1,5 +1,4 @@
 import React from 'react';
-import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +12,8 @@ interface MyCardProps extends React.ComponentProps<typeof Card> {
 }
 
 const MyCard: React.FC<MyCardProps> = ({ className, nombre, descripcion, imagen, ...props }) => {
+	console.log(nombre, descripcion, imagen);
+
 	return (
 		<Card className={cn('w-full max-w-[380px]', className)} {...props}>
 			<CardContent className="grid gap-4">
