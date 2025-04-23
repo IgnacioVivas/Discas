@@ -4,14 +4,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { inter, nunito, poppins } from '../ui/fonts';
 
 function MySuscripcion({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
 	return (
 		<div className={cn('flex flex-col gap-6', className)} {...props}>
 			<Card className="p-10 bg-custom-red border-0">
 				<CardHeader className="p-0">
-					<CardTitle className="text-2xl text-white">SUSCRÍBETE AL NEWSLETTER</CardTitle>
-					<CardDescription className="text-white">
+					<CardTitle className={`text-2xl text-white ${poppins.className}`}>SUSCRÍBETE AL NEWSLETTER</CardTitle>
+					<CardDescription className={`text-white ${inter.className}`}>
 						Para recibir las últimas novedades sobre adopción y cuidados, suscríbete al boletín de Discas.
 					</CardDescription>
 				</CardHeader>
@@ -23,7 +24,10 @@ function MySuscripcion({ className, ...props }: React.ComponentPropsWithoutRef<'
 								<Input className="bg-white" id="email" type="email" placeholder="m@example.com" required />
 							</div>
 
-							<Button type="submit" className="w-full bg-custom-yellow hover:bg-custom-teal hover:text-black">
+							<Button
+								type="submit"
+								className={`w-full bg-custom-yellow hover:bg-custom-teal hover:text-black ${nunito.className}`}
+							>
 								Iniciar sesión
 							</Button>
 						</div>
