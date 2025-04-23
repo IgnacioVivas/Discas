@@ -10,7 +10,7 @@ export default function Home() {
 		<div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
 			<main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
 				<Header />
-				<div className="px-20 flex flex-col gap-20">
+				<div className="flex flex-col gap-20">
 					<CardSection />
 					<DonateSection />
 					<Separator className="bg-slate-300" />
@@ -20,3 +20,4 @@ export default function Home() {
 		</div>
 	);
 }
+// px-20
