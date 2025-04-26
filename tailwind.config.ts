@@ -9,6 +9,11 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				poppins: ['var(--font-poppins)', 'sans-serif'],
+				nunito: ['var(--font-nunito)', 'sans-serif'],
+				inter: ['var(--font-inter)', 'sans-serif'],
+			},
 			colors: {
 				'custom-teal': '#2dd4bf',
 				'custom-red': '#FA7070',

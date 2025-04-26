@@ -23,10 +23,7 @@ function MySuscripcion({ className, ...props }: React.ComponentPropsWithoutRef<'
 								<Input className="bg-white" id="email" type="email" placeholder="m@example.com" required />
 							</div>
 
-							<Button
-								type="submit"
-								className={`w-full bg-custom-yellow hover:bg-custom-teal hover:text-black ${nunito.className}`}
-							>
+							<Button type="submit" className={`w-full bg-custom-yellow hover:bg-teal-950 ${nunito.className}`}>
 								Iniciar sesión
 							</Button>
 						</div>

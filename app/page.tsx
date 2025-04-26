@@ -13,7 +13,9 @@ export default function Home() {
 				<div className="flex flex-col gap-20">
 					<CardSection />
 					<DonateSection />
-					<Separator className="bg-slate-300" />
+					<div className="w-full px-10 md:px-20">
+						<Separator className="bg-slate-300" />
+					</div>
 					<SponsorsSection />
 				</div>
 			</main>

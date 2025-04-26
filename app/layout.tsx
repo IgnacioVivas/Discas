@@ -1,19 +1,8 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
-
-const geistSans = localFont({
-	src: './fonts/GeistVF.woff',
-	variable: '--font-geist-sans',
-	weight: '100 900',
-});
-const geistMono = localFont({
-	src: './fonts/GeistMonoVF.woff',
-	variable: '--font-geist-mono',
-	weight: '100 900',
-});
+import { inter, nunito, poppins } from '@/components/ui/fonts';
 
 export const metadata: Metadata = {
 	title: 'Discas',
@@ -27,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-100`}>
+			<body className={`${poppins.variable} ${nunito.variable} ${inter.variable} antialiased bg-stone-100`}>
 				<NavBar />
 				{children}
 				<Footer />

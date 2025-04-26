@@ -30,7 +30,7 @@ const DonateSection = () => {
 					{['$6.000', '$8.000', '$12.000', '$18.000', '$24.000', '$30.000'].map((price, index) => (
 						<motion.div
 							key={index}
-							className={`w-full py-5 bg-teal-400 rounded-xl text-center border-2 border-stone-900 ${nunito.className}`}
+							className={`w-full py-5 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer ${nunito.className}`}
 							whileHover={{
 								scale: 1.1,
 								rotate: [0, 3, -3, 0],
@@ -50,7 +50,7 @@ const DonateSection = () => {
 					{['$5000', '$10000', '$15000', '$25000'].map((price, index) => (
 						<motion.div
 							key={index}
-							className={`py-3 bg-teal-400 rounded-xl text-center border-2 border-stone-900 ${nunito.className}`}
+							className={`py-3 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer ${nunito.className}`}
 							whileHover={{
 								scale: 1.1,
 								rotate: [0, 3, -3, 0],

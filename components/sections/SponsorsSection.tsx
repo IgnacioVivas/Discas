@@ -5,6 +5,7 @@ import client3 from '@/image/client-3.png';
 import client4 from '@/image/client-4.png';
 import client5 from '@/image/client-5.png';
 import Image from 'next/image';
+import { poppins } from '../ui/fonts';
 
 const clientsData = [
 	{
@@ -31,8 +32,12 @@ const clientsData = [
 
 const SponsorsSection = () => {
 	return (
-		<div className="grid grid-cols-6 justify-items-center">
-			<h2 className="text-2xl">Nuestros patrocinadores y donantes</h2>
+		<div className="px-10 md:px-20 grid grid-cols-5 lg:grid-cols-6 grid-rows-2 md:grid-rows-1 justify-items-center gap-y-6 md:gap-8">
+			<h2
+				className={`text-3xl font-semibold col-span-6 lg:col-span-1 text-center md:text-start md:mb-8 lg:mb-0 ${poppins.className}`}
+			>
+				Nuestros patrocinadores y donantes
+			</h2>
 			{clientsData.map((client, index) => (
 				<div key={index}>
 					<Image src={client.imagen} alt={client.alt} />
