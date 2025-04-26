@@ -6,11 +6,11 @@ import imgDesktop from '@/image/piru/piru-4.jpg';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { Button } from '../ui/button';
 import { PawPrint } from 'lucide-react';
-import { inter, poppins } from '../ui/fonts';
+import { inter } from '../ui/fonts';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const Header = () => {
-	const isDesktop = useMediaQuery('(min-width: 768px)'); // tailwind md = 768px
+	const isDesktop = useMediaQuery('(min-width: 768px)');
 
 	const selectedImage = isDesktop ? imgDesktop : imgMobile;
 

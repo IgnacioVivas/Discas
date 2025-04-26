@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Separator } from '../ui/separator';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'motion/react'; // import { motion } from '@motionone/react';
+
 const menuItems = [
 	{ name: 'Inicio', ruta: '/' },
 	{ name: 'Conócenos', ruta: '/conocenos' },

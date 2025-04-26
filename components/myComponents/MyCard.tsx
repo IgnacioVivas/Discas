@@ -11,8 +11,8 @@ interface MyCardProps extends React.ComponentProps<typeof Card> {
 	descripcion: string;
 	imagen: string;
 }
-
-const MyCard: React.FC<MyCardProps> = ({ className, nombre, descripcion, imagen, ...props }) => {
+// nombre, descripcion, imagen,
+const MyCard: React.FC<MyCardProps> = ({ className, ...props }) => {
 	return (
 		<Card className={cn('w-full max-w-[380px]', className)} {...props}>
 			<CardContent className="grid gap-4">
