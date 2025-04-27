@@ -3,6 +3,7 @@ import perro from '@/image/perro.jpg';
 import MyCard from '../myComponents/MyCard';
 import { Button } from '../ui/button';
 import { inter, nunito, poppins } from '../ui/fonts';
+import { datosDiscas } from '@/data/discas';
 
 const dogsData = [
 	{
@@ -38,12 +39,14 @@ const CardSection = () => {
 					Haz clic en &#39;Ver más&#39; para conocer a todos nuestros peluditos disponibles para adopción.
 				</h3>
 			</div>
-			{dogsData.map((dog, index) => (
+			{datosDiscas.map((dog) => (
 				<MyCard
-					key={index}
+					key={dog.id}
 					nombre={dog.nombre}
 					descripcion={dog.descripcion}
-					imagen={dog.imagen.src} // Pasar la ruta de la imagen
+					imagen={dog.imagenCard}
+					edad={dog.edad}
+					genero={dog.genero}
 				/>
 			))}
 

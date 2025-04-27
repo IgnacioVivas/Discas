@@ -10,29 +10,32 @@ interface MyCardProps extends React.ComponentProps<typeof Card> {
 	nombre: string;
 	descripcion: string;
 	imagen: string;
+	edad: number;
+	genero: string;
 }
-// nombre, descripcion, imagen,
-const MyCard: React.FC<MyCardProps> = ({ className, ...props }) => {
+
+const MyCard: React.FC<MyCardProps> = ({ className, nombre, descripcion, imagen, edad, genero, ...props }) => {
 	return (
 		<Card className={cn('w-full max-w-[380px]', className)} {...props}>
 			<CardContent className="grid gap-4">
 				<div className=" flex items-center space-x-4 rounded-md relative ">
-					<Image src={perro} alt="perro" className="rounded-t-xl" />
+					<Image
+						src={imagen}
+						alt="perro"
+						className="rounded-t-xl object-cover w-full h-80 saturate-150 brightness-100"
+					/>
 					<span
 						className={`absolute bottom-0 left-[-16px] bg-amber-200 px-4 py-2 rounded-tr-lg ml-0 font-semibold cursor-default ${poppins.className}`}
 					>
-						Procer
+						{nombre}
 					</span>
 				</div>
 			</CardContent>
 			<CardHeader>
 				<CardTitle className="cursor-default">
-					Lorem Ipsum <span className="font-normal">- (Edad: 3 años)</span>
+					{genero} <span className="font-normal">- (Edad: {edad} años)</span>
 				</CardTitle>
-				<CardDescription className="cursor-default">
-					Tempus curabitur urna donec arcu felis mus litora neque aliquam. A vestibulum ut vehicula eget scelerisque
-					diam quam facilisi netus.
-				</CardDescription>
+				<CardDescription className="cursor-default">{descripcion}</CardDescription>
 			</CardHeader>
 			<CardFooter>
 				<Button className={`w-full ${nunito.className}`}>Adoptame</Button>
