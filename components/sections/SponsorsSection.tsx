@@ -1,9 +1,9 @@
 import React from 'react';
-import client1 from '@/image/client-1.png';
-import client2 from '@/image/client-2.png';
-import client3 from '@/image/client-3.png';
-import client4 from '@/image/client-4.png';
-import client5 from '@/image/client-5.png';
+import client1 from '@/public/image/client-1.png';
+import client2 from '@/public/image/client-2.png';
+import client3 from '@/public/image/client-3.png';
+import client4 from '@/public/image/client-4.png';
+import client5 from '@/public/image/client-5.png';
 import Image from 'next/image';
 import { poppins } from '../ui/fonts';
 

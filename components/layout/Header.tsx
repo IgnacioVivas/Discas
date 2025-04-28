@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-import imgMobile from '@/image/piru/piru-2.jpg';
-import imgDesktop from '@/image/piru/piru-4.jpg';
+import imgMobile from '@/public/image/piru/piru-2.jpg';
+import imgDesktop from '@/public/image/piru/piru-4.jpg';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { Button } from '../ui/button';
 import { PawPrint } from 'lucide-react';

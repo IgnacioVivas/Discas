@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import bgPatitas from '@/image/huellas-perros.png';
+import bgPatitas from '@/public/image/huellas-perros.png';
 import Image from 'next/image';
-import imgDona from '@/image/mano-dona.png';
+import imgDona from '@/public/image/mano-dona.png';
 import { inter, nunito, poppins } from '../ui/fonts';
 
 const DonateSection = () => {

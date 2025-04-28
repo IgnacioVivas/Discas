@@ -1,32 +1,8 @@
 import React from 'react';
-import perro from '@/image/perro.jpg';
 import MyCard from '../myComponents/MyCard';
 import { Button } from '../ui/button';
 import { inter, nunito, poppins } from '../ui/fonts';
 import { datosDiscas } from '@/data/discas';
-
-const dogsData = [
-	{
-		nombre: 'Procer',
-		descripcion: 'Un amigo fiel y cariñoso, listo para encontrar un nuevo hogar.',
-		imagen: perro,
-	},
-	{
-		nombre: 'Rex',
-		descripcion: 'Un perro juguetón y activo, ideal para familias con niños.',
-		imagen: perro,
-	},
-	{
-		nombre: 'Luna',
-		descripcion: 'Tierna y tranquila, perfecta para compañía en casa.',
-		imagen: perro,
-	},
-	{
-		nombre: 'Max',
-		descripcion: 'Un espíritu aventurero que ama las largas caminatas.',
-		imagen: perro,
-	},
-];
 
 const CardSection = () => {
 	return (

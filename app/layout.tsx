@@ -7,6 +7,9 @@ import { inter, nunito, poppins } from '@/components/ui/fonts';
 export const metadata: Metadata = {
 	title: 'Discas',
 	description: 'Rescatamos animales discas y viejitos',
+	icons: {
+		icon: '/favicon.ico',
+	},
 };
 
 export default function RootLayout({
