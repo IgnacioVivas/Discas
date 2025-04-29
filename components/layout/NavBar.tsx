@@ -65,7 +65,9 @@ const NavBar = () => {
 					!scrolled && getInitialStyle(),
 				)}
 			>
-				<Image className="w-24" src={logoDiscas} alt="logo discas" />
+				<Link href={`/`}>
+					<Image className="w-24" src={logoDiscas} alt="logo discas" />
+				</Link>
 
 				<Menubar className="bg-transparent">
 					{menuItems.map((item) => (

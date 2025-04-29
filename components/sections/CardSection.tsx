@@ -25,14 +25,17 @@ const CardSection = () => {
 				</h3>
 			</div>
 			{randomDogs.map((dog) => (
-				<MyCard
-					key={dog.id}
-					nombre={dog.nombre}
-					descripcion={dog.descripcion}
-					imagen={dog.imagenCard}
-					edad={dog.edad}
-					genero={dog.genero}
-				/>
+				<Link key={dog.id} href={`/adopta/${dog.id}`} passHref>
+					<div className="hover:scale-[1.02] transition-transform duration-200">
+						<MyCard
+							nombre={dog.nombre}
+							descripcion={dog.descripcion}
+							imagen={dog.imagenCard}
+							edad={dog.edad}
+							genero={dog.genero}
+						/>
+					</div>
+				</Link>
 			))}
 
 			<Link href="/adopta" className="w-full md:col-span-2 xl:col-span-4 flex justify-center">
