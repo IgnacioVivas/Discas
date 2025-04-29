@@ -5,10 +5,11 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import logoDiscas from '@/public/image/LOGO DISCAS.png';
 import { PawPrint, Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Separator } from '../ui/separator';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 const menuItems = [
 	{ name: 'Inicio', ruta: '/' },
@@ -21,90 +22,131 @@ const menuItems = [
 	{ name: 'Contacto', ruta: '/contacto' },
 ];
 
+const initialRouteStyles = {
+	'/': 'bg-white',
+	'/adopta': 'bg-transparent',
+	'/conocenos': 'bg-white',
+	default: 'bg-white',
+};
+
 const NavBar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const pathname = usePathname();
-	const isAdoptaPage = pathname.includes('/adopta');
-
-	const navClass = isAdoptaPage ? 'bg-transparent' : 'bg-white';
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 50) {
-				setScrolled(true);
-			} else {
-				setScrolled(false);
-			}
+			setScrolled(window.scrollY > 50);
 		};
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		// Solo ejecutar en el cliente
+		if (typeof window !== 'undefined') {
+			handleScroll();
+			window.addEventListener('scroll', handleScroll);
+			return () => window.removeEventListener('scroll', handleScroll);
+		}
 	}, []);
+
+	const getInitialStyle = () => {
+		return initialRouteStyles[pathname as keyof typeof initialRouteStyles] || initialRouteStyles.default;
+	};
 
 	return (
 		<div
-			className={`px-5 md:px-20 z-50 top-0 w-full transition-all duration-300 ${
-				scrolled ? 'fixed bg-white shadow-md' : 'absolute top-10'
-			}`}
+			className={cn(
+				'px-5 md:px-20 z-50 top-0 w-full transition-all duration-300',
+				scrolled ? 'fixed bg-white shadow-md' : 'absolute top-10',
+			)}
 		>
+			{/* Versión Desktop */}
 			<div
-				className={`hidden lg:flex items-center justify-between px-5 h-24 w-full rounded-xl ${navClass} ${
-					scrolled ? 'border-0' : 'border'
-				}`}
+				className={cn(
+					'hidden lg:flex items-center justify-between px-5 h-24 w-full rounded-xl',
+					scrolled ? 'border-0' : 'border',
+					!scrolled && getInitialStyle(),
+				)}
 			>
 				<Image className="w-24" src={logoDiscas} alt="logo discas" />
+
 				<Menubar className="bg-transparent">
-					{menuItems.map((item, index) => (
-						<MenubarMenu key={index}>
-							<MenubarTrigger>
+					{menuItems.map((item) => (
+						<MenubarMenu key={item.ruta}>
+							<MenubarTrigger
+								className={cn(
+									!scrolled && pathname === '/'
+										? 'data-[state=open]:bg-red-100 hover:bg-red-100'
+										: 'data-[state=open]:bg-custom-yellow hover:bg-red-100',
+									scrolled && 'data-[state=open]:bg-red-100 hover:bg-red-100 hover:text-accent-foreground',
+								)}
+							>
 								<Link
 									href={item.ruta}
-									className={`font-nunito text-base transition-colors ${
-										pathname === item.ruta
-											? 'text-custom-red font-bold border-b-2 border-custom-red pb-1'
-											: 'text-gray-600'
-									}`}
+									className={cn(
+										'font-nunito text-base transition-colors',
+										// Estilo cuando está activo (prioridad máxima)
+										pathname === item.ruta && 'text-custom-red font-bold border-b-2 border-custom-red pb-1',
+										// Estilos según scroll y ruta
+										!scrolled && pathname === '/adopta' && 'text-white hover:text-white/80',
+										!scrolled && pathname !== '/adopta' && 'text-gray-600 hover:text-gray-800',
+										// Estilo cuando hay scroll (para todas las páginas)
+										scrolled && 'text-gray-600 hover:text-gray-800',
+									)}
 								>
 									{item.name}
 								</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 					))}
+
 					<MenubarMenu>
-						<Button className="bg-teal-950 hover:bg-teal-900/80">
+						<Button
+							className={cn(
+								'transition-colors',
+								'bg-teal-950 hover:bg-teal-900/80',
+								// scrolled
+								// 	? 'bg-teal-950 hover:bg-teal-900/80'
+								// 	: pathname === '/adopta'
+								// 	? 'bg-white text-teal-950 hover:bg-white/90'
+								// 	: 'bg-teal-950 hover:bg-teal-900/80',
+							)}
+						>
 							<PawPrint className="mr-1" />
 							Doná ahora
 						</Button>
 					</MenubarMenu>
 				</Menubar>
 			</div>
-			{/* Mobile */}
+
+			{/* Versión Mobile */}
 			<div
-				className={`flex justify-between items-center lg:hidden rounded-xl bg-white p-3 ${
-					scrolled ? 'border-0' : 'border'
-				}`}
+				className={cn(
+					'flex justify-between items-center lg:hidden rounded-xl p-3',
+					scrolled ? 'bg-white border-0' : `${getInitialStyle()} border`,
+				)}
 			>
 				<Image className="w-20" src={logoDiscas} alt="logo discas" />
 				<Sheet>
-					<SheetTrigger asChild>
-						<Menu />
+					<SheetTrigger asChild aria-label="Abrir menú de navegación">
+						<Menu className={!scrolled && pathname === '/adopta' ? 'text-white' : 'text-gray-600'} />
 					</SheetTrigger>
 					<SheetContent side="left">
+						<SheetTitle className="sr-only">Menú de navegación</SheetTitle>
+
 						<div className="grid gap-4 py-4">
 							{menuItems.map((item, index) => (
-								<React.Fragment key={index}>
+								<React.Fragment key={item.ruta}>
 									<div className="grid grid-cols-4 items-center gap-4">
 										<Link
 											href={item.ruta}
-											className={`font-nunito text-base hover:underline transition-colors ${
-												pathname === item.ruta ? 'text-custom-red font-bold' : 'text-gray-600'
-											}`}
+											className={cn(
+												'font-nunito text-base hover:underline transition-colors',
+												pathname === item.ruta ? 'text-custom-red font-bold' : 'text-gray-600',
+											)}
 										>
 											{item.name}
 										</Link>
 									</div>
 									{index < menuItems.length - 1 && (
-										<Separator className={` ${pathname === item.ruta && 'bg-custom-red font-bold'}`} />
+										<Separator className={pathname === item.ruta ? 'bg-custom-red' : ''} />
 									)}
 								</React.Fragment>
 							))}

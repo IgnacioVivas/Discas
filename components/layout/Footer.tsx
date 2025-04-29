@@ -23,7 +23,7 @@ const Footer = () => {
 						<Dog className="text-custom-teal font-semibold text-4xl" />
 						<h4 className={`font-semibold text-2xl text-white cursor-default ${poppins.className}`}>Discas</h4>
 					</div>
-					<p className={`text-custom-grey text-sm cursor-default ${inter.className}`}>
+					<p className={`text-custom-grey text-sm cursor-default font-inter`}>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi quae, labore suscipit exercitationem aperiam.
 					</p>
 					<div className="flex gap-3 text-custom-yellow">
@@ -51,7 +51,7 @@ const Footer = () => {
 					{links.map((link, index) => (
 						<div key={index} className="flex gap-3 text-sm cursor-pointer">
 							<PawPrint className="text-custom-teal" />
-							<p className={`${inter.className}`}> {link.text}</p>
+							<p className={`font-inter`}> {link.text}</p>
 						</div>
 					))}
 				</div>
@@ -61,7 +61,7 @@ const Footer = () => {
 					{links.map((link, index) => (
 						<div key={index} className="flex gap-3 text-sm cursor-pointer">
 							<PawPrint className="text-custom-teal" />
-							<p className={`${inter.className}`}>{link.text}</p>
+							<p className={`font-inter`}>{link.text}</p>
 						</div>
 					))}
 				</div>
@@ -76,7 +76,7 @@ const Footer = () => {
 
 			<div className="w-full mt-8 flex flex-col justify-center">
 				<Separator />
-				<span className={`text-white text-xs text-center py-5 cursor-default ${inter.className}`}>
+				<span className={`text-white text-xs text-center py-5 cursor-default font-inter`}>
 					Copyright © 2025 Discas - Desarrollo Ignacio Vivas
 				</span>
 			</div>

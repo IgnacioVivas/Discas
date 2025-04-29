@@ -12,14 +12,7 @@ export default function AdoptaLayout({
 				<Image src={baner} alt="Banner" fill className="object-cover object-center" priority />
 				<div className="absolute inset-0 bg-teal-950/30 "></div>
 				<div className="absolute inset-0 flex flex-col items-center justify-center">
-					{/* <h1
-						className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins md:text-6xl text-center px-4`}
-					>
-						Conocé a quienes esperan por vos
-					</h1> */}
-					<h1
-						className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins md:text-6xl text-center px-4`}
-					>
+					<h1 className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins text-center px-4`}>
 						Conócelos y enamórate
 					</h1>
 					<p className={`text-lg lg:text-2xl mt-2 drop-shadow-sm font-medium font-inter text-white`}>

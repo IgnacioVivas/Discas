@@ -17,7 +17,7 @@ const DonateSection = () => {
 				<h2 className={`text-4xl text-center text-white font-semibold mb-5 ${poppins.className}`}>
 					Haz una diferencia hoy
 				</h2>
-				<h3 className={`text-lg text-center text-white font-normal ${inter.className}`}>
+				<h3 className={`text-lg text-center text-white font-normal font-inter`}>
 					Con tu contribución, podemos seguir ayudando a más discas. <br /> ¡Gracias por tu generosidad!
 				</h3>
 				<div className="w-full flex justify-center items-center">

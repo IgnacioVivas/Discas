@@ -11,7 +11,7 @@ function MySuscripcion({ className, ...props }: React.ComponentPropsWithoutRef<'
 			<Card className="p-10 bg-custom-red border-0">
 				<CardHeader className="p-0">
 					<CardTitle className={`text-2xl text-white ${poppins.className}`}>SUSCRÍBETE AL NEWSLETTER</CardTitle>
-					<CardDescription className={`text-white ${inter.className}`}>
+					<CardDescription className={`text-white font-inter`}>
 						Para recibir las últimas novedades sobre adopción y cuidados, suscríbete al boletín de Discas.
 					</CardDescription>
 				</CardHeader>

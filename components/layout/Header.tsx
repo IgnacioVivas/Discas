@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import imgMobile from '@/public/image/piru/piru-2.jpg';
 import imgDesktop from '@/public/image/piru/piru-4.jpg';
 import { AspectRatio } from '../ui/aspect-ratio';
@@ -10,7 +10,13 @@ import { inter } from '../ui/fonts';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const Header = () => {
-	const isDesktop = useMediaQuery('(min-width: 768px)');
+	const [isDesktop, setIsDesktop] = useState(false);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setIsDesktop(window.matchMedia('(min-width: 768px)').matches);
+		}
+	}, []);
 
 	const selectedImage = isDesktop ? imgDesktop : imgMobile;
 
@@ -23,7 +29,7 @@ const Header = () => {
 				<h1 className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins`}>
 					¡Transforma vidas <br /> con <span className="text-teal-400">tu</span> ayuda!
 				</h1>
-				<span className={`text-lg lg:text-2xl mt-2 drop-shadow-sm font-medium ${inter.className}`}>
+				<span className={`text-lg lg:text-2xl mt-2 drop-shadow-sm font-medium font-inter`}>
 					Tu apoyo hace posible un futuro mejor para ellos<span className="text-teal-400">.</span>
 				</span>
 				<div className="flex gap-3 z-10">

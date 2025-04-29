@@ -5,9 +5,9 @@ import React from 'react';
 
 function Adopta() {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-4  mt-28 px-10 md:px-20 gap-4">
+		<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mt-28 px-10 md:px-20">
 			{datosDiscas.map((dog) => (
-				<Link key={dog.id} href={`/adopta/${dog.id}`} passHref legacyBehavior>
+				<Link key={dog.id} href={`/adopta/${dog.id}`} passHref>
 					<div className="hover:scale-[1.02] transition-transform duration-200">
 						<MyCard
 							nombre={dog.nombre}

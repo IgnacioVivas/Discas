@@ -15,7 +15,7 @@ interface MyCardProps extends React.ComponentProps<typeof Card> {
 
 const MyCard: React.FC<MyCardProps> = ({ className, nombre, descripcion, imagen, edad, genero, ...props }) => {
 	return (
-		<Card className={cn('w-full max-w-[380px] h-[500px]', className)} {...props}>
+		<Card className={cn('w-full max-w-[380px] h-full', className)} {...props}>
 			<CardContent className="grid gap-4">
 				<div className=" flex items-center space-x-4 rounded-md relative ">
 					<Image
@@ -36,7 +36,9 @@ const MyCard: React.FC<MyCardProps> = ({ className, nombre, descripcion, imagen,
 				<CardTitle>
 					{genero} <span className="font-normal">- (Edad: {edad} años)</span>
 				</CardTitle>
-				<CardDescription>{descripcion.length > 100 ? descripcion.slice(0, 100) + '...' : descripcion}</CardDescription>
+				<CardDescription className="h-16 overflow-hidden">
+					{descripcion.length > 100 ? descripcion.slice(0, 100) + '...' : descripcion}
+				</CardDescription>
 			</CardHeader>
 			<CardFooter>
 				<Button className={`w-full ${nunito.className}`}>Adoptame</Button>
