@@ -3,6 +3,7 @@ import './globals.css';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
 import { inter, nunito, poppins } from '@/components/ui/fonts';
+import WhatsAppButton from '@/components/myComponents/WhatsAppButton';
 
 export const metadata: Metadata = {
 	title: 'Discas',
@@ -22,6 +23,7 @@ export default function RootLayout({
 			<body className={`${poppins.variable} ${nunito.variable} ${inter.variable} antialiased bg-stone-100`}>
 				<NavBar />
 				{children}
+				<WhatsAppButton />
 				<Footer />
 			</body>
 		</html>
