@@ -18,7 +18,6 @@ const menuItems = [
 	{ name: 'Infórmate', ruta: '/informate' },
 	{ name: 'Participá', ruta: '/participa' },
 	{ name: 'Donaciones', ruta: '/donaciones' },
-	{ name: 'Tienda', ruta: '/tienda' },
 	{ name: 'Contacto', ruta: '/contacto' },
 ];
 
@@ -47,13 +46,16 @@ const NavBar = () => {
 	}, []);
 
 	const getInitialStyle = () => {
+		if (pathname.startsWith('/adopta')) {
+			return 'bg-transparent';
+		}
 		return initialRouteStyles[pathname as keyof typeof initialRouteStyles] || initialRouteStyles.default;
 	};
 
 	return (
 		<div
 			className={cn(
-				'px-5 md:px-20 z-50 top-0 w-full transition-all duration-300',
+				'px-5 md:px-10 lg:px-20 z-50 top-0 w-full transition-all duration-300',
 				scrolled ? 'fixed bg-white shadow-md' : 'absolute top-10',
 			)}
 		>
@@ -87,8 +89,8 @@ const NavBar = () => {
 										// Estilo cuando está activo (prioridad máxima)
 										pathname === item.ruta && 'text-custom-red font-bold border-b-2 border-custom-red pb-1',
 										// Estilos según scroll y ruta
-										!scrolled && pathname === '/adopta' && 'text-white hover:text-white/80',
-										!scrolled && pathname !== '/adopta' && 'text-gray-600 hover:text-gray-800',
+										!scrolled && pathname.startsWith('/adopta') && 'text-white hover:text-white/80',
+										!scrolled && !pathname.startsWith('/adopta') && 'text-gray-600 hover:text-gray-800',
 										// Estilo cuando hay scroll (para todas las páginas)
 										scrolled && 'text-gray-600 hover:text-gray-800',
 									)}
@@ -128,7 +130,7 @@ const NavBar = () => {
 				<Image className="w-20" src={logoDiscas} alt="logo discas" />
 				<Sheet>
 					<SheetTrigger asChild aria-label="Abrir menú de navegación">
-						<Menu className={!scrolled && pathname === '/adopta' ? 'text-white' : 'text-gray-600'} />
+						<Menu className={!scrolled && pathname.startsWith('/adopta') ? 'text-white' : 'text-gray-600'} />
 					</SheetTrigger>
 					<SheetContent side="left">
 						<SheetTitle className="sr-only">Menú de navegación</SheetTitle>

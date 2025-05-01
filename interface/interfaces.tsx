@@ -1,13 +1,14 @@
 export interface Disca {
 	id: string;
 	nombre: string;
-	raza: string;
 	edad: number;
 	genero: 'Macho' | 'Hembra';
 	tamaño: 'Pequeño' | 'Mediano' | 'Grande';
+	castrado: 'No castrado' | 'Castrado';
 	descripcion: string;
 	personalidad: string[];
 	salud: string[];
+	alimentacion: string;
 	requisitosDeAdopcion: string[];
 	imagenCard: string;
 	fotos: string[];
