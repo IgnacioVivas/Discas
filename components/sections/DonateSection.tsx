@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import bgPatitas from '@/public/image/huellas-perros.png';
 import Image from 'next/image';
 import imgDona from '@/public/image/mano-dona.png';
-import { inter, nunito, poppins } from '../ui/fonts';
 
 const DonateSection = () => {
 	return (
@@ -14,23 +13,21 @@ const DonateSection = () => {
 			style={{ backgroundImage: `url(${bgPatitas.src})` }}
 		>
 			<div className="px-8 md:px-20 py-10 bg-teal-950 bg-opacity-85 rounded-xl">
-				<h2 className={`text-4xl text-center text-white font-semibold mb-5 ${poppins.className}`}>
-					Haz una diferencia hoy
-				</h2>
+				<h2 className={`text-4xl text-center text-white font-semibold mb-5 font-poppins`}>Haz una diferencia hoy</h2>
 				<h3 className={`text-lg text-center text-white font-normal font-inter`}>
 					Con tu contribución, podemos seguir ayudando a más discas. <br /> ¡Gracias por tu generosidad!
 				</h3>
 				<div className="w-full flex justify-center items-center">
 					<Image src={imgDona.src} alt="dona" width={150} height={150} />
 				</div>
-				<h2 className={`uppercase text-center mb-6 font-semibold text-2xl text-white ${poppins.className}`}>
+				<h2 className={`uppercase text-center mb-6 font-semibold text-2xl text-white font-poppins`}>
 					Doná Mensualmente
 				</h2>
 				<div className="grid grid-cols-2 gap-9 justify-items-center md:grid-cols-3 text-white font-bold text-2xl">
 					{['$6.000', '$8.000', '$12.000', '$18.000', '$24.000', '$30.000'].map((price, index) => (
 						<motion.div
 							key={index}
-							className={`w-full py-5 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer ${nunito.className}`}
+							className={`w-full py-5 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer font-nunito`}
 							whileHover={{
 								scale: 1.1,
 								rotate: [0, 3, -3, 0],
@@ -43,14 +40,14 @@ const DonateSection = () => {
 						</motion.div>
 					))}
 				</div>
-				<h2 className={`uppercase text-center my-6 font-semibold text-2xl text-white ${poppins.className}`}>
+				<h2 className={`uppercase text-center my-6 font-semibold text-2xl text-white font-poppins`}>
 					DONÁ POR ÚNICA VEZ
 				</h2>
 				<div className="grid grid-cols-2 gap-4 md:grid-cols-4 text-white font-bold text-2xl">
 					{['$5000', '$10000', '$15000', '$25000'].map((price, index) => (
 						<motion.div
 							key={index}
-							className={`py-3 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer ${nunito.className}`}
+							className={`py-3 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer font-nunito`}
 							whileHover={{
 								scale: 1.1,
 								rotate: [0, 3, -3, 0],
@@ -65,13 +62,13 @@ const DonateSection = () => {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-9 mt-9">
 					<div
-						className={`uppercase text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 ${nunito.className}`}
+						className={`uppercase text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 font-nunito`}
 					>
 						<h2 className="font-semibold text-lg text-center">APORTÁ USANDO ALIAS</h2>
 						<div className="font-bold text-3xl text-teal-400 text-center">CABRA.OSO</div>
 					</div>
 					<div
-						className={`text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 ${nunito.className}`}
+						className={`text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 font-nunito`}
 					>
 						<h2 className="uppercase font-semibold text-lg text-center">O SI ESTÁS FUERA DE ARGENTINA</h2>
 						<div className="font-bold text-3xl text-teal-400 text-center">PayPal</div>
