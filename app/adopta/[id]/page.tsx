@@ -11,11 +11,10 @@ interface PageProps {
 	};
 }
 
-const InfoDisca = ({ params }: PageProps) => {
+export default async function InfoDiscas({ params }: PageProps) {
 	const dog = datosDiscas.find((d) => d.id === params.id);
 
 	if (!dog) return notFound();
-
 	return (
 		<div className="mx-auto px-10 md:px-20 py-20">
 			<Link
@@ -76,6 +75,4 @@ const InfoDisca = ({ params }: PageProps) => {
 			</Card>
 		</div>
 	);
-};
-
-export default InfoDisca;
+}
