@@ -6,8 +6,6 @@ import imgDesktop from '@/public/image/piru/piru-4.jpg';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { Button } from '../ui/button';
 import { PawPrint } from 'lucide-react';
-import { inter } from '../ui/fonts';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const Header = () => {
 	const [isDesktop, setIsDesktop] = useState(false);

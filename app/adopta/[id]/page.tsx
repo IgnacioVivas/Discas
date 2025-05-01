@@ -2,7 +2,6 @@ import PhotoGallery from '@/components/myComponents/PhotoGallery';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { datosDiscas } from '@/data/discas';
 import { ChevronLeft } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 

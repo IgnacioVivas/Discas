@@ -4,6 +4,7 @@ import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
 import { inter, nunito, poppins } from '@/components/ui/fonts';
 import WhatsAppButton from '@/components/myComponents/WhatsAppButton';
+import DonationDialog from '@/components/myComponents/DonationDialog';
 
 export const metadata: Metadata = {
 	title: 'Discas',
@@ -24,6 +25,7 @@ export default function RootLayout({
 				<NavBar />
 				{children}
 				<WhatsAppButton />
+				{/* <DonationDialog /> */}
 				<Footer />
 			</body>
 		</html>

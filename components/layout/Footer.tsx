@@ -3,7 +3,6 @@ import React from 'react';
 import MySuscripcion from '../myComponents/MySuscripcion';
 import { Separator } from '../ui/separator';
 import Link from 'next/link';
-import { inter, poppins } from '../ui/fonts';
 
 const links = [
 	{ text: 'Adoptá' },
@@ -21,7 +20,7 @@ const Footer = () => {
 				<div className="flex flex-col gap-4 row-start-2 col-span-2 md:row-start-1 md:col-span-1 justify-center md:justify-normal">
 					<div className="flex gap-3 items-center">
 						<Dog className="text-custom-teal font-semibold text-4xl" />
-						<h4 className={`font-semibold text-2xl text-white cursor-default ${poppins.className}`}>Discas</h4>
+						<h4 className={`font-semibold text-2xl text-white cursor-default font-poppins`}>Discas</h4>
 					</div>
 					<p className={`text-custom-grey text-sm cursor-default font-inter`}>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi quae, labore suscipit exercitationem aperiam.
@@ -47,7 +46,7 @@ const Footer = () => {
 
 				{/* seccion 2 */}
 				<div className="text-custom-grey flex flex-col gap-3 row-start-3 md:row-start-1 col-start-1 md:col-start-2">
-					<h5 className={`text-white text-lg uppercase font-semibold cursor-default ${poppins.className}`}>LINKS</h5>
+					<h5 className={`text-white text-lg uppercase font-semibold cursor-default font-poppins`}>LINKS</h5>
 					{links.map((link, index) => (
 						<div key={index} className="flex gap-3 text-sm cursor-pointer">
 							<PawPrint className="text-custom-teal" />
@@ -57,7 +56,7 @@ const Footer = () => {
 				</div>
 				{/* seccion 3 */}
 				<div className="text-custom-grey flex flex-col gap-3 row-start-3 md:row-start-1 col-start-2 md:col-start-3">
-					<h5 className={`text-white text-lg uppercase font-semibold cursor-default ${poppins.className}`}>LINKS</h5>
+					<h5 className={`text-white text-lg uppercase font-semibold cursor-default font-poppins`}>LINKS</h5>
 					{links.map((link, index) => (
 						<div key={index} className="flex gap-3 text-sm cursor-pointer">
 							<PawPrint className="text-custom-teal" />
