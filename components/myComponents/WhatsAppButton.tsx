@@ -2,8 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 function WhatsAppButton() {
-	// const phoneNumber = '5493885003055';
-	const phoneNumber = '5493516229139';
+	const phoneNumber = '5493885003055';
 
 	const message =
 		'Hola, estoy interesado/a en conocer más sobre el proceso de adopción de los perritos de Discas. ¡Gracias! 🐾';
