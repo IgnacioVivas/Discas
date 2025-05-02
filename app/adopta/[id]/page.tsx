@@ -91,6 +91,7 @@ interface PageProps {
 	};
 }
 
+// Genera las rutas estáticas para cada perro
 export async function generateStaticParams() {
 	return datosDiscas.map((dog) => ({
 		id: dog.id,
@@ -98,7 +99,10 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: PageProps) {
-	const dog = datosDiscas.find((d) => d.id === params.id);
+	// Asegura que params.id sea string
+	if (!params?.id) return notFound();
+
+	const dog = datosDiscas.find((d) => d.id === String(params.id));
 
 	if (!dog) return notFound();
 
@@ -126,7 +130,7 @@ export default async function Page({ params }: PageProps) {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
 						<PhotoGallery photos={dog.fotos} name={dog.nombre} />
 						<div className="w-full font-inter">
-							<div className="p-2 ">
+							<div className="p-2">
 								<h2 className="text-xl font-semibold mb-2 font-poppins">Sobre {dog.nombre}</h2>
 								<p className="text-gray-700">{dog.descripcion}</p>
 							</div>
