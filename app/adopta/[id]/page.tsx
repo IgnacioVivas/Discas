@@ -78,6 +78,7 @@
 // }
 
 // app/adopta/[id]/page.tsx
+
 import { notFound } from 'next/navigation';
 import { datosDiscas } from '@/data/discas';
 import PhotoGallery from '@/components/myComponents/PhotoGallery';
@@ -85,25 +86,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
-interface PageProps {
-	params: {
-		id: string;
-	};
-}
-
-// Genera las rutas estáticas para cada perro
 export async function generateStaticParams() {
 	return datosDiscas.map((dog) => ({
 		id: dog.id,
 	}));
 }
 
-export default async function Page({ params }: PageProps) {
-	// Asegura que params.id sea string
-	if (!params?.id) return notFound();
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = await params;
 
-	const dog = datosDiscas.find((d) => d.id === String(params.id));
-
+	const dog = datosDiscas.find((d) => d.id === id);
 	if (!dog) return notFound();
 
 	return (
@@ -130,7 +122,7 @@ export default async function Page({ params }: PageProps) {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
 						<PhotoGallery photos={dog.fotos} name={dog.nombre} />
 						<div className="w-full font-inter">
-							<div className="p-2">
+							<div className="p-2 ">
 								<h2 className="text-xl font-semibold mb-2 font-poppins">Sobre {dog.nombre}</h2>
 								<p className="text-gray-700">{dog.descripcion}</p>
 							</div>
