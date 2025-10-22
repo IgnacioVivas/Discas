@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import baner from '@/public/image/baners/baner-1.jpg';
 import OurTeam from '@/components/sections/OurTeam';
 import SponsorsSection from '@/components/sections/SponsorsSection';
 import OurValue from '@/components/sections/OurValue';
