@@ -5,11 +5,13 @@ import SponsorsSection from '@/components/sections/SponsorsSection';
 import OurValue from '@/components/sections/OurValue';
 import { Separator } from '@/components/ui/separator';
 import Counter from '@/components/sections/Counter';
+import Silk from '@/components/Silk';
 
 function Conocenos() {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<div className="relative w-full h-[500px] bg-no-repeat bg-cover bg-bottom">
+				<Silk speed={5} scale={1} color="#2dd4bf" noiseIntensity={1.5} rotation={0} />
 				{/* <Image src={baner} alt="Banner" fill className="object-cover object-center" priority /> */}
 				<div className="absolute inset-0 bg-teal-950/30 "></div>
 				<div className="px-5 absolute inset-0 flex flex-col items-center justify-center">
