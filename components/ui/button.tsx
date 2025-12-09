@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 const buttonVariants = cva(
 	'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-nunito',
 	{
+		// bg-teal-100 hover:bg-teal-200 text-teal-900 px-6 py-3 rounded-lg text-lg font-medium transition
 		variants: {
 			variant: {
 				default: 'bg-teal-500 text-primary-foreground shadow hover:bg-teal-500/80',

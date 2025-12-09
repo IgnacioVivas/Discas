@@ -14,7 +14,7 @@ const links = [
 
 const Footer = () => {
 	return (
-		<div className="mt-14 md:mt-40 bg-[#100A00] px-10 md:px-20 pt-28 flex flex-col justify-center">
+		<div className="mt-32 md:mt-40 bg-[#100A00] px-10 md:px-20 pt-28 flex flex-col justify-center">
 			<div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-10 w-full grid-rows-3 md:grid-rows-1">
 				{/* seccion 1 */}
 				<div className="flex flex-col gap-4 row-start-2 col-span-2 md:row-start-1 md:col-span-1 justify-center md:justify-normal">

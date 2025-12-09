@@ -4,14 +4,18 @@ import OurValue from '@/components/sections/OurValue';
 import { Separator } from '@/components/ui/separator';
 import Counter from '@/components/sections/Counter';
 import Silk from '@/components/Silk';
+import HeaderDos from '@/components/layout/HeaderDos';
+import Image from 'next/image';
 
 function Conocenos() {
 	return (
 		<div className="flex flex-col min-h-screen">
-			<div className="relative w-full h-[500px] bg-no-repeat bg-cover bg-bottom">
+			<HeaderDos title="¿Quiénes somos?" description="La discapacidad no define, el amor sí." />
+
+			{/* ELIMINAR ESTA LIBRERIA QUE NO LA USO MAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+			{/* <div className="relative w-full h-[500px] bg-no-repeat bg-cover bg-bottom">
 				<Silk speed={5} scale={1} color="#2dd4bf" noiseIntensity={1.5} rotation={0} />
-				{/* <Image src={baner} alt="Banner" fill className="object-cover object-center" priority /> */}
-				<div className="absolute inset-0 bg-teal-950/30 "></div>
+
 				<div className="px-5 absolute inset-0 flex flex-col items-center justify-center">
 					<h1 className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins text-center px-4`}>
 						¿Quiénes somos?
@@ -20,7 +24,7 @@ function Conocenos() {
 						La discapacidad no define, el amor sí.
 					</p>
 				</div>
-			</div>
+			</div> */}
 			<main className="flex-1 pt-20 flex flex-col gap-28">
 				<section className="grid grid-cols-1 md:grid-cols-2 gap-5 px-10 md:px-20">
 					<div className="flex flex-col gap-5">
@@ -34,11 +38,18 @@ function Conocenos() {
 						</p>
 					</div>
 					<div>
-						<img
+						<Image
+							src="/image/varias/equipo-1.jpeg"
+							alt="perro disca de festejo"
+							width={1599}
+							height={1258}
+							className="w-full h-auto object-cover"
+						/>
+						{/* <img
 							src="https://media.istockphoto.com/id/2148674008/es/foto/equipo-exitoso-de-personas-de-negocios-sonriendo-a-la-c%C3%A1mara-en-una-oficina-de-inicio.jpg?s=612x612&w=0&k=20&c=q8HxuJcJrVOPRM63_IZxs719g0pYcd8yhH-bjUdNpnA="
 							alt="Banner"
 							className="w-full"
-						/>
+						/> */}
 					</div>
 				</section>
 

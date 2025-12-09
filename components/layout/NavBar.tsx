@@ -24,10 +24,10 @@ const menuItems = [
 const initialRouteStyles = {
 	'/': 'bg-white',
 	'/adopta': 'bg-transparent',
-	'/conocenos': 'bg-white',
+	'/conocenos': 'bg-red',
 	default: 'bg-white',
 };
-
+// rgba(255, 255, 255, 0.05)
 const NavBar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const pathname = usePathname();
@@ -102,17 +102,7 @@ const NavBar = () => {
 					))}
 
 					<MenubarMenu>
-						<Button
-							className={cn(
-								'transition-colors',
-								'bg-teal-950 hover:bg-teal-900/80',
-								// scrolled
-								// 	? 'bg-teal-950 hover:bg-teal-900/80'
-								// 	: pathname === '/adopta'
-								// 	? 'bg-white text-teal-950 hover:bg-white/90'
-								// 	: 'bg-teal-950 hover:bg-teal-900/80',
-							)}
-						>
+						<Button className={cn('transition-colors', 'bg-teal-950 hover:bg-teal-900/80')}>
 							<PawPrint className="mr-1" />
 							Doná ahora
 						</Button>
