@@ -3,7 +3,6 @@ import SponsorsSection from '@/components/sections/SponsorsSection';
 import OurValue from '@/components/sections/OurValue';
 import { Separator } from '@/components/ui/separator';
 import Counter from '@/components/sections/Counter';
-import Silk from '@/components/Silk';
 import HeaderDos from '@/components/layout/HeaderDos';
 import Image from 'next/image';
 
