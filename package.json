@@ -16,6 +16,7 @@
 		"@radix-ui/react-menubar": "^1.1.4",
 		"@radix-ui/react-separator": "^1.1.1",
 		"@radix-ui/react-slot": "^1.2.0",
+		"@tailwindcss/postcss": "^4.1.17",
 		"canvas-confetti": "^1.9.4",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
@@ -23,11 +24,13 @@
 		"lucide-react": "^0.468.0",
 		"motion": "^11.17.0",
 		"next": "^15.3.1",
+		"postcss": "^8.5.6",
 		"react": "^19.1.0",
 		"react-countup": "^6.5.3",
 		"react-dom": "^19.1.0",
 		"sharp": "^0.33.5",
 		"tailwind-merge": "^2.5.5",
+		"tailwindcss": "^4.1.17",
 		"tailwindcss-animate": "^1.0.7",
 		"yet-another-react-lightbox": "^3.23.0"
 	},
@@ -37,8 +40,6 @@
 		"@types/react-dom": "^18",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.16",
-		"postcss": "^8",
-		"tailwindcss": "^3.4.1",
 		"typescript": "^5"
 	}
 }
