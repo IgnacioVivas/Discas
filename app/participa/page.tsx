@@ -26,7 +26,7 @@ const Participa = () => {
 				<div className="absolute inset-0 bg-black/40"></div>
 
 				<div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8 gap-4">
-					<h2 className="uppercase text-3xl md:text-4xl tracking-widest text-white font-bold drop-shadow-lg">
+					<h2 className="uppercase text-3xl md:text-4xl tracking-widest text-white font-bold drop-shadow-lg font-dancing">
 						¡Cada ayuda cuenta!
 					</h2>
 
