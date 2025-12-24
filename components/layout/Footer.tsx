@@ -3,6 +3,7 @@ import React from 'react';
 import MySuscripcion from '../myComponents/MySuscripcion';
 import { Separator } from '../ui/separator';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const links = [
 	{ text: 'Adoptá' },
@@ -70,6 +71,10 @@ const Footer = () => {
 					<div className="absolute top-[-150px]">
 						<MySuscripcion />
 					</div>
+				</div>
+				{/* nueva seccion */}
+				<div className="relative row-start-1 col-span-2 md:col-start-4 md:col-end-6">
+					<Image className="w-60" width={1000} height={1500} alt="timoteo discas" src="/image/varias/timoteo.png" />
 				</div>
 			</div>
 
