@@ -1,6 +1,5 @@
 import HeaderDos from '@/components/layout/HeaderDos';
 import { Phone, Mail, MapPin, Heart, MessageCircle, Users, Dog, Cat, Calendar, Shield, Home } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Contacto = () => {
 	return (
