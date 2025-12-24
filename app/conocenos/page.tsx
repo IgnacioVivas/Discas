@@ -8,32 +8,35 @@ import Image from 'next/image';
 
 function Conocenos() {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col">
 			<HeaderDos title="¿Quiénes somos?" description="La discapacidad no define, el amor sí." />
 
-			{/* ELIMINAR ESTA LIBRERIA QUE NO LA USO MAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-			{/* <div className="relative w-full h-[500px] bg-no-repeat bg-cover bg-bottom">
-				<Silk speed={5} scale={1} color="#2dd4bf" noiseIntensity={1.5} rotation={0} />
-
-				<div className="px-5 absolute inset-0 flex flex-col items-center justify-center">
-					<h1 className={`text-4xl lg:text-6xl font-semibold text-white drop-shadow-md font-poppins text-center px-4`}>
-						¿Quiénes somos?
-					</h1>
-					<p className={`text-center text-lg lg:text-2xl mt-2 drop-shadow-sm font-medium font-inter text-white`}>
-						La discapacidad no define, el amor sí.
-					</p>
-				</div>
-			</div> */}
-			<main className="flex-1 pt-20 flex flex-col gap-28">
-				<section className="grid grid-cols-1 md:grid-cols-2 gap-5 px-10 md:px-20">
-					<div className="flex flex-col gap-5">
-						<span className="text-custom-teal font-nunito">Sobre la fundación</span>
-						<h2 className="text-black font-bold text-4xl font-poppins">¿QUÉ ES DISCAS?</h2>
-						<p className="text-stone-400 text-lg font-inter">
+			<main className="flex-1 flex flex-col gap-32">
+				<section className="grid grid-cols-1 xl:grid-cols-2 items-center gap-10 px-10 md:px-20">
+					<div className="flex flex-col gap-4">
+						<span className="text-orange font-medium font-quicksand">Sobre la fundación</span>
+						<h2 className="font-nunito uppercase text-3xl md:text-[2.5rem] tracking-widest text-teal-dark font-bold">
+							¿QUÉ ES DISCAS?
+						</h2>
+						<p className="text-lg leading-relaxed text-stone-700 font-inter">
 							Discas es el primer y único grupo organizado de Córdoba Capital destinado específicamente al rescate,
-							rehabilitación y adopción de animales con discapacidad. <br />
-							También nos ocupamos de las llamadas “adopciones dificiles” , es decir, promovemos la adopcion de peludos
-							de edad avanzada.
+							rehabilitación y adopción de animales con discapacidad. Nuestro trabajo nace del amor, la empatía y la
+							convicción de que la discapacidad no limita el derecho a una vida digna, feliz y acompañada.
+							<br />
+							<br />
+							Nos dedicamos a brindar segundas oportunidades a peluditos que muchas veces son invisibilizados: animales
+							con parálisis, amputaciones, enfermedades crónicas o secuelas físicas que requieren cuidados especiales,
+							pero que tienen intactas sus ganas de vivir, jugar y dar amor.
+							<br />
+							<br />
+							También acompañamos y promovemos las llamadas <em>“adopciones difíciles”</em>, impulsando la adopción de
+							animales de edad avanzada o con historias complejas, entendiendo que cada etapa de la vida merece ser
+							transitada con respeto, contención y afecto.
+							<br />
+							<br />
+							En Discas creemos que no se trata solo de rescatar, sino de acompañar cada proceso con responsabilidad,
+							información y compromiso, construyendo vínculos reales entre personas y animales, y demostrando día a día
+							que la discapacidad no define: el amor sí.
 						</p>
 					</div>
 					<div>
@@ -44,11 +47,6 @@ function Conocenos() {
 							height={1258}
 							className="w-full h-auto object-cover"
 						/>
-						{/* <img
-							src="https://media.istockphoto.com/id/2148674008/es/foto/equipo-exitoso-de-personas-de-negocios-sonriendo-a-la-c%C3%A1mara-en-una-oficina-de-inicio.jpg?s=612x612&w=0&k=20&c=q8HxuJcJrVOPRM63_IZxs719g0pYcd8yhH-bjUdNpnA="
-							alt="Banner"
-							className="w-full"
-						/> */}
 					</div>
 				</section>
 

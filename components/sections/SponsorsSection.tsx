@@ -5,7 +5,6 @@ import client3 from '@/public/image/client-3.png';
 import client4 from '@/public/image/client-4.png';
 import client5 from '@/public/image/client-5.png';
 import Image from 'next/image';
-import { poppins } from '../ui/fonts';
 
 const clientsData = [
 	{
@@ -24,17 +23,17 @@ const clientsData = [
 		imagen: client4,
 		alt: 'Imagen del cliente 4, interactuando con el equipo de soporte.',
 	},
-	{
-		imagen: client5,
-		alt: 'Imagen del cliente 5, recomendando el servicio a amigos.',
-	},
+	// {
+	// 	imagen: client5,
+	// 	alt: 'Imagen del cliente 5, recomendando el servicio a amigos.',
+	// },
 ];
 
 const SponsorsSection = () => {
 	return (
-		<div className="px-10 md:px-20 grid grid-cols-5 lg:grid-cols-6 grid-rows-2 md:grid-rows-1 justify-items-center gap-y-6 md:gap-8">
+		<div className="px-10 md:px-20 grid grid-cols-4 lg:grid-cols-5 grid-rows-2 md:grid-rows-1 items-center justify-items-center gap-y-6 md:gap-8">
 			<h2
-				className={`text-3xl font-semibold col-span-6 lg:col-span-1 text-center md:text-start md:mb-8 lg:mb-0 ${poppins.className}`}
+				className={`font-dancing text-3xl md:text-[2.5rem] tracking-widest text-teal-dark font-extrabold col-span-6 lg:col-span-1 text-center lg:text-start md:mb-8 lg:mb-0`}
 			>
 				Nuestros patrocinadores y donantes
 			</h2>

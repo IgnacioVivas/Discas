@@ -26,7 +26,7 @@ function HeaderDos({ title, description, image }: HeaderDosProps) {
 			<div className="absolute inset-0 bg-teal-950/30"></div>
 
 			<div className="px-5 absolute inset-0 flex flex-col items-center justify-center">
-				<h1 className="font-nunito text-4xl lg:text-6xl font-bold text-white drop-shadow-md text-center px-4">
+				<h1 className="font-nunito text-4xl lg:text-6xl font-extrabold text-white drop-shadow-md text-center px-4">
 					{title}
 				</h1>
 				<p className="font-quicksand text-center text-lg lg:text-2xl mt-2 drop-shadow-sm font-semibold text-white">

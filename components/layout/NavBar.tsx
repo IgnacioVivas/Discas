@@ -17,6 +17,7 @@ const menuItems = [
 	{ name: 'Adoptá', ruta: '/adopta' },
 	{ name: 'Infórmate', ruta: '/informate' },
 	{ name: 'Participá', ruta: '/participa' },
+	{ name: 'Denuncia', ruta: '/denuncia' },
 	{ name: 'Donaciones', ruta: '/donaciones' },
 	{ name: 'Contacto', ruta: '/contacto' },
 ];

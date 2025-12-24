@@ -2,7 +2,7 @@ import HeaderDos from '@/components/layout/HeaderDos';
 import InfoCard from '@/components/myComponents/InfoCard';
 import Image from 'next/image';
 
-function page() {
+function Informate() {
 	return (
 		<div className="flex flex-col">
 			<HeaderDos
@@ -298,4 +298,4 @@ function page() {
 	);
 }
 
-export default page;
+export default Informate;

@@ -3,6 +3,8 @@ import presidenta from '@/public/image/equipo/pamela-carranza.jpg';
 import secretaria from '@/public/image/equipo/natalia-perdiguera.jpg';
 import tesorera from '@/public/image/equipo/silvina-capellino.jpg';
 import { cn } from '@/lib/utils';
+import { Separator } from '../ui/separator';
+import { PawPrint } from 'lucide-react';
 
 const equipo = [
 	{
@@ -28,10 +30,12 @@ const equipo = [
 const OurTeam = () => {
 	return (
 		<div className="w-full flex flex-col justify-center gap-3">
-			<div className="px-8 md:px-20 bg-opacity-85">
-				<h2 className="text-4xl text-center text-black font-semibold mb-5 font-poppins">Nuestro equipo</h2>
-				<h3 className="text-lg text-center text-stone-400 font-normal font-inter">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Consectetur totam!
+			<div className="px-8 md:px-20 flex flex-col justify-center items-center gap-4">
+				<h2 className="text-center font-nunito uppercase text-3xl md:text-[2.5rem] tracking-widest text-teal-dark font-bold">
+					Las personas detrás de Discas
+				</h2>
+				<h3 className="text-center text-lg leading-relaxed text-stone-700 font-inter">
+					Un equipo comprometido que trabaja todos los días para acompañar, cuidar y transformar vidas.
 				</h3>
 			</div>
 
@@ -47,8 +51,15 @@ const OurTeam = () => {
 								sizes="(max-width: 768px) 100vw, 33vw"
 							/>
 						</div>
-						<h4 className="mt-4 text-xl font-semibold text-gray-800 font-inter">{x.nombre}</h4>
-						<p className="text-gray-600 font-nunito">{x.cargo}</p>
+						<div className="mt-4 p-5 w-full flex flex-col items-center justify-center bg-white rounded-xl border shadow-sm border-teal-300/40 hover:shadow-md transition-all">
+							<h4 className="text-xl text-teal-900 font-bold font-nunito">{x.nombre}</h4>
+							<div className="flex items-center gap-3 w-1/2 my-2">
+								<Separator className="flex-1 bg-teal-300" />
+								<PawPrint className="w-4 h-4 text-teal-500 shrink-0" />
+								<Separator className="flex-1 bg-teal-300" />
+							</div>
+							<p className="text-stone-700 font-inter">{x.cargo}</p>
+						</div>
 					</div>
 				))}
 			</div>
