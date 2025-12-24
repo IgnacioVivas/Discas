@@ -5,7 +5,7 @@ interface HeaderDosProps {
 	image?: string;
 }
 
-function HeaderDos({ title, description, image }: HeaderDosProps) {
+function HeaderDos({ title, description }: HeaderDosProps) {
 	return (
 		<div className="h-screen w-full relative flex flex-col mb-32">
 			{/* <div className="relative w-full h-[500px]"> */}
