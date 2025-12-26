@@ -1,3 +1,5 @@
+'use client';
+
 import { notFound } from 'next/navigation';
 import { datosDiscas } from '@/data/discas';
 import PhotoGallery from '@/components/myComponents/PhotoGallery';
