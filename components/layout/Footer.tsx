@@ -139,7 +139,7 @@ const CONTACT_INFO = [
 
 const Footer = () => {
 	return (
-		<footer className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 text-white mt-32">
+		<footer className="px-6 relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 text-white mt-32">
 			{/* Elementos decorativos */}
 			<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-amber-500 to-pink-500" />
 
@@ -228,7 +228,7 @@ const Footer = () => {
 						</ul>
 
 						{/* Botón especial de donación */}
-						<Button
+						{/* <Button
 							asChild
 							className="w-full mt-6 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
 						>
@@ -236,7 +236,7 @@ const Footer = () => {
 								<Heart className="w-4 h-4 mr-2" />
 								Donar ahora
 							</Link>
-						</Button>
+						</Button> */}
 					</div>
 
 					{/* Sección 3: Contacto */}
@@ -331,12 +331,12 @@ const Footer = () => {
 					</div>
 
 					<div className="flex items-center gap-6">
-						<Link href="/privacidad" className="text-gray-400 hover:text-white text-sm transition-colors">
+						{/* <Link href="/privacidad" className="text-gray-400 hover:text-white text-sm transition-colors">
 							Política de privacidad
 						</Link>
 						<Link href="/terminos" className="text-gray-400 hover:text-white text-sm transition-colors">
 							Términos de uso
-						</Link>
+						</Link> */}
 						<div className="text-gray-500 text-sm flex items-center gap-2">
 							<span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
 							Desarrollado por Ignacio Vivas

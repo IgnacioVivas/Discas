@@ -12,8 +12,7 @@ export async function generateStaticParams() {
 }
 
 export default async function AdoptaItem({ params }: { params: Promise<{ id: string }> }) {
-	const { id } = await params; // 👈 CLAVE
-
+	const { id } = await params;
 	const dog = datosDiscas.find((d) => d.id === id);
 	if (!dog) return notFound();
 

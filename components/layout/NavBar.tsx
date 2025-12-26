@@ -367,7 +367,7 @@ const NavBar = () => {
 					</div>
 
 					{/* Mobile Menu Button */}
-					<div className="flex lg:hidden items-center space-x-2 bg-amber-300">
+					<div className="flex lg:hidden items-center space-x-2">
 						<Button
 							onClick={handleDonate}
 							size="sm"
