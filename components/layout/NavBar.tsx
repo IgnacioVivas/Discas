@@ -321,14 +321,6 @@ const NavBar = () => {
 								priority
 							/>
 						</div>
-						<span
-							className={cn(
-								'hidden lg:inline font-semibold text-sm transition-colors',
-								isScrolled ? 'text-teal-700' : currentStyle.textColor,
-							)}
-						>
-							Rescatamos animales con discapacidad
-						</span>
 					</Link>
 
 					{/* Desktop Navigation */}
@@ -374,7 +366,7 @@ const NavBar = () => {
 					</div>
 
 					{/* Mobile Menu Button */}
-					<div className="flex lg:hidden items-center space-x-2">
+					<div className="flex lg:hidden items-center space-x-2 bg-amber-300">
 						<Button
 							onClick={handleDonate}
 							size="sm"
@@ -398,20 +390,23 @@ const NavBar = () => {
 									size="icon"
 									className={cn('transition-colors', isScrolled ? 'text-gray-700' : currentStyle.textColor)}
 								>
-									{isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+									<Menu className="w-5 h-5" />
 								</Button>
 							</SheetTrigger>
 
-							<SheetContent side="right" className="w-[85vw] sm:w-[400px]">
+							<SheetContent side="right" className="w-full bg-white">
 								<div className="flex flex-col h-full pt-6">
 									{/* Header del menú móvil */}
-									<div className="flex items-center justify-between mb-8">
+									{/* <div className="flex items-center justify-between mb-8">
 										<div className="relative w-32 h-10">
 											<Image src={logoDiscas} alt="Discas" fill className="object-contain" />
 										</div>
-										<Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
-											<X className="w-5 h-5" />
-										</Button>
+									</div> */}
+
+									<div className="flex items-center justify-start mb-8">
+										<div className="relative w-32 h-10">
+											<Image src={logoDiscas} alt="Discas" fill className="object-contain" />
+										</div>
 									</div>
 
 									{/* Items del menú móvil */}
