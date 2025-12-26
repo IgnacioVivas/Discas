@@ -1,5 +1,3 @@
-'use client';
-
 import { notFound } from 'next/navigation';
 import { datosDiscas } from '@/data/discas';
 import PhotoGallery from '@/components/myComponents/PhotoGallery';
@@ -13,8 +11,8 @@ export async function generateStaticParams() {
 	}));
 }
 
-export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-	const { id } = await params;
+export default async function Page({ params }: { params: { id: string } }) {
+	const { id } = params;
 
 	const dog = datosDiscas.find((d) => d.id === id);
 	if (!dog) return notFound();
