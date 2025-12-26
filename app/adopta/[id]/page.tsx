@@ -5,18 +5,19 @@
 // import { ChevronLeft } from 'lucide-react';
 // import Link from 'next/link';
 
-export async function generateStaticParams() {
-	// 	return datosDiscas.map((dog) => ({
-	// 		id: dog.id,
-	// 	}));
-	// }
+// export async function generateStaticParams() {
+// 	return datosDiscas.map((dog) => ({
+// 		id: dog.id,
+// 	}));
+// }
 
-	// export default async function AdoptaItem({ params }: { params: Promise<{ id: string }> }) {
-	// 	const { id } = await params; // 👈 CLAVE
+// export default async function AdoptaItem({ params }: { params: Promise<{ id: string }> }) {
+// 	const { id } = await params; // 👈 CLAVE
 
-	// 	const dog = datosDiscas.find((d) => d.id === id);
-	// 	if (!dog) return notFound();
+// 	const dog = datosDiscas.find((d) => d.id === id);
+// 	if (!dog) return notFound();
 
+export default async function AdoptaItem() {
 	return (
 		// <div className="mx-auto px-10 md:px-20 py-20">
 		// 	<Link
