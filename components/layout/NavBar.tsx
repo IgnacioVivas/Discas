@@ -279,8 +279,10 @@ const NavBar = () => {
 			!isScrolled ? 'absolute top-6' : 'fixed top-0',
 			// Ancho responsivo
 			!isScrolled ? 'w-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] mx-4 lg:mx-8' : 'w-full',
-			// Control de visibilidad en móvil
-			window.innerWidth < 1024 && !isNavbarVisible ? '-translate-y-full' : 'translate-y-0',
+			// Control de visibilidad en móvil - verifica si window existe
+			typeof window !== 'undefined' && window.innerWidth < 1024 && !isNavbarVisible
+				? '-translate-y-full'
+				: 'translate-y-0',
 		);
 
 		const bgClasses = cn(
@@ -293,7 +295,6 @@ const NavBar = () => {
 
 		return cn(baseClasses, bgClasses);
 	};
-
 	// Navegar al hacer click en un item
 	const handleNavClick = (path: string) => {
 		setIsMobileMenuOpen(false);
