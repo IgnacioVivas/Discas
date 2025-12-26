@@ -157,14 +157,14 @@
 
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Heart, Menu, X, PawPrint, ChevronUp } from 'lucide-react';
+import { Heart, Menu, PawPrint, ChevronUp } from 'lucide-react';
 
 // Tu logo - asegurate de tenerlo en la ruta correcta
 import logoDiscas from '@/public/image/LOGO DISCAS.png';
@@ -215,7 +215,7 @@ const NavBar = () => {
 
 	// Estados
 	const [isScrolled, setIsScrolled] = useState(false);
-	const [lastScrollY, setLastScrollY] = useState(0);
+	// const [lastScrollY, setLastScrollY] = useState(0);
 	const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
