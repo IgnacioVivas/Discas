@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation';
-import { datosDiscas } from '@/data/discas';
+// import { notFound } from 'next/navigation';
+// import { datosDiscas } from '@/data/discas';
 // import PhotoGallery from '@/components/myComponents/PhotoGallery';
 // import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 // import { ChevronLeft } from 'lucide-react';
