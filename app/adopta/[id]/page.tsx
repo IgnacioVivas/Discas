@@ -11,8 +11,8 @@ export async function generateStaticParams() {
 	}));
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-	const { id } = params;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = await params; // 👈 CLAVE
 
 	const dog = datosDiscas.find((d) => d.id === id);
 	if (!dog) return notFound();
