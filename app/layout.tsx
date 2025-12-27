@@ -53,9 +53,16 @@ export default function RootLayout({
 					rel="stylesheet"
 				/>
 			</head>
-			<body className={`antialiased bg-stone-100`}>
+			{/* <body className={`antialiased bg-linear-to-b from-white via-teal-50/30 to-amber-50/30`}>
 				<NavBar />
 				{children}
+				<WhatsAppButton />
+				<DonationDialog />
+				<Footer />
+			</body> */}
+			<body className="antialiased bg-linear-to-b from-white via-teal-50/30 to-amber-50/30">
+				<NavBar />
+				<main className="min-h-screen">{children}</main>
 				<WhatsAppButton />
 				<DonationDialog />
 				<Footer />
