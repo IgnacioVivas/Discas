@@ -29,7 +29,6 @@ export interface Disca {
 	personalidad: string[];
 	requisitosDeAdopcion: string[];
 	fotos: string[];
-	// Añade estas propiedades si quieres
 	tipo?: 'perro' | 'gato';
 	discapacidad?: string;
 	ubicacion?: string;

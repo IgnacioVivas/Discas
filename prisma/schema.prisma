@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Animal {
+  id                   String   @id @default(cuid())
+  nombre               String
+  descripcion          String
+  edad                 Int
+  genero               String
+  tamaño               String
+  tipo                 String
+  discapacidad         String?
+  castrado             Boolean  @default(false)
+  vacunado             Boolean  @default(false)
+  desparasitado        Boolean  @default(false)
+  ubicacion            String?
+  personalidad         String[]
+  requisitosDeAdopcion String[]
+  imagenCard           String
+  fotos                String[]
+  publicado            Boolean  @default(false)
+  destacado            Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([tipo])
+  @@index([discapacidad])
+  @@index([publicado])
+  @@index([destacado])
+  @@index([genero])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  nombre    String?
+  password  String
+  rol       String   @default("admin")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
