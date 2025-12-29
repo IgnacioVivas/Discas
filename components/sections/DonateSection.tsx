@@ -1,86 +1,3 @@
-// 'use client';
-
-// import React from 'react';
-// import { motion } from 'framer-motion';
-// import bgPatitas from '@/public/image/huellas-perros.png';
-// import Image from 'next/image';
-// import imgDona from '@/public/image/mano-dona.png';
-
-// const DonateSection = () => {
-// 	return (
-// 		<div
-// 			className="w-full flex flex-col justify-center gap-3 p-10 md:p-20"
-// 			style={{ backgroundImage: `url(${bgPatitas.src})` }}
-// 		>
-// 			<div className="px-8 md:px-20 py-10 bg-teal-950 bg-opacity-85 rounded-xl">
-// 				<h2 className={`text-4xl text-center text-white font-semibold mb-5 font-poppins`}>Haz una diferencia hoy</h2>
-// 				<h3 className={`text-lg text-center text-white font-normal font-inter`}>
-// 					Con tu contribución, podemos seguir ayudando a más discas. <br /> ¡Gracias por tu generosidad!
-// 				</h3>
-// 				<div className="w-full flex justify-center items-center">
-// 					<Image src={imgDona.src} alt="dona" width={150} height={150} />
-// 				</div>
-// 				<h2 className={`uppercase text-center mb-6 font-semibold text-2xl text-white font-poppins`}>
-// 					Doná Mensualmente
-// 				</h2>
-// 				<div className="grid grid-cols-2 gap-9 justify-items-center md:grid-cols-3 text-white font-bold text-2xl">
-// 					{['$6.000', '$8.000', '$12.000', '$18.000', '$24.000', '$30.000'].map((price, index) => (
-// 						<motion.div
-// 							key={index}
-// 							className={`w-full py-5 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer font-nunito`}
-// 							whileHover={{
-// 								scale: 1.1,
-// 								rotate: [0, 3, -3, 0],
-// 								boxShadow: '0px 4px 30px rgba(0, 128, 128, 0.8)',
-// 							}}
-// 							whileTap={{ scale: 0.9 }}
-// 							transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-// 						>
-// 							{price}
-// 						</motion.div>
-// 					))}
-// 				</div>
-// 				<h2 className={`uppercase text-center my-6 font-semibold text-2xl text-white font-poppins`}>
-// 					DONÁ POR ÚNICA VEZ
-// 				</h2>
-// 				<div className="grid grid-cols-2 gap-4 md:grid-cols-4 text-white font-bold text-2xl">
-// 					{['$5000', '$10000', '$15000', '$25000'].map((price, index) => (
-// 						<motion.div
-// 							key={index}
-// 							className={`py-3 bg-teal-400 rounded-xl text-center border-2 border-stone-900 cursor-pointer font-nunito`}
-// 							whileHover={{
-// 								scale: 1.1,
-// 								rotate: [0, 3, -3, 0],
-// 								boxShadow: '0px 4px 30px rgba(0, 128, 128, 0.8)',
-// 							}}
-// 							whileTap={{ scale: 0.9 }}
-// 							transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-// 						>
-// 							{price}
-// 						</motion.div>
-// 					))}
-// 				</div>
-// 				<div className="grid grid-cols-1 md:grid-cols-2 gap-9 mt-9">
-// 					<div
-// 						className={`uppercase text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 font-nunito`}
-// 					>
-// 						<h2 className="font-semibold text-lg text-center">APORTÁ USANDO ALIAS</h2>
-// 						<div className="font-bold text-3xl text-teal-400 text-center">CABRA.OSO</div>
-// 					</div>
-// 					<div
-// 						className={`text-white flex flex-col justify-center items-center gap-2 bg-teal-950/70 rounded-xl py-5 font-nunito`}
-// 					>
-// 						<h2 className="uppercase font-semibold text-lg text-center">O SI ESTÁS FUERA DE ARGENTINA</h2>
-// 						<div className="font-bold text-3xl text-teal-400 text-center">PayPal</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default DonateSection;
-
 'use client';
 
 import React, { useState } from 'react';
@@ -101,7 +18,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
+
+type DonateTab = 'mercado-pago' | 'transferencia' | 'sierras';
+
+type DonateTabItem = {
+	id: DonateTab;
+	label: string;
+	icon: React.ElementType;
+};
 
 // Datos de donaciones
 const MERCADO_PAGO_LINKS = [
@@ -168,6 +92,12 @@ const DonateSection = () => {
 		},
 	};
 
+	const tabs: DonateTabItem[] = [
+		{ id: 'mercado-pago', label: 'Mercado Pago', icon: Smartphone },
+		{ id: 'transferencia', label: 'Transferencia', icon: Banknote },
+		{ id: 'sierras', label: 'Discas Sierras', icon: Users },
+	];
+
 	return (
 		<section className="relative overflow-hidden py-16 md:py-24 bg-linear-to-br from-teal-50 via-white to-amber-50">
 			{/* Elementos decorativos */}
@@ -209,17 +139,13 @@ const DonateSection = () => {
 				{/* Tabs de métodos de donación */}
 				<motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl mx-auto">
 					<div className="flex flex-wrap justify-center gap-2 mb-8">
-						{[
-							{ id: 'mercado-pago', label: 'Mercado Pago', icon: Smartphone },
-							{ id: 'transferencia', label: 'Transferencia', icon: Banknote },
-							{ id: 'sierras', label: 'Discas Sierras', icon: Users },
-						].map((tab) => {
+						{tabs.map((tab) => {
 							const Icon = tab.icon;
 							return (
 								<motion.button
 									key={tab.id}
 									variants={itemVariants}
-									onClick={() => setActiveTab(tab.id as any)}
+									onClick={() => setActiveTab(tab.id)}
 									className={cn(
 										'flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300',
 										activeTab === tab.id
