@@ -124,10 +124,11 @@ export default function LoginPage() {
 							className="relative mb-6"
 						>
 							<div className="absolute -inset-6 bg-gradient-to-r from-teal-400 to-amber-400 rounded-full blur-xl opacity-30" />
-							<div className="relative w-24 h-24 mx-auto bg-gradient-to-br from-teal-500 via-teal-600 to-amber-500 rounded-2xl flex items-center justify-center shadow-lg">
+							<div className="relative w-14 h-14 mx-auto bg-gradient-to-br from-teal-500 via-teal-600 to-amber-500 rounded-2xl flex items-center justify-center shadow-lg">
 								<div className="relative">
-									<Lock className="w-10 h-10 text-white" />
-									<Shield className="w-6 h-6 text-white absolute -top-2 -right-2" />
+									<Lock className="w-6 h-6 text-white" />
+
+									<Shield className="w-3 h-3 text-white absolute -top-2 -right-2" />
 								</div>
 							</div>
 						</motion.div>
@@ -147,7 +148,7 @@ export default function LoginPage() {
 						</CardDescription>
 					</CardHeader>
 
-					<CardContent className="p-8">
+					<CardContent className="px-8 py-2">
 						<form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 							{/* Campo Email */}
 							<motion.div
