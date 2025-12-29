@@ -1,54 +1,4 @@
-// import React from 'react';
-// import client1 from '@/public/image/client-1.png';
-// import client2 from '@/public/image/client-2.png';
-// import client3 from '@/public/image/client-3.png';
-// import client4 from '@/public/image/client-4.png';
-// import Image from 'next/image';
-
-// const clientsData = [
-// 	{
-// 		imagen: client1,
-// 		alt: 'Imagen del cliente 1, sonriendo y satisfecho con el servicio.',
-// 	},
-// 	{
-// 		imagen: client2,
-// 		alt: 'Imagen del cliente 2, mostrando un producto con entusiasmo.',
-// 	},
-// 	{
-// 		imagen: client3,
-// 		alt: 'Imagen del cliente 3, disfrutando de una experiencia memorable.',
-// 	},
-// 	{
-// 		imagen: client4,
-// 		alt: 'Imagen del cliente 4, interactuando con el equipo de soporte.',
-// 	},
-// 	// {
-// 	// 	imagen: client5,
-// 	// 	alt: 'Imagen del cliente 5, recomendando el servicio a amigos.',
-// 	// },
-// ];
-
-// const SponsorsSection = () => {
-// 	return (
-// 		<div className="px-10 md:px-20 grid grid-cols-4 lg:grid-cols-5 grid-rows-2 md:grid-rows-1 items-center justify-items-center gap-y-6 md:gap-8">
-// 			<h2
-// 				className={`font-dancing text-3xl md:text-[2.5rem] tracking-widest text-teal-dark font-extrabold col-span-6 lg:col-span-1 text-center lg:text-start md:mb-8 lg:mb-0`}
-// 			>
-// 				Nuestros patrocinadores y donantes
-// 			</h2>
-// 			{clientsData.map((client, index) => (
-// 				<div key={index}>
-// 					<Image src={client.imagen} alt={client.alt} />
-// 				</div>
-// 			))}
-// 		</div>
-// 	);
-// };
-
-// export default SponsorsSection;
-
-import React from 'react';
-import { Building2, HeartHandshake, Award, Globe, Sparkles } from 'lucide-react';
+import { Building2, HeartHandshake, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import client1 from '@/public/image/client-1.png';
@@ -85,16 +35,16 @@ const sponsorsData = [
 
 const SponsorsSection = () => {
 	return (
-		<section className="py-16 md:py-24 bg-gradient-to-b from-white to-amber-50/30">
+		<section className="bg-linear-to-b from-white to-amber-50/30">
 			<div className="container mx-auto px-4">
 				{/* Encabezado */}
 				<div className="text-center mb-12">
-					<div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-100 to-pink-100 rounded-full mb-4">
+					<div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-amber-100 to-pink-100 rounded-full mb-4">
 						<Sparkles className="w-4 h-4 text-amber-600" />
 						<span className="text-sm font-medium text-amber-700">Juntos hacemos más</span>
 					</div>
 
-					<h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
 						Nuestros Aliados
 					</h2>
 
@@ -130,7 +80,7 @@ const SponsorsSection = () => {
 
 				{/* Llamado a ser sponsor */}
 				<div className="text-center">
-					<div className="inline-flex flex-col md:flex-row items-center gap-8 p-8 bg-gradient-to-r from-white to-teal-50 rounded-2xl border border-teal-200 max-w-3xl mx-auto shadow-lg">
+					<div className="inline-flex flex-col md:flex-row items-center gap-8 p-8 bg-linear-to-r from-white to-teal-50 rounded-2xl border border-teal-200 max-w-3xl mx-auto shadow-lg">
 						<div className="flex-1 text-center md:text-left">
 							<h3 className="text-2xl font-bold text-gray-800 mb-2">¿Querés ser nuestro aliado?</h3>
 							<p className="text-gray-600 mb-4">
@@ -138,7 +88,7 @@ const SponsorsSection = () => {
 							</p>
 						</div>
 
-						<button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-teal-700 text-white font-semibold rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg">
+						<button className="px-6 py-3 bg-linear-to-r from-teal-600 to-teal-700 text-white font-semibold rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg">
 							<Building2 className="w-5 h-5 inline mr-2" />
 							Ser patrocinador
 						</button>
