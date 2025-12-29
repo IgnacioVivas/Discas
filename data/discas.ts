@@ -7,12 +7,11 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion:
 			'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/bella/Bella-1.jpg',
 		fotos: [
@@ -21,9 +20,8 @@ export const datosDiscas: Disca[] = [
 			'/image/bella/Bella-3.jpg',
 			'/image/bella/Bella-4.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '2',
@@ -31,11 +29,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/chichona/Chichona-4.jpg',
 		fotos: [
@@ -44,9 +41,8 @@ export const datosDiscas: Disca[] = [
 			'/image/chichona/Chichona-1.jpg',
 			'/image/chichona/Chichona-2.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '3',
@@ -54,18 +50,16 @@ export const datosDiscas: Disca[] = [
 		edad: 2,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion:
 			'Soy Ciro, un cachorrón de dos añitos. Quedé paralítico a causa de un accidente, y tengo una discapacidad posterior. Sin embargo, estoy logrando incorporarme con la ayuda de masajes. Uso carro, pañales y vendas en las patas traseras. Soy de tamaño grande, joven y guardián. Soy enérgico, alegre y me muevo bruscamente porque no coordino bien mis movimientos. Aunque soy tranquilo, no me gusta estar encerrado, prefiero el aire libre. Espero encontrar un hogar amoroso donde pueda seguir mejorando y disfrutar de la vida al máximo.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/ciro/Ciro-2.jpg',
 		fotos: ['/image/ciro/Ciro-2.jpg', '/image/ciro/Ciro-1.jpg', '/image/ciro/Ciro-3.jpg'],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '4',
@@ -73,11 +67,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/flaco/Flaco-6.jpg',
 		fotos: [
@@ -88,9 +81,8 @@ export const datosDiscas: Disca[] = [
 			'/image/flaco/Flaco-5.jpg',
 			'/image/flaco/Flaco-6.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '5',
@@ -98,11 +90,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/ibis/Ibis-4.jpg',
 		fotos: [
@@ -115,9 +106,8 @@ export const datosDiscas: Disca[] = [
 			'/image/ibis/Ibis-7.jpg',
 			'/image/ibis/Ibis-8.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '6',
@@ -125,11 +115,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/juanito/Juanito-5.jpg',
 		fotos: [
@@ -139,9 +128,8 @@ export const datosDiscas: Disca[] = [
 			'/image/juanito/Juanito-3.jpg',
 			'/image/juanito/Juanito-5.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '7',
@@ -149,11 +137,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/juan-pedro/JuanPedro-1.jpg',
 		fotos: [
@@ -161,9 +148,8 @@ export const datosDiscas: Disca[] = [
 			'/image/juan-pedro/JuanPedro-1.jpg',
 			'/image/juan-pedro/JuanPedro-3.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '8',
@@ -171,11 +157,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/julia/Julia-2.jpg',
 		fotos: [
@@ -185,9 +170,8 @@ export const datosDiscas: Disca[] = [
 			'/image/julia/Julia-4.jpg',
 			'/image/julia/Julia-5.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '9',
@@ -195,11 +179,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/marlena/Marlena-2.jpg',
 		fotos: [
@@ -211,9 +194,8 @@ export const datosDiscas: Disca[] = [
 			'/image/marlena/Marlena-6.jpg',
 			'/image/marlena/Marlena-7.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '10',
@@ -221,11 +203,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/mirko/Mirko-6.jpg',
 		fotos: [
@@ -238,9 +219,8 @@ export const datosDiscas: Disca[] = [
 			'/image/mirko/Mirko-6.jpg',
 			'/image/mirko/Mirko-8.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '11',
@@ -248,17 +228,15 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/muffy/Muffy-1.jpg',
 		fotos: ['/image/muffy/Muffy-1.jpg', '/image/muffy/Muffy-2.jpg', '/image/muffy/Muffy-3.jpg'],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '12',
@@ -266,11 +244,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/overo/Overo-4.jpg',
 		fotos: [
@@ -281,9 +258,8 @@ export const datosDiscas: Disca[] = [
 			'/image/overo/Overo-5.jpg',
 			'/image/overo/Overo-6.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '13',
@@ -291,17 +267,15 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/pegaso/Pegaso-1.jpg',
 		fotos: ['/image/pegaso/Pegaso-1.jpg', '/image/pegaso/Pegaso-2.jpg'],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '14',
@@ -309,11 +283,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/pepa/Pepa-1.jpg',
 		fotos: [
@@ -324,9 +297,8 @@ export const datosDiscas: Disca[] = [
 			'/image/pepa/Pepa-3.jpg',
 			'/image/pepa/Pepa-6.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '15',
@@ -334,11 +306,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/piru/piru-12.jpg',
 		fotos: [
@@ -355,9 +326,8 @@ export const datosDiscas: Disca[] = [
 			'/image/piru/piru-11.jpg',
 			'/image/piru/piru-12.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '16',
@@ -365,11 +335,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/priscila/Priscila-7.jpg',
 		fotos: [
@@ -382,9 +351,8 @@ export const datosDiscas: Disca[] = [
 			'/image/priscila/Priscila-7.jpg',
 			'/image/priscila/Priscila-8.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '17',
@@ -392,17 +360,15 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/ramiro/Ramiro-2.jpg',
 		fotos: ['/image/ramiro/Ramiro-1.jpg', '/image/ramiro/Ramiro-2.jpg'],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '18',
@@ -410,11 +376,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Hembra',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/sasha/Sasha-4.jpg',
 		fotos: [
@@ -427,9 +392,8 @@ export const datosDiscas: Disca[] = [
 			'/image/sasha/Sasha-7.jpg',
 			'/image/sasha/Sasha-8.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '19',
@@ -437,11 +401,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/tigre/Tigre-5.png',
 		fotos: [
@@ -452,9 +415,8 @@ export const datosDiscas: Disca[] = [
 			'/image/tigre/Tigre-5.png',
 			'/image/tigre/Tigre-6.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 	{
 		id: '20',
@@ -462,11 +424,10 @@ export const datosDiscas: Disca[] = [
 		edad: 0,
 		genero: 'Macho',
 		tamaño: 'Mediano',
-		castrado: 'Castrado',
+		castrado: true,
 		descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 		personalidad: ['Lorem ipsum dolor sit amet.'],
-		salud: ['Lorem ipsum dolor sit amet.'],
-		alimentacion: '',
+
 		requisitosDeAdopcion: ['Lorem ipsum dolor sit amet.'],
 		imagenCard: '/image/timoteo/Timoteo-4.jpg',
 		fotos: [
@@ -477,9 +438,8 @@ export const datosDiscas: Disca[] = [
 			'/image/timoteo/Timoteo-4.jpg',
 			'/image/timoteo/Timoteo-5.jpg',
 		],
-		estado: 'Disponible',
+
 		ubicacion: 'Córdoba',
-		publicadoEn: new Date(),
 	},
 ];
 
@@ -505,7 +465,7 @@ export const datosDiscas: Disca[] = [
 //       '/dogs/toby-2.jpg',
 //       '/dogs/toby-3.jpg'
 //     ],
-//     estado: 'Disponible',
+//
 //     ubicacion: 'Buenos Aires',
 //     publicadoEn: new Date('2023-10-15')
 //   },
