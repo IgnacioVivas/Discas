@@ -8,7 +8,7 @@ export default function ParallaxImage() {
 		bg-[url('/image/varias/varias-8.jpg')]
 		bg-cover
 		bg-center
-		bg-fixed
+		lg:bg-fixed
 	"
 		></section>
 	);

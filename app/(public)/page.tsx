@@ -14,7 +14,9 @@ export default function Home() {
 				<CardSection />
 				<ParallaxImage />
 				<DonateSection />
-				<Separator className="bg-slate-300" />
+				<div className="mb-32">
+					<Separator className="bg-slate-300" />
+				</div>
 				<SponsorsSection />
 			</main>
 		</div>
