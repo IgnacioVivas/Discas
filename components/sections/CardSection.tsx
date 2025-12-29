@@ -119,7 +119,7 @@ const CardSection = () => {
 	};
 
 	return (
-		<section className="relative py-16 md:py-24 bg-gradient-to-b from-white to-amber-50 overflow-hidden">
+		<section className="relative py-16 md:py-24 xl:px-20 bg-linear-to-b from-white to-amber-50 overflow-hidden">
 			{/* Elementos decorativos */}
 			<div className="absolute top-0 right-0 w-96 h-96 bg-teal-100 rounded-full blur-3xl opacity-30 -translate-y-48 translate-x-48" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-100 rounded-full blur-3xl opacity-30 -translate-x-48 translate-y-48" />
@@ -137,16 +137,16 @@ const CardSection = () => {
 					transition={{ duration: 0.6 }}
 					className="text-center mb-12"
 				>
-					<div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-100 to-pink-100 rounded-full mb-4">
+					<div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-amber-100 to-pink-100 rounded-full mb-4">
 						<Sparkles className="w-4 h-4 text-amber-600" />
-						<span className="text-sm font-medium text-amber-700">Historias de amor esperando por ti</span>
+						<span className="text-sm font-bold font-quicksand text-amber-700">Historias de amor esperando por ti</span>
 					</div>
 
-					<h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl font-extrabold font-nunito mb-4 bg-linear-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
 						Ellos esperan un hogar
 					</h2>
 
-					<p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+					<p className="text-lg font-inter md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
 						Cada uno tiene una historia única y mucho amor para dar. Conocé a nuestros guerreros que buscan una segunda
 						oportunidad llena de amor y cuidados.
 					</p>
@@ -194,7 +194,7 @@ const CardSection = () => {
 
 				{/* Cards Grid */}
 				{isLoading ? (
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+					<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 						{[...Array(4)].map((_, index) => (
 							<motion.div
 								key={index}
@@ -210,7 +210,7 @@ const CardSection = () => {
 						variants={containerVariants}
 						initial="hidden"
 						animate="visible"
-						className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+						className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6"
 					>
 						<AnimatePresence mode="wait">
 							{displayedAnimals.map((animal, index) => (
@@ -227,7 +227,7 @@ const CardSection = () => {
 					transition={{ delay: 0.5 }}
 					className="mt-12 text-center"
 				>
-					<div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-white to-amber-50 rounded-2xl border border-amber-200 max-w-2xl mx-auto shadow-lg">
+					<div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-linear-to-r from-white to-amber-50 rounded-2xl border border-amber-200 max-w-2xl mx-auto shadow-lg">
 						<div className="flex-1 text-center sm:text-left">
 							<h3 className="text-2xl font-bold text-gray-800 mb-2">¿Listo para conocer a todos?</h3>
 							<p className="text-gray-600 mb-4">
@@ -238,7 +238,7 @@ const CardSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg"
+							className="bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg"
 						>
 							<Link href="/adopta" className="group">
 								Ver todos los animales

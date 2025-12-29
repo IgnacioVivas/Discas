@@ -169,7 +169,7 @@ const DonateSection = () => {
 	};
 
 	return (
-		<section className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-br from-teal-50 via-white to-amber-50">
+		<section className="relative overflow-hidden py-16 md:py-24 bg-linear-to-br from-teal-50 via-white to-amber-50">
 			{/* Elementos decorativos */}
 			<div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full blur-3xl opacity-20 -translate-y-48 translate-x-48" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-20 -translate-x-48 translate-y-48" />
@@ -183,7 +183,7 @@ const DonateSection = () => {
 				</div>
 			</div>
 
-			<div className="container mx-auto px-4 relative z-10">
+			<div id="donar" className="container mx-auto px-4 relative z-10 scroll-mt-24">
 				{/* Encabezado */}
 				<motion.div
 					initial={{ opacity: 0, y: -30 }}
@@ -191,16 +191,16 @@ const DonateSection = () => {
 					transition={{ duration: 0.6 }}
 					className="text-center mb-12"
 				>
-					<div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-100 to-amber-100 rounded-full mb-4">
+					<div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-teal-100 to-amber-100 rounded-full mb-4">
 						<Sparkles className="w-4 h-4 text-teal-600" />
-						<span className="text-sm font-medium text-teal-700">Tu ayuda marca la diferencia</span>
+						<span className="text-sm font-bold font-quicksand text-teal-700">Tu ayuda marca la diferencia</span>
 					</div>
 
-					<h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-700 via-amber-600 to-teal-700 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl font-extrabold font-nunito mb-4 bg-linear-to-r from-teal-700 via-amber-600 to-teal-700 bg-clip-text text-transparent">
 						Tu apoyo transforma vidas
 					</h2>
 
-					<p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+					<p className="text-lg font-inter md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
 						Cada donación nos permite seguir rescatando, cuidando y dando una segunda oportunidad a animales con
 						discapacidad. Juntos, podemos hacer mucho más.
 					</p>
@@ -223,7 +223,7 @@ const DonateSection = () => {
 									className={cn(
 										'flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300',
 										activeTab === tab.id
-											? 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg'
+											? 'bg-linear-to-r from-teal-600 to-teal-700 text-white shadow-lg'
 											: 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200',
 									)}
 								>
@@ -244,7 +244,7 @@ const DonateSection = () => {
 								exit={{ opacity: 0, y: -20 }}
 								className="grid lg:grid-cols-2 gap-8"
 							>
-								<Card className="bg-gradient-to-br from-white to-teal-50 border-teal-100 shadow-xl">
+								<Card className="bg-linear-to-br from-white to-teal-50 border-teal-100 shadow-xl">
 									<CardContent className="p-8">
 										<div className="flex items-center gap-3 mb-6">
 											<div className="p-3 bg-teal-100 rounded-xl">
@@ -285,7 +285,7 @@ const DonateSection = () => {
 									</CardContent>
 								</Card>
 
-								<Card className="bg-gradient-to-br from-amber-50 to-white border-amber-100 shadow-xl">
+								<Card className="bg-linear-to-br from-amber-50 to-white border-amber-100 shadow-xl">
 									<CardContent className="p-8">
 										<div className="flex items-center gap-3 mb-6">
 											<div className="p-3 bg-amber-100 rounded-xl">
@@ -322,7 +322,7 @@ const DonateSection = () => {
 											))}
 										</div>
 
-										<div className="mt-8 p-4 bg-gradient-to-r from-teal-500/10 to-amber-500/10 rounded-xl border border-teal-200/50">
+										<div className="mt-8 p-4 bg-linear-to-r from-teal-500/10 to-amber-500/10 rounded-xl border border-teal-200/50">
 											<p className="text-sm text-gray-700">
 												<strong>Recordá:</strong> Enviar el comprobante por mensaje privado a{' '}
 												<span className="font-semibold text-teal-700">{BANK_INFO.contacto}</span> para control.
@@ -341,7 +341,7 @@ const DonateSection = () => {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -20 }}
 							>
-								<Card className="bg-gradient-to-br from-white to-blue-50 border-blue-100 shadow-xl">
+								<Card className="bg-linear-to-br from-white to-blue-50 border-blue-100 shadow-xl">
 									<CardContent className="p-8">
 										<div className="flex items-center gap-3 mb-8">
 											<div className="p-3 bg-blue-100 rounded-xl">
@@ -392,7 +392,7 @@ const DonateSection = () => {
 										</div>
 
 										<div className="mt-8 space-y-4">
-											<div className="p-4 bg-gradient-to-r from-blue-500/10 to-teal-500/10 rounded-xl border border-blue-200">
+											<div className="p-4 bg-linear-to-r from-blue-500/10 to-teal-500/10 rounded-xl border border-blue-200">
 												<p className="text-sm text-gray-700">
 													<strong>Importante:</strong> Después de transferir, enviá el comprobante por mensaje privado a{' '}
 													<span className="font-semibold text-blue-700">{BANK_INFO.contacto}</span>
@@ -420,7 +420,7 @@ const DonateSection = () => {
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -20 }}
 							>
-								<Card className="bg-gradient-to-br from-white to-purple-50 border-purple-100 shadow-xl">
+								<Card className="bg-linear-to-br from-white to-purple-50 border-purple-100 shadow-xl">
 									<CardContent className="p-8">
 										<div className="flex items-center gap-3 mb-8">
 											<div className="p-3 bg-purple-100 rounded-xl">
@@ -514,7 +514,7 @@ const DonateSection = () => {
 													</div>
 												</div>
 
-												<div className="p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-200">
+												<div className="p-4 bg-linear-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-200">
 													<h4 className="font-bold text-purple-800 mb-2">¡Seguilos!</h4>
 													<p className="text-sm text-gray-700">
 														Conocé las historias de rescate y el trabajo increíble que hacen en las sierras.
@@ -535,7 +535,7 @@ const DonateSection = () => {
 						transition={{ delay: 0.5 }}
 						className="mt-12 text-center"
 					>
-						<div className="inline-flex items-center gap-4 p-8 bg-gradient-to-r from-teal-50 to-amber-50 rounded-2xl border border-teal-200 max-w-2xl mx-auto">
+						<div className="inline-flex items-center gap-4 p-8 bg-linear-to-r from-teal-50 to-amber-50 rounded-2xl border border-teal-200 max-w-2xl mx-auto">
 							<div className="text-left">
 								<h3 className="text-2xl font-bold text-gray-800 mb-2">¿Listo para ayudar?</h3>
 								<p className="text-gray-600 mb-4">
@@ -543,7 +543,7 @@ const DonateSection = () => {
 								</p>
 								<Button
 									size="lg"
-									className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
+									className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
 									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 								>
 									<Heart className="w-5 h-5 mr-2" />
@@ -554,8 +554,8 @@ const DonateSection = () => {
 
 							<div className="hidden md:block">
 								<div className="relative w-40 h-40">
-									<div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-amber-400 rounded-full animate-pulse opacity-20" />
-									<div className="absolute inset-4 bg-gradient-to-r from-teal-500 to-amber-500 rounded-full flex items-center justify-center">
+									<div className="absolute inset-0 bg-linear-to-r from-teal-400 to-amber-400 rounded-full animate-pulse opacity-20" />
+									<div className="absolute inset-4 bg-linear-to-r from-teal-500 to-amber-500 rounded-full flex items-center justify-center">
 										<Heart className="w-16 h-16 text-white" />
 									</div>
 								</div>
