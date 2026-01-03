@@ -51,54 +51,6 @@ const NuestrosPadrinos = () => {
 		return () => observer.disconnect();
 	}, []);
 
-	// const launchFireworks = () => {
-	// 	const duration = 15 * 1000; // 15 segundos
-	// 	const animationEnd = Date.now() + duration;
-
-	// 	const defaults = {
-	// 		startVelocity: 30,
-	// 		spread: 360,
-	// 		ticks: 60,
-	// 		zIndex: 0,
-	// 	};
-
-	// 	function randomInRange(min: number, max: number) {
-	// 		return Math.random() * (max - min) + min;
-	// 	}
-
-	// 	const interval = setInterval(() => {
-	// 		const timeLeft = animationEnd - Date.now();
-
-	// 		if (timeLeft <= 0) {
-	// 			return clearInterval(interval);
-	// 		}
-
-	// 		const particleCount = 50 * (timeLeft / duration);
-
-	// 		// Izquierda → derecha
-	// 		confetti({
-	// 			...defaults,
-	// 			particleCount,
-	// 			origin: {
-	// 				x: randomInRange(0.1, 0.3),
-	// 				y: Math.random() - 0.2,
-	// 			},
-	// 			colors: ['#14b8a6', '#fbbf24', '#f87171'], // tus colores Discas
-	// 		});
-
-	// 		// Derecha → izquierda
-	// 		confetti({
-	// 			...defaults,
-	// 			particleCount,
-	// 			origin: {
-	// 				x: randomInRange(0.7, 0.9),
-	// 				y: Math.random() - 0.2,
-	// 			},
-	// 			colors: ['#14b8a6', '#fbbf24', '#f87171'],
-	// 		});
-	// 	}, 250);
-	// };
-
 	const launchFireworks = async () => {
 		const confetti = (await import('canvas-confetti')).default;
 
@@ -147,17 +99,19 @@ const NuestrosPadrinos = () => {
 				Nuestros Padrinos y Madrinas
 			</h2>
 
-			<p className="text-lg leading-relaxed text-stone-700 font-inter">
+			<p className="text-lg md:text-xl text-gray-600 max-w-5xl mx-auto leading-relaxed font-inter">
 				A todas las madrinas y padrinos que nos acompañan día a día: gracias por sostenernos, por confiar en nuestro
 				trabajo y por darle una oportunidad a cada peludito que cuidamos. Su compromiso hace posible que sigamos
 				rescatando, recuperando y cambiando vidas.
 				<br />
-				<span className="flex items-center justify-center gap-2 mt-1 text-xl leading-relaxed text-orange font-medium font-quicksand">
+				<span className="flex items-center justify-center flex-col lg:flex-row gap-2 mt-1 text-xl leading-relaxed text-orange font-medium font-quicksand">
 					Los Discas —y todo nuestro equipo— les agradecemos con el corazón.
-					<Image src="/image/emojis/1FA75.svg" alt="Discas" width={28} height={28} />
-					<Image src="/image/emojis/1F436.svg" alt="Discas" width={28} height={28} />
-					<Image src="/image/emojis/1F638.svg" alt="Discas" width={28} height={28} />
-					<Image src="/image/emojis/1FAF6.svg" alt="Discas" width={32} height={32} />
+					<div className="flex items-center justify-center">
+						<Image src="/image/emojis/1FA75.svg" alt="Discas" width={28} height={28} />
+						<Image src="/image/emojis/1F436.svg" alt="Discas" width={28} height={28} />
+						<Image src="/image/emojis/1F638.svg" alt="Discas" width={28} height={28} />
+						<Image src="/image/emojis/1FAF6.svg" alt="Discas" width={32} height={32} />
+					</div>
 				</span>
 			</p>
 

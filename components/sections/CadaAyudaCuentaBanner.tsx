@@ -48,7 +48,7 @@ const CadaAyudaCuentaBanner = () => {
 						{/* Título principal */}
 						<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
 							¡Cada{' '}
-							<span className="bg-gradient-to-r from-amber-300 to-teal-300 bg-clip-text text-transparent">ayuda</span>{' '}
+							<span className="bg-linear-to-r from-amber-300 to-teal-300 bg-clip-text text-transparent">ayuda</span>{' '}
 							cuenta!
 						</h2>
 
@@ -91,7 +91,7 @@ const CadaAyudaCuentaBanner = () => {
 						>
 							<Button
 								size="lg"
-								className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg"
+								className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg"
 							>
 								<Heart className="w-5 h-5 mr-2" />
 								Ser padrino/madrina

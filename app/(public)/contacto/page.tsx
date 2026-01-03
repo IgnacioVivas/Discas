@@ -36,7 +36,7 @@ const Contacto = () => {
 			/>
 
 			{/* HERO SECTION */}
-			<section className="py-16 md:py-24 bg-gradient-to-b from-white to-teal-50/30">
+			<section className="pt-16 bg-linear-to-b from-white to-teal-50/30">
 				<div className="container mx-auto px-4">
 					<div className="max-w-6xl mx-auto">
 						<motion.div
@@ -45,9 +45,9 @@ const Contacto = () => {
 							transition={{ duration: 0.5 }}
 							className="relative"
 						>
-							<div className="absolute -inset-4 bg-gradient-to-r from-teal-400 to-amber-400 rounded-3xl blur-xl opacity-10" />
+							<div className="absolute -inset-4 bg-linear-to-r from-teal-400 to-amber-400 rounded-3xl blur-xl opacity-10" />
 
-							<div className="relative bg-gradient-to-r from-teal-600 to-teal-700 rounded-2xl shadow-2xl overflow-hidden">
+							<div className="relative bg-linear-to-r from-teal-600 to-teal-700 rounded-2xl shadow-2xl overflow-hidden">
 								<div className="grid md:grid-cols-2">
 									{/* Columna izquierda - Información */}
 									<div className="p-8 md:p-12 text-white">
@@ -122,7 +122,7 @@ const Contacto = () => {
 										<div className="absolute bottom-0 left-0 w-40 h-40 bg-teal-700 rounded-full translate-y-20 -translate-x-20" />
 
 										<div className="relative z-10 text-center">
-											<div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-amber-400 to-pink-400 rounded-full mb-6">
+											<div className="inline-flex items-center justify-center w-20 h-20 bg-linear-to-r from-amber-400 to-pink-400 rounded-full mb-6">
 												<Heart className="w-10 h-10 text-white" />
 											</div>
 											<h3 className="text-2xl font-bold text-white mb-4">Respuesta rápida</h3>
@@ -146,7 +146,7 @@ const Contacto = () => {
 			</section>
 
 			{/* CONTENIDO PRINCIPAL */}
-			<section className="py-16 bg-white">
+			<section className="my-32 bg-white">
 				<div className="container mx-auto px-4">
 					<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
 						{/* COLUMNA IZQUIERDA - INFORMACIÓN DE CONTACTO */}
@@ -167,7 +167,7 @@ const Contacto = () => {
 
 										<div className="space-y-6">
 											{/* Emergencias */}
-											<div className="p-5 bg-gradient-to-r from-red-50 to-red-100 rounded-xl border border-red-200">
+											<div className="p-5 bg-linear-to-r from-red-50 to-red-100 rounded-xl border border-red-200">
 												<div className="flex items-center gap-3 mb-4">
 													<Shield className="w-5 h-5 text-red-600" />
 													<h4 className="font-bold text-red-800">Para emergencias y rescates</h4>
@@ -251,7 +251,7 @@ const Contacto = () => {
 										</div>
 
 										<div className="space-y-6">
-											<div className="p-5 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200">
+											<div className="p-5 bg-linear-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200">
 												<div className="flex items-center gap-3 mb-4">
 													<Home className="w-5 h-5 text-amber-600" />
 													<h4 className="font-bold text-amber-800">Refugio principal</h4>
@@ -368,7 +368,7 @@ const Contacto = () => {
 								transition={{ delay: 0.2 }}
 							>
 								<div className="relative overflow-hidden rounded-2xl shadow-xl">
-									<div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-pink-600" />
+									<div className="absolute inset-0 bg-linear-to-r from-rose-600 to-pink-600" />
 									<div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
 
 									<div className="relative p-8 text-white">
@@ -398,19 +398,19 @@ const Contacto = () => {
 												<p className="font-semibold mb-3 text-rose-100">Protocolo de emergencia:</p>
 												<ul className="space-y-2 text-sm text-rose-100">
 													<li className="flex items-start gap-2">
-														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 flex-shrink-0" />
+														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 shrink-0" />
 														<span>No enviar mensajes de texto en emergencias</span>
 													</li>
 													<li className="flex items-start gap-2">
-														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 flex-shrink-0" />
+														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 shrink-0" />
 														<span>Contestar todas las preguntas del operador</span>
 													</li>
 													<li className="flex items-start gap-2">
-														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 flex-shrink-0" />
+														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 shrink-0" />
 														<span>Enviar ubicación exacta por WhatsApp si es posible</span>
 													</li>
 													<li className="flex items-start gap-2">
-														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 flex-shrink-0" />
+														<div className="w-1.5 h-1.5 bg-rose-300 rounded-full mt-1.5 shrink-0" />
 														<span>Quedarse cerca del animal si es seguro hacerlo</span>
 													</li>
 												</ul>
@@ -469,7 +469,7 @@ const Contacto = () => {
 			</section>
 
 			{/* FAQ SECTION */}
-			<section className="py-16 md:py-24 bg-gradient-to-b from-white to-teal-50/30">
+			<section className="mb-32 bg-linear-to-b from-white to-teal-50/30">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -482,7 +482,7 @@ const Contacto = () => {
 								<MessageCircle className="w-4 h-4 text-teal-600" />
 								<span className="text-sm font-medium text-teal-700">Preguntas frecuentes</span>
 							</div>
-							<h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-teal-800 to-teal-600 bg-clip-text text-transparent">
+							<h2 className="text-4xl font-bold mb-4 bg-linear-to-r from-teal-800 to-teal-600 bg-clip-text text-transparent">
 								Dudas comunes resueltas
 							</h2>
 							<p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -535,7 +535,7 @@ const Contacto = () => {
 			</section>
 
 			{/* CIERRE EMOTIVO */}
-			<section className="py-16 bg-gradient-to-b from-teal-50/30 to-white">
+			<section className="bg-linear-to-b from-teal-50/30 to-white">
 				<div className="container mx-auto px-4">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -544,9 +544,9 @@ const Contacto = () => {
 						className="max-w-3xl mx-auto text-center"
 					>
 						<div className="relative">
-							<div className="absolute -inset-4 bg-gradient-to-r from-teal-400 to-amber-400 rounded-3xl blur-xl opacity-10" />
+							<div className="absolute -inset-4 bg-linear-to-r from-teal-400 to-amber-400 rounded-3xl blur-xl opacity-10" />
 
-							<div className="relative bg-gradient-to-br from-teal-50 to-white border border-teal-200 rounded-2xl p-10 md:p-12 shadow-xl">
+							<div className="relative bg-linear-to-br from-teal-50 to-white border border-teal-200 rounded-2xl p-10 md:p-12 shadow-xl">
 								<div className="flex justify-center gap-6 mb-8">
 									<Dog className="w-12 h-12 text-teal-600" />
 									<Cat className="w-12 h-12 text-teal-600" />

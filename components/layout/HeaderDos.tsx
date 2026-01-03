@@ -20,7 +20,7 @@ function HeaderDos({
 	const titleWords = title.split(' ');
 
 	return (
-		<div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+		<div className="relative h-[60vh] min-h-125 w-full overflow-hidden">
 			{/* Imagen de fondo responsiva */}
 			<div className="absolute inset-0">
 				<Image
@@ -43,8 +43,6 @@ function HeaderDos({
 				{/* Overlay gradiente */}
 				<div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-transparent" />
 				<div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
-				{/* <div className="absolute inset-0 bg-linear-to-r from-teal-900/70 via-teal-800/60 to-transparent" />
-				<div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" /> */}
 			</div>
 
 			{/* Contenido centrado */}

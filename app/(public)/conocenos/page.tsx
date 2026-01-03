@@ -34,10 +34,9 @@ function Conocenos() {
 
 	return (
 		<>
+			{/* Header */}
 			<HeaderDos title="¿Quiénes somos?" description="La discapacidad no define, el amor sí." />
 			<main className="flex flex-col gap-32 pt-16 md:px-10 xl:px-20">
-				{/* Header */}
-
 				{/* Sección 1: Qué es Discas */}
 				<section className="bg-linear-to-b from-white to-teal-50/30">
 					<div className="container mx-auto px-4">
