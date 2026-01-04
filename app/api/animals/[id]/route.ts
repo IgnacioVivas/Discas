@@ -1,6 +1,6 @@
 import { requireAdmin } from '@/lib/auth-admin';
 import prisma from '@/lib/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 type Params = {
 	params: {
@@ -22,8 +22,8 @@ export async function GET(_: Request, { params }: Params) {
 }
 
 // Editar un disca
-export async function PUT(req: Request, { params }: Params) {
-	const auth = await requireAdmin(req as any);
+export async function PUT(req: NextRequest, { params }: Params) {
+	const auth = await requireAdmin(req);
 
 	if (!auth.ok) {
 		return NextResponse.json({ error: auth.error }, { status: auth.status });
@@ -40,8 +40,8 @@ export async function PUT(req: Request, { params }: Params) {
 }
 
 // Eliminar un disca
-export async function DELETE(_: Request, { params }: Params) {
-	const auth = await requireAdmin(_ as any);
+export async function DELETE(req: NextRequest, { params }: Params) {
+	const auth = await requireAdmin(req);
 
 	if (!auth.ok) {
 		return NextResponse.json({ error: auth.error }, { status: auth.status });

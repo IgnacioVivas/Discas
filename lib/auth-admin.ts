@@ -1,5 +1,5 @@
 import { getToken } from 'next-auth/jwt';
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export async function requireAdmin(req: NextRequest) {
 	const token = await getToken({
@@ -8,12 +8,12 @@ export async function requireAdmin(req: NextRequest) {
 	});
 
 	if (!token) {
-		return { ok: false, error: 'No autenticado', status: 401 };
+		return { ok: false, status: 401, error: 'No autenticado' };
 	}
 
 	if (token.role !== 'admin') {
-		return { ok: false, error: 'No autorizado', status: 403 };
+		return { ok: false, status: 403, error: 'No autorizado' };
 	}
 
-	return { ok: true, token };
+	return { ok: true };
 }

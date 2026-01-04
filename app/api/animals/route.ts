@@ -1,6 +1,6 @@
 import { requireAdmin } from '@/lib/auth-admin';
 import prisma from '@/lib/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Obtener todos los discas
 export async function GET() {
@@ -14,8 +14,8 @@ export async function GET() {
 }
 
 // Crear un disca
-export async function POST(req: Request) {
-	const auth = await requireAdmin(req as any);
+export async function POST(req: NextRequest) {
+	const auth = await requireAdmin(req);
 
 	if (!auth.ok) {
 		return NextResponse.json({ error: auth.error }, { status: auth.status });
