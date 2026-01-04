@@ -1,7 +1,7 @@
 // app/(admin)/dashboard/page.tsx - VERSIÓN CON TODOS LOS ANIMALES
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
 	PawPrint,
@@ -43,152 +43,39 @@ import {
 import { motion } from 'framer-motion';
 import { DeleteModal } from '@/components/admin/DeleteModal';
 import { toast } from 'sonner';
+import { signOut } from 'next-auth/react';
+import { cn } from '@/lib/utils';
 
-// Datos de ejemplo - MÁS animales para mostrar
-const animalesEjemplo = [
-	{
-		id: '1',
-		nombre: 'Luna',
-		descripcion: 'Perrita muy cariñosa con tres patas, ama los paseos y jugar con pelotas.',
-		edad: 3,
-		genero: 'hembra',
-		tamaño: 'mediano',
-		tipo: 'perro',
-		discapacidad: 'tres patas',
-		castrado: true,
-		vacunado: true,
-		desparasitado: true,
-		ubicacion: 'Córdoba Capital',
-		personalidad: ['cariñosa', 'juguetona', 'tranquila'],
-		requisitosDeAdopcion: ['patio cercado', 'otras mascotas'],
-		imagenCard: '/uploads/animales/luna.jpg',
-		fotos: ['/uploads/animales/luna1.jpg', '/uploads/animales/luna2.jpg'],
-		publicado: true,
-		destacado: true,
-		createdAt: '2024-01-15',
-		views: 1245,
-		adoptionInterest: 8,
-	},
-	{
-		id: '2',
-		nombre: 'Toby',
-		descripcion: 'Gato ciego pero muy independiente y curioso. Se adapta perfectamente a espacios pequeños.',
-		edad: 2,
-		genero: 'macho',
-		tamaño: 'chico',
-		tipo: 'gato',
-		discapacidad: 'ciego',
-		castrado: true,
-		vacunado: true,
-		desparasitado: false,
-		ubicacion: 'Interior',
-		personalidad: ['independiente', 'curioso', 'afectuoso'],
-		requisitosDeAdopcion: ['interior', 'paciencia'],
-		imagenCard: '/uploads/animales/toby.jpg',
-		fotos: ['/uploads/animales/toby1.jpg'],
-		publicado: true,
-		destacado: false,
-		createdAt: '2024-02-20',
-		views: 876,
-		adoptionInterest: 3,
-	},
-	{
-		id: '3',
-		nombre: 'Rocky',
-		descripcion: 'Perro mayor con artritis, necesita hogar tranquilo y amoroso para sus últimos años.',
-		edad: 10,
-		genero: 'macho',
-		tamaño: 'grande',
-		tipo: 'perro',
-		discapacidad: 'artritis',
-		castrado: true,
-		vacunado: true,
-		desparasitado: true,
-		ubicacion: 'Córdoba Capital',
-		personalidad: ['tranquilo', 'dócil', 'amoroso'],
-		requisitosDeAdopcion: ['hogar tranquilo', 'sin escaleras'],
-		imagenCard: '/uploads/animales/rocky.jpg',
-		fotos: ['/uploads/animales/rocky1.jpg', '/uploads/animales/rocky2.jpg'],
-		publicado: false,
-		destacado: false,
-		createdAt: '2024-03-10',
-		views: 0,
-		adoptionInterest: 0,
-	},
-	{
-		id: '4',
-		nombre: 'Mía',
-		descripcion: 'Gatita sorda que se comunica con vibraciones. Muy cariñosa y hogareña.',
-		edad: 4,
-		genero: 'hembra',
-		tamaño: 'chico',
-		tipo: 'gato',
-		discapacidad: 'sorda',
-		castrado: true,
-		vacunado: true,
-		desparasitado: true,
-		ubicacion: 'Córdoba Capital',
-		personalidad: ['hogareña', 'cariñosa', 'tranquila'],
-		requisitosDeAdopcion: ['interior', 'otros gatos'],
-		imagenCard: '/uploads/animales/mia.jpg',
-		fotos: ['/uploads/animales/mia1.jpg'],
-		publicado: true,
-		destacado: true,
-		createdAt: '2024-02-05',
-		views: 954,
-		adoptionInterest: 5,
-	},
-	{
-		id: '5',
-		nombre: 'Max',
-		descripcion: 'Perro con silla de ruedas para sus patas traseras. Lleno de energía y amor.',
-		edad: 5,
-		genero: 'macho',
-		tamaño: 'grande',
-		tipo: 'perro',
-		discapacidad: 'silla de ruedas',
-		castrado: true,
-		vacunado: false,
-		desparasitado: true,
-		ubicacion: 'Refugio',
-		personalidad: ['energético', 'juguetón', 'amigable'],
-		requisitosDeAdopcion: ['espacio grande', 'rampas', 'amor'],
-		imagenCard: '/uploads/animales/max.jpg',
-		fotos: ['/uploads/animales/max1.jpg', '/uploads/animales/max2.jpg'],
-		publicado: true,
-		destacado: false,
-		createdAt: '2024-01-30',
-		views: 1200,
-		adoptionInterest: 6,
-	},
-	{
-		id: '6',
-		nombre: 'Nala',
-		descripcion: 'Perrita con una sola oreja, rescatada de maltrato. Necesita paciencia y mucho amor.',
-		edad: 2,
-		genero: 'hembra',
-		tamaño: 'mediano',
-		tipo: 'perro',
-		discapacidad: 'una oreja',
-		castrado: true,
-		vacunado: true,
-		desparasitado: true,
-		ubicacion: 'Hogar Temporal',
-		personalidad: ['tímida', 'dócil', 'leal'],
-		requisitosDeAdopcion: ['paciencia', 'hogar tranquilo', 'sin niños'],
-		imagenCard: '/uploads/animales/nala.jpg',
-		fotos: ['/uploads/animales/nala1.jpg'],
-		publicado: false,
-		destacado: false,
-		createdAt: '2024-03-15',
-		views: 0,
-		adoptionInterest: 0,
-	},
-];
+// Tipo Animal basado en tu esquema Prisma
+type Animal = {
+	id: string;
+	nombre: string;
+	descripcion: string;
+	edad: number;
+	genero: string;
+	tamaño: string;
+	tipo: string;
+	discapacidad: string | null;
+	castrado: boolean;
+	vacunado: boolean;
+	desparasitado: boolean;
+	ubicacion: string | null;
+	personalidad: string[];
+	requisitosDeAdopcion: string[];
+	imagenCard: string;
+	fotos: string[];
+	publicado: boolean;
+	destacado: boolean;
+	createdAt: string;
+	updatedAt: string;
+	views?: number; // Opcional si no está en el modelo
+	adoptionInterest?: number; // Opcional si no está en el modelo
+};
 
 export default function Dashboard() {
 	const router = useRouter();
-	const [animales, setAnimales] = useState(animalesEjemplo);
+	const [animales, setAnimales] = useState<Animal[]>([]);
+	const [loading, setLoading] = useState(true);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filter, setFilter] = useState('todos');
 	const [deleteModal, setDeleteModal] = useState<{ isOpen: boolean; animalId: string; animalName: string }>({
@@ -196,40 +83,104 @@ export default function Dashboard() {
 		animalId: '',
 		animalName: '',
 	});
+	const [deletingId, setDeletingId] = useState<string | null>(null);
 	const [user] = useState({
-		name: 'María González',
+		name: 'User Name',
 		email: 'admin@fundaciondiscas.org',
-		role: 'Administradora Principal',
+		role: 'Administrador Principal',
 		avatar: '/admin-avatar.jpg',
 	});
 
-	// Solo 3 stats cards como pediste, con datos reales
+	// 🔹 GET /api/animals - Cargar animales desde la API
+	useEffect(() => {
+		const fetchAnimales = async () => {
+			try {
+				const res = await fetch('/api/animals');
+
+				if (!res.ok) {
+					throw new Error('Error al cargar animales');
+				}
+
+				const data = await res.json();
+				setAnimales(data);
+			} catch (error) {
+				console.error(error);
+				toast.error('No se pudieron cargar los discas');
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchAnimales();
+	}, []);
+
+	// 🔹 DELETE /api/animals/:id - Eliminar animal
+	const handleDeleteConfirm = async () => {
+		if (!deleteModal.animalId) return;
+
+		setDeletingId(deleteModal.animalId);
+
+		try {
+			const res = await fetch(`/api/animals/${deleteModal.animalId}`, {
+				method: 'DELETE',
+			});
+
+			if (res.status === 401) {
+				toast.error('No estás autenticada');
+				return;
+			}
+
+			if (res.status === 403) {
+				toast.error('No tenés permisos para eliminar');
+				return;
+			}
+
+			if (!res.ok) {
+				throw new Error('Error al eliminar');
+			}
+
+			// Actualizar estado local
+			setAnimales((prev) => prev.filter((animal) => animal.id !== deleteModal.animalId));
+
+			toast.success('Animal eliminado', {
+				description: `${deleteModal.animalName} ha sido eliminado del sistema.`,
+			});
+		} catch (error) {
+			console.error(error);
+			toast.error('No se pudo eliminar el animal');
+		} finally {
+			setDeletingId(null);
+			setDeleteModal({ isOpen: false, animalId: '', animalName: '' });
+		}
+	};
+
+	// Calcular stats basadas en datos reales
 	const stats = [
 		{
 			label: 'Animales activos',
 			value: animales.filter((a) => a.publicado).length.toString(),
 			icon: PawPrint,
-			color: 'bg-gradient-to-br from-teal-500 to-teal-600',
+			color: 'bg-linear-to-br from-teal-500 to-teal-600',
 			change: `+${
 				animales.filter((a) => new Date(a.createdAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)).length
 			} este mes`,
 			description: 'Disponibles para adopción',
 		},
 		{
-			label: 'En proceso',
-			value: animales.reduce((acc, a) => acc + a.adoptionInterest, 0).toString(),
-			icon: Heart,
-			color: 'bg-gradient-to-br from-pink-500 to-rose-500',
-			change: `${animales.filter((a) => a.adoptionInterest > 0).length} con interés`,
-			description: 'Adopciones en trámite',
-		},
-		{
 			label: 'Total animales',
 			value: animales.length.toString(),
 			icon: BarChart3,
-			color: 'bg-gradient-to-br from-amber-500 to-orange-500',
+			color: 'bg-linear-to-br from-amber-500 to-orange-500',
 			change: `${animales.filter((a) => a.destacado).length} destacados`,
 			description: 'En el sistema',
+		},
+		{
+			label: 'Solicitudes',
+			value: animales.reduce((acc, a) => acc + (a.adoptionInterest || 0), 0).toString(),
+			icon: Heart,
+			color: 'bg-linear-to-br from-pink-500 to-rose-500',
+			change: `${animales.filter((a) => (a.adoptionInterest || 0) > 0).length} con interés`,
+			description: 'Adopciones en trámite',
 		},
 	];
 
@@ -263,14 +214,6 @@ export default function Dashboard() {
 		});
 	};
 
-	const handleDeleteConfirm = () => {
-		setAnimales((prev) => prev.filter((animal) => animal.id !== deleteModal.animalId));
-		setDeleteModal({ isOpen: false, animalId: '', animalName: '' });
-		toast.success('Animal eliminado', {
-			description: `${deleteModal.animalName} ha sido eliminado del sistema.`,
-		});
-	};
-
 	const handleEditClick = (id: string) => {
 		router.push(`/animales/editar/${id}`);
 	};
@@ -279,33 +222,69 @@ export default function Dashboard() {
 		router.push('/animales/nuevo');
 	};
 
-	const handleTogglePublicado = (id: string) => {
-		setAnimales((prev) =>
-			prev.map((animal) => (animal.id === id ? { ...animal, publicado: !animal.publicado } : animal)),
-		);
-
+	const handleTogglePublicado = async (id: string) => {
 		const animal = animales.find((a) => a.id === id);
-		if (animal) {
+		if (!animal) return;
+
+		try {
+			const res = await fetch(`/api/animals/${id}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ publicado: !animal.publicado }),
+			});
+
+			if (!res.ok) {
+				throw new Error('Error al actualizar');
+			}
+
+			// Actualizar estado local
+			setAnimales((prev) =>
+				prev.map((animal) => (animal.id === id ? { ...animal, publicado: !animal.publicado } : animal)),
+			);
+
 			toast.success(animal.publicado ? 'Animal ocultado' : 'Animal publicado', {
 				description: `${animal.nombre} ${
 					animal.publicado ? 'ya no es visible públicamente' : 'ahora es visible en el sitio'
 				}.`,
 			});
+		} catch (error) {
+			console.error(error);
+			toast.error('Error al actualizar el animal');
 		}
 	};
 
-	const handleToggleDestacado = (id: string) => {
-		setAnimales((prev) =>
-			prev.map((animal) => (animal.id === id ? { ...animal, destacado: !animal.destacado } : animal)),
-		);
-
+	const handleToggleDestacado = async (id: string) => {
 		const animal = animales.find((a) => a.id === id);
-		if (animal) {
+		if (!animal) return;
+
+		try {
+			const res = await fetch(`/api/animals/${id}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ destacado: !animal.destacado }),
+			});
+
+			if (!res.ok) {
+				throw new Error('Error al actualizar');
+			}
+
+			// Actualizar estado local
+			setAnimales((prev) =>
+				prev.map((animal) => (animal.id === id ? { ...animal, destacado: !animal.destacado } : animal)),
+			);
+
 			toast.success(animal.destacado ? 'Quitado de destacados' : 'Marcado como destacado', {
 				description: `${animal.nombre} ${
 					animal.destacado ? 'ya no aparece en la sección destacada' : 'ahora aparece como destacado'
 				}.`,
 			});
+		} catch (error) {
+			console.error(error);
+			toast.error('Error al actualizar el animal');
 		}
 	};
 
@@ -313,18 +292,30 @@ export default function Dashboard() {
 		toast.info('Ver en sitio público', {
 			description: 'Redirigiendo a la página pública del disca...',
 		});
-		// router.push(`/adopcion/${id}`); // En un caso real
+		router.push(`/adopta/${id}`);
 	};
 
+	// Estado de carga
+	if (loading) {
+		return (
+			<div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100/50 flex items-center justify-center">
+				<div className="text-center">
+					<div className="w-16 h-16 mx-auto border-4 border-teal-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+					<p className="text-gray-600">Cargando discas...</p>
+				</div>
+			</div>
+		);
+	}
+
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100/50">
+		<div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100/50">
 			{/* Header superior */}
 			<header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
 				<div className="px-6 py-4 flex items-center justify-between">
 					<div className="flex items-center gap-4">
 						<motion.div whileHover={{ rotate: 15 }} className="relative">
-							<div className="absolute -inset-4 bg-gradient-to-r from-teal-400 to-amber-400 rounded-full blur-xl opacity-20" />
-							<div className="relative w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
+							<div className="absolute -inset-4 bg-linear-to-r from-teal-400 to-amber-400 rounded-full blur-xl opacity-20" />
+							<div className="relative w-10 h-10 bg-linear-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
 								<PawPrint className="w-5 h-5 text-white" />
 							</div>
 						</motion.div>
@@ -336,19 +327,22 @@ export default function Dashboard() {
 					</div>
 
 					<div className="flex items-center gap-4">
-						<Button variant="outline" size="sm" className="flex items-center gap-2" onClick={() => router.push('/')}>
+						<Button
+							variant="outline"
+							size="sm"
+							className="flex items-center gap-2 cursor-pointer"
+							onClick={() => router.push('/')}
+						>
 							<Home className="w-4 h-4" />
 							<span className="hidden sm:inline">Ver sitio público</span>
 						</Button>
 
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
-								<Button variant="ghost" className="flex items-center gap-3 hover:bg-gray-100">
+								<Button variant="ghost" className="flex items-center gap-3 hover:bg-gray-100 cursor-pointer">
 									<Avatar className="w-9 h-9 border-2 border-teal-200">
 										<AvatarImage src={user.avatar} />
-										<AvatarFallback className="bg-gradient-to-br from-teal-500 to-teal-600 text-white">
-											MG
-										</AvatarFallback>
+										<AvatarFallback className="bg-linear-to-br from-teal-500 to-teal-600 text-white">UN</AvatarFallback>
 									</Avatar>
 									<div className="hidden md:block text-left">
 										<p className="text-sm font-medium text-gray-800">{user.name}</p>
@@ -357,17 +351,14 @@ export default function Dashboard() {
 									<MoreVertical className="w-4 h-4 text-gray-400" />
 								</Button>
 							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end" className="w-56">
+							<DropdownMenuContent align="end" className="w-56 bg-white">
 								<DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
 								<DropdownMenuSeparator />
-								<DropdownMenuItem className="flex items-center gap-2" onClick={() => router.push('/admin/perfil')}>
-									<Avatar className="w-4 h-4">
-										<AvatarFallback className="text-xs">MG</AvatarFallback>
-									</Avatar>
-									Perfil
-								</DropdownMenuItem>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem className="flex items-center gap-2 text-red-600">
+
+								<DropdownMenuItem
+									className="flex items-center gap-2 text-red-600 cursor-pointer"
+									onClick={() => signOut()}
+								>
 									<LogOut className="w-4 h-4" />
 									Cerrar Sesión
 								</DropdownMenuItem>
@@ -426,7 +417,7 @@ export default function Dashboard() {
 
 							<div className="flex items-center gap-3">
 								<Button
-									className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 shadow-lg"
+									className="text-white bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 shadow-lg cursor-pointer"
 									onClick={handleNewAnimalClick}
 								>
 									<Plus className="w-4 h-4 mr-2" />
@@ -437,7 +428,7 @@ export default function Dashboard() {
 						</div>
 					</CardHeader>
 
-					<CardContent>
+					<CardContent className="p-6">
 						{/* Filtros y búsqueda */}
 						<div className="flex flex-col sm:flex-row gap-4 mb-6">
 							<div className="relative flex-1">
@@ -455,36 +446,68 @@ export default function Dashboard() {
 									variant={filter === 'todos' ? 'default' : 'outline'}
 									size="sm"
 									onClick={() => setFilter('todos')}
-									className={filter === 'todos' ? 'bg-teal-600 hover:bg-teal-700' : ''}
+									className={cn('cursor-pointer', filter === 'todos' && 'bg-teal-600 hover:bg-teal-700 text-white')}
 								>
 									Todos
 								</Button>
+
 								<Button
 									variant={filter === 'publicados' ? 'default' : 'outline'}
 									size="sm"
 									onClick={() => setFilter('publicados')}
-									className={filter === 'publicados' ? 'bg-emerald-600 hover:bg-emerald-700' : ''}
+									className={cn(
+										'cursor-pointer',
+										filter === 'publicados' && 'bg-emerald-600 hover:bg-emerald-700 text-white',
+									)}
 								>
 									<Eye className="w-3 h-3 mr-1" />
 									Publicados
 								</Button>
+
 								<Button
 									variant={filter === 'borradores' ? 'default' : 'outline'}
 									size="sm"
 									onClick={() => setFilter('borradores')}
-									className={filter === 'borradores' ? 'bg-gray-600 hover:bg-gray-700' : ''}
+									className={cn(
+										'cursor-pointer',
+										filter === 'borradores' && 'bg-gray-600 hover:bg-gray-700 text-white',
+									)}
 								>
 									<EyeOff className="w-3 h-3 mr-1" />
 									Borradores
 								</Button>
+
 								<Button
 									variant={filter === 'destacados' ? 'default' : 'outline'}
 									size="sm"
 									onClick={() => setFilter('destacados')}
-									className={filter === 'destacados' ? 'bg-amber-600 hover:bg-amber-700' : ''}
+									className={cn(
+										'cursor-pointer',
+										filter === 'destacados' && 'bg-amber-600 hover:bg-amber-700 text-white',
+									)}
 								>
 									<Star className="w-3 h-3 mr-1" />
 									Destacados
+								</Button>
+
+								<Button
+									variant={filter === 'perros' ? 'default' : 'outline'}
+									size="sm"
+									onClick={() => setFilter('perros')}
+									className={cn('cursor-pointer', filter === 'perros' && 'bg-blue-600 hover:bg-blue-700 text-white')}
+								>
+									<Dog className="w-3 h-3 mr-1" />
+									Perros
+								</Button>
+
+								<Button
+									variant={filter === 'gatos' ? 'default' : 'outline'}
+									size="sm"
+									onClick={() => setFilter('gatos')}
+									className={cn('cursor-pointer', filter === 'gatos' && 'bg-yellow-600 hover:bg-yellow-700 text-white')}
+								>
+									<Cat className="w-3 h-3 mr-1" />
+									Gatos
 								</Button>
 							</div>
 						</div>
@@ -503,7 +526,7 @@ export default function Dashboard() {
 										<div className="p-4">
 											<div className="flex flex-col md:flex-row md:items-center gap-4">
 												{/* Imagen */}
-												<div className="relative w-24 h-24 flex-shrink-0">
+												<div className="relative w-24 h-24 shrink-0">
 													<img
 														src={animal.imagenCard || '/placeholder.jpg'}
 														alt={animal.nombre}
@@ -520,7 +543,7 @@ export default function Dashboard() {
 														<Button
 															size="icon"
 															variant="ghost"
-															className="w-6 h-6 bg-white/90 hover:bg-white"
+															className="w-6 h-6 bg-white/90 hover:bg-white cursor-pointer"
 															onClick={() => handleViewPublic(animal.id)}
 														>
 															<ExternalLink className="w-3 h-3" />
@@ -538,13 +561,13 @@ export default function Dashboard() {
 																</h3>
 																<div className="flex gap-1">
 																	{animal.destacado && (
-																		<Badge className="bg-gradient-to-r from-amber-100 to-amber-50 text-amber-800 border-amber-200">
+																		<Badge className="bg-linear-to-r from-amber-100 to-amber-50 text-amber-800 border-amber-200">
 																			<Star className="w-3 h-3 mr-1" />
 																			Destacado
 																		</Badge>
 																	)}
 																	{animal.publicado ? (
-																		<Badge className="bg-gradient-to-r from-emerald-100 to-emerald-50 text-emerald-800 border-emerald-200">
+																		<Badge className="bg-linear-to-r from-emerald-100 to-emerald-50 text-emerald-800 border-emerald-200">
 																			<Eye className="w-3 h-3 mr-1" />
 																			Publicado
 																		</Badge>
@@ -569,8 +592,8 @@ export default function Dashboard() {
 																<Badge variant="outline" className="text-xs">
 																	{animal.tamaño}
 																</Badge>
-																<Badge className="bg-gradient-to-r from-teal-100 to-teal-50 text-teal-800 border-teal-200 text-xs">
-																	{animal.discapacidad}
+																<Badge className="bg-linear-to-r from-teal-100 to-teal-50 text-teal-800 border-teal-200 text-xs">
+																	{animal.discapacidad || 'Sin discapacidad'}
 																</Badge>
 																<Badge variant="outline" className="text-xs">
 																	{animal.tipo}
@@ -584,7 +607,7 @@ export default function Dashboard() {
 																size="sm"
 																variant="outline"
 																onClick={() => handleTogglePublicado(animal.id)}
-																className={animal.publicado ? 'text-emerald-600' : ''}
+																className={cn('cursor-pointer', animal.publicado ? 'text-emerald-600' : '')}
 															>
 																{animal.publicado ? (
 																	<>
@@ -601,27 +624,27 @@ export default function Dashboard() {
 
 															<DropdownMenu>
 																<DropdownMenuTrigger asChild>
-																	<Button size="sm" variant="ghost">
+																	<Button size="sm" variant="ghost" className="cursor-pointer">
 																		<MoreVertical className="w-4 h-4" />
 																	</Button>
 																</DropdownMenuTrigger>
-																<DropdownMenuContent align="end" className="z-50">
+																<DropdownMenuContent align="end" className="z-50 bg-white">
 																	<DropdownMenuItem
-																		className="flex items-center gap-2"
+																		className="flex items-center gap-2 cursor-pointer"
 																		onClick={() => handleEditClick(animal.id)}
 																	>
 																		<Edit className="w-4 h-4" />
 																		Editar
 																	</DropdownMenuItem>
 																	<DropdownMenuItem
-																		className="flex items-center gap-2"
+																		className="flex items-center gap-2 cursor-pointer"
 																		onClick={() => handleToggleDestacado(animal.id)}
 																	>
 																		<Star className="w-4 h-4" />
 																		{animal.destacado ? 'Quitar destacado' : 'Destacar'}
 																	</DropdownMenuItem>
 																	<DropdownMenuItem
-																		className="flex items-center gap-2"
+																		className="flex items-center gap-2 cursor-pointer"
 																		onClick={() => handleViewPublic(animal.id)}
 																	>
 																		<ExternalLink className="w-4 h-4" />
@@ -629,11 +652,21 @@ export default function Dashboard() {
 																	</DropdownMenuItem>
 																	<DropdownMenuSeparator />
 																	<DropdownMenuItem
-																		className="flex items-center gap-2 text-red-600"
+																		className="flex items-center gap-2 cursor-pointer text-red-600"
 																		onClick={() => handleDeleteClick(animal.id, animal.nombre)}
+																		disabled={deletingId === animal.id}
 																	>
-																		<Trash2 className="w-4 h-4" />
-																		Eliminar
+																		{deletingId === animal.id ? (
+																			<>
+																				<div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin mr-2" />
+																				Eliminando...
+																			</>
+																		) : (
+																			<>
+																				<Trash2 className="w-4 h-4" />
+																				Eliminar
+																			</>
+																		)}
 																	</DropdownMenuItem>
 																</DropdownMenuContent>
 															</DropdownMenu>
@@ -645,7 +678,7 @@ export default function Dashboard() {
 														<div className="flex items-center gap-4 mb-2 sm:mb-0">
 															<div className="flex items-center gap-1">
 																<MapPin className="w-3 h-3" />
-																{animal.ubicacion}
+																{animal.ubicacion || 'Sin ubicación'}
 															</div>
 															<div className="flex items-center gap-1">
 																<Clock className="w-3 h-3" />
@@ -655,16 +688,16 @@ export default function Dashboard() {
 
 														<div className="flex items-center gap-4">
 															<div className="flex items-center gap-1">
-																<Eye className="w-3 h-3" />
-																{animal.views} vistas
+																<Sparkles className="w-3 h-3 text-purple-500" />
+																{animal.personalidad.length} características
 															</div>
 															<div className="flex items-center gap-1">
 																<Heart className="w-3 h-3 text-pink-500" />
-																{animal.adoptionInterest} interesados
+																{animal.adoptionInterest || 0} interesados
 															</div>
 															<div className="flex items-center gap-1">
 																<TrendingUp className="w-3 h-3 text-teal-500" />
-																{Math.round((animal.adoptionInterest / Math.max(animal.views, 1)) * 100)}% tasa
+																{animal.castrado ? 'Castrado' : 'Sin castrar'}
 															</div>
 														</div>
 													</div>
@@ -679,10 +712,12 @@ export default function Dashboard() {
 						{/* Si no hay resultados */}
 						{filteredAnimales.length === 0 && (
 							<div className="text-center py-12">
-								<div className="w-24 h-24 mx-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mb-4">
+								<div className="w-24 h-24 mx-auto bg-linear-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mb-4">
 									<Sparkles className="w-12 h-12 text-gray-400" />
 								</div>
-								<h3 className="text-xl font-semibold text-gray-700 mb-2">No se encontraron animales</h3>
+								<h3 className="text-xl font-semibold text-gray-700 mb-2">
+									{animales.length === 0 ? 'No hay animales cargados' : 'No se encontraron animales'}
+								</h3>
 								<p className="text-gray-500 mb-6">
 									{searchTerm ? 'Intenta con otros términos de búsqueda' : 'Crea tu primer animal para comenzar'}
 								</p>
@@ -726,6 +761,7 @@ export default function Dashboard() {
 				onClose={() => setDeleteModal({ isOpen: false, animalId: '', animalName: '' })}
 				onConfirm={handleDeleteConfirm}
 				animalName={deleteModal.animalName}
+				isLoading={deletingId === deleteModal.animalId}
 			/>
 		</div>
 	);

@@ -115,7 +115,7 @@ const SOCIAL_LINKS = [
 		name: 'Instagram',
 		icon: Instagram,
 		href: 'https://www.instagram.com/discascordoba/',
-		color: 'hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600',
+		color: 'hover:bg-linear-to-r hover:from-pink-500 hover:to-purple-600',
 	},
 	{
 		name: 'Facebook',
@@ -139,9 +139,9 @@ const CONTACT_INFO = [
 
 const Footer = () => {
 	return (
-		<footer className="px-6 relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 text-white mt-32">
+		<footer className="px-6 relative overflow-hidden bg-linear-to-b from-gray-900 to-gray-950 text-white mt-32">
 			{/* Elementos decorativos */}
-			<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-amber-500 to-pink-500" />
+			<div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-teal-500 via-amber-500 to-pink-500" />
 
 			<div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-teal-500/5 blur-3xl" />
 			<div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl" />
@@ -160,13 +160,13 @@ const Footer = () => {
 					<div className="lg:col-span-4 space-y-6">
 						<div className="flex items-center gap-3">
 							<div className="relative w-12 h-12">
-								<div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-amber-500 rounded-2xl rotate-12" />
+								<div className="absolute inset-0 bg-linear-to-r from-teal-500 to-amber-500 rounded-2xl rotate-12" />
 								<div className="absolute inset-1 bg-gray-900 rounded-xl flex items-center justify-center">
 									<PawPrint className="w-6 h-6 text-teal-400" />
 								</div>
 							</div>
 							<div>
-								<h2 className="text-2xl font-bold bg-gradient-to-r from-teal-300 to-amber-200 bg-clip-text text-transparent">
+								<h2 className="text-2xl font-bold bg-linear-to-r from-teal-300 to-amber-200 bg-clip-text text-transparent">
 									Discas
 								</h2>
 								<p className="text-sm text-gray-400">Rescatamos animales con discapacidad</p>
@@ -230,7 +230,7 @@ const Footer = () => {
 						{/* Botón especial de donación */}
 						{/* <Button
 							asChild
-							className="w-full mt-6 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
+							className="w-full mt-6 bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
 						>
 							<Link href="/donaciones">
 								<Heart className="w-4 h-4 mr-2" />
@@ -275,7 +275,7 @@ const Footer = () => {
 					<div className="lg:col-span-2">
 						<div className="relative group">
 							{/* Marco decorativo */}
-							<div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-amber-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500" />
+							<div className="absolute -inset-1 bg-linear-to-r from-teal-500 to-amber-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500" />
 
 							<div className="relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 p-4">
 								{/* Imagen de Timoteo */}
@@ -291,11 +291,11 @@ const Footer = () => {
 									/>
 
 									{/* Overlay */}
-									<div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
+									<div className="absolute inset-0 bg-linear-to-t from-gray-900/60 to-transparent" />
 
 									{/* Badge */}
 									{/* <div className="absolute top-3 right-3">
-										<div className="px-3 py-1 bg-gradient-to-r from-amber-500 to-pink-500 rounded-full text-xs font-bold flex items-center gap-1">
+										<div className="px-3 py-1 bg-linear-to-r from-amber-500 to-pink-500 rounded-full text-xs font-bold flex items-center gap-1">
 											<Heart className="w-3 h-3" />
 											Embajador
 										</div>

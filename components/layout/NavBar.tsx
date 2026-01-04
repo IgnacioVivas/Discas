@@ -161,7 +161,6 @@ const NavBar = () => {
 								alt="Discas - Rescatamos animales con discapacidad"
 								fill
 								className="object-contain"
-								style={!isScrolled && pathname.startsWith('/adopta') ? { filter: 'brightness(0) invert(1)' } : {}}
 								priority
 							/>
 						</div>
@@ -176,11 +175,10 @@ const NavBar = () => {
 								className={cn(
 									'px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200',
 									// Color del texto según estado
-									isScrolled
-										? 'text-gray-700 hover:text-white hover:bg-teal-600'
-										: cn(currentStyle.textColor, currentStyle.hoverColor, 'hover:bg-white/10'),
+									cn(currentStyle.textColor, currentStyle.hoverColor, 'hover:bg-white/10'),
 									// Item activo
-									pathname === item.path && 'text-teal-600 bg-teal-100 font-semibold hover:bg-red-500',
+									pathname === item.path &&
+										'text-teal-600 bg-teal-100 font-semibold hover:bg-yellow-100 hover:text-yellow-600',
 								)}
 							>
 								{item.name}
@@ -207,11 +205,7 @@ const NavBar = () => {
 							size="sm"
 							className={cn(
 								'transition-all',
-								isScrolled
-									? 'bg-teal-600 hover:bg-teal-700'
-									: pathname.startsWith('/adopta')
-									? 'bg-white text-teal-700 hover:bg-white/90'
-									: 'bg-teal-600 hover:bg-teal-700',
+								'bg-linear-to-r text-white from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg cursor-pointer',
 							)}
 						>
 							<Heart className="w-3 h-3 mr-1" />
@@ -231,13 +225,6 @@ const NavBar = () => {
 
 							<SheetContent side="right" className="w-full bg-white">
 								<div className="flex flex-col h-full pt-6">
-									{/* Header del menú móvil */}
-									{/* <div className="flex items-center justify-between mb-8">
-										<div className="relative w-32 h-10">
-											<Image src={logoDiscas} alt="Discas" fill className="object-contain" />
-										</div>
-									</div> */}
-
 									<div className="flex items-center justify-start mb-8">
 										<div className="relative w-32 h-10">
 											<Image src={logoDiscas} alt="Discas" fill className="object-contain" />
@@ -254,7 +241,7 @@ const NavBar = () => {
 													className={cn(
 														'w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center',
 														pathname === item.path
-															? 'bg-teal-50 text-teal-600 font-semibold'
+															? 'bg-teal-100 text-teal-600 font-semibold'
 															: 'text-gray-700 hover:bg-gray-100',
 													)}
 												>
@@ -273,7 +260,7 @@ const NavBar = () => {
 											<p className="text-sm text-teal-700 mb-3">Contactanos inmediatamente</p>
 											<Button
 												onClick={() => handleNavClick('/contacto')}
-												className="w-full bg-teal-600 hover:bg-teal-700"
+												className="w-full text-white bg-teal-600 hover:bg-teal-700"
 											>
 												<PawPrint className="w-4 h-4 mr-2" />
 												Contactar emergencia

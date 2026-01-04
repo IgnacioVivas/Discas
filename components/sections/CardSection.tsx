@@ -1,63 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { PawPrint, Filter, Sparkles, ArrowRight, Dog, Cat } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Disca } from '@/interface/interfaces';
 import Link from 'next/link';
 import AnimalCard from '../myComponents/AnimalCard';
-import { datosDiscas } from '@/data/discas';
+import { useAnimalFilter } from '@/hooks/useAnimalFilter';
 
 const CardSection = () => {
-	const [filter, setFilter] = useState<'todos' | 'perros' | 'gatos'>('todos');
-	const [displayedAnimals, setDisplayedAnimals] = useState<Disca[]>([]);
-	const [isLoading, setIsLoading] = useState(true);
-
-	// Función para detectar tipo basado en nombre/descripción
-	const detectAnimalType = (animal: Disca): 'perro' | 'gato' => {
-		const lowerNombre = animal.nombre.toLowerCase();
-		const lowerDesc = animal.descripcion.toLowerCase();
-
-		// Si ya tiene la propiedad tipo, úsala
-		if (animal.tipo) {
-			return animal.tipo;
-		}
-
-		// Si no, detecta por texto
-		if (
-			lowerDesc.includes('perro') ||
-			lowerDesc.includes('canino') ||
-			lowerDesc.includes('can') ||
-			lowerNombre.includes('perro')
-		) {
-			return 'perro';
-		}
-		return 'gato'; // Default a gato
-	};
-
-	useEffect(() => {
-		setIsLoading(true);
-
-		// Usa datosDiscas directamente
-		const allData = datosDiscas || [];
-
-		let filtered = [...allData];
-
-		if (filter === 'perros') {
-			filtered = allData.filter((animal) => detectAnimalType(animal) === 'perro');
-		} else if (filter === 'gatos') {
-			filtered = allData.filter((animal) => detectAnimalType(animal) === 'gato');
-		}
-
-		// Mezclar y tomar máximo 4
-		const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-		setDisplayedAnimals(shuffled.slice(0, 4));
-
-		const timer = setTimeout(() => setIsLoading(false), 500);
-		return () => clearTimeout(timer);
-	}, [filter]);
+	const { filter, setFilter, displayedAnimals, isLoading, detectAnimalType, totalPerros, totalGatos, totalAnimals } =
+		useAnimalFilter(4, true); // 4 animales aleatorios
 
 	const containerVariants = {
 		hidden: { opacity: 0 },
@@ -88,14 +41,14 @@ const CardSection = () => {
 				>
 					<div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-amber-100 to-pink-100 rounded-full mb-4">
 						<Sparkles className="w-4 h-4 text-amber-600" />
-						<span className="text-sm font-bold font-quicksand text-amber-700">Historias de amor esperando por ti</span>
+						<span className="text-sm font-bold text-amber-700">Historias de amor esperando por ti</span>
 					</div>
 
-					<h2 className="text-4xl md:text-5xl font-extrabold font-nunito mb-4 bg-linear-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-linear-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
 						Ellos esperan un hogar
 					</h2>
 
-					<p className="text-lg font-inter md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+					<p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
 						Cada uno tiene una historia única y mucho amor para dar. Conocé a nuestros guerreros que buscan una segunda
 						oportunidad llena de amor y cuidados.
 					</p>
@@ -124,7 +77,7 @@ const CardSection = () => {
 							>
 								<div className="flex items-center gap-2">
 									<Filter className="w-4 h-4" />
-									Todos
+									Todos ({totalAnimals})
 								</div>
 							</TabsTrigger>
 							<TabsTrigger
@@ -133,7 +86,7 @@ const CardSection = () => {
 							>
 								<div className="flex items-center gap-2">
 									<Dog className="w-4 h-4" />
-									Perritos
+									Perritos ({totalPerros})
 								</div>
 							</TabsTrigger>
 							<TabsTrigger
@@ -142,7 +95,7 @@ const CardSection = () => {
 							>
 								<div className="flex items-center gap-2">
 									<Cat className="w-4 h-4" />
-									Gatitos
+									Gatitos ({totalGatos})
 								</div>
 							</TabsTrigger>
 						</TabsList>
@@ -158,7 +111,7 @@ const CardSection = () => {
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ delay: index * 0.1 }}
-								className="h-[400px] bg-gray-100 rounded-2xl animate-pulse"
+								className="h-100 bg-gray-100 rounded-2xl animate-pulse"
 							/>
 						))}
 					</div>
@@ -169,11 +122,9 @@ const CardSection = () => {
 						animate="visible"
 						className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6"
 					>
-						<AnimatePresence mode="wait">
-							{displayedAnimals.map((animal, index) => (
-								<AnimalCard key={animal.id} animal={animal} index={index} animalType={detectAnimalType(animal)} />
-							))}
-						</AnimatePresence>
+						{displayedAnimals.map((animal, index) => (
+							<AnimalCard key={animal.id} animal={animal} index={index} animalType={detectAnimalType(animal)} />
+						))}
 					</motion.div>
 				)}
 

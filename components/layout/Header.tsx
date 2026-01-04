@@ -59,7 +59,7 @@ const Header = () => {
 								<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 									<Button
 										size="lg"
-										className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg cursor-pointer"
+										className="bg-linear-to-r text-white from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg cursor-pointer"
 										onClick={() => {
 											document.getElementById('donar')?.scrollIntoView({
 												behavior: 'smooth',

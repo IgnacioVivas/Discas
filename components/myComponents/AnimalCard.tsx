@@ -62,7 +62,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 			{/* Efecto de fondo en hover */}
 			<div
 				className={cn(
-					'absolute -inset-4 bg-gradient-to-r from-amber-200/0 via-orange-200/0 to-pink-200/0 rounded-3xl blur-xl transition-all duration-500',
+					'absolute -inset-4 bg-linear-to-r from-amber-200/0 via-orange-200/0 to-pink-200/0 rounded-3xl blur-xl transition-all duration-500',
 					isHovered && 'from-amber-200/20 via-orange-200/20 to-pink-200/20',
 				)}
 			/>
@@ -79,8 +79,8 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
 						/>
 
-						{/* Overlay gradiente */}
-						<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+						{/* Overlay lineare */}
+						<div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
 						{/* Badges superiores */}
 						<div className="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -90,7 +90,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 							{hasSpecialNeeds(animal.descripcion) && (
 								<Badge
 									variant="outline"
-									className="bg-gradient-to-r from-teal-500 to-teal-600 text-white border-teal-600"
+									className="bg-linear-to-r from-teal-500 to-teal-600 text-white border-teal-600"
 								>
 									💝 Especial
 								</Badge>
@@ -156,7 +156,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 							</div>
 
 							{/* Descripción */}
-							<p className="text-gray-600 line-clamp-2 text-sm leading-relaxed min-h-[40px]">
+							<p className="text-gray-600 line-clamp-2 text-sm leading-relaxed min-h-10">
 								{animal.descripcion.length > 100 ? animal.descripcion.substring(0, 100) + '...' : animal.descripcion}
 							</p>
 
@@ -188,7 +188,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 									<span>Córdoba</span>
 								</div>
 
-								<span className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 inline-block">
+								<span className="px-4 py-2 bg-linear-to-r from-amber-500 to-orange-500 text-white font-medium rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all duration-300 inline-block">
 									Conocer más
 								</span>
 							</div>
