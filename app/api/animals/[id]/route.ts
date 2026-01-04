@@ -1,15 +1,9 @@
-import { requireAdmin } from '@/lib/auth-admin';
+import { NextResponse, type NextRequest } from 'next/server';
 import prisma from '@/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
-
-type Params = {
-	params: {
-		id: string;
-	};
-};
+import { requireAdmin } from '@/lib/auth-admin';
 
 // Obtener un disca
-export async function GET(_: Request, { params }: Params) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
 	const animal = await prisma.animal.findUnique({
 		where: { id: params.id },
 	});
@@ -22,7 +16,7 @@ export async function GET(_: Request, { params }: Params) {
 }
 
 // Editar un disca
-export async function PUT(req: NextRequest, { params }: Params) {
+export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
 	const auth = await requireAdmin(req);
 
 	if (!auth.ok) {
@@ -40,7 +34,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
 }
 
 // Eliminar un disca
-export async function DELETE(req: NextRequest, { params }: Params) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
 	const auth = await requireAdmin(req);
 
 	if (!auth.ok) {
