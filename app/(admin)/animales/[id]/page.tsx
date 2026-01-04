@@ -243,10 +243,13 @@ export default function EditarAnimalPage() {
 			setTimeout(() => {
 				router.push('/dashboard');
 			}, 1500);
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.error('Error actualizando animal:', error);
+
+			const message = error instanceof Error ? error.message : 'No se pudo actualizar el animal. Intenta nuevamente.';
+
 			toast.error('Error al guardar', {
-				description: error.message || 'No se pudo actualizar el animal. Intenta nuevamente.',
+				description: message,
 			});
 		} finally {
 			setLoading(false);
@@ -330,7 +333,7 @@ export default function EditarAnimalPage() {
 
 	if (loadingAnimal) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50/30 flex items-center justify-center">
+			<div className="min-h-screen bg-linear-to-br from-gray-50 to-teal-50/30 flex items-center justify-center">
 				<div className="text-center">
 					<Loader2 className="w-12 h-12 animate-spin text-teal-600 mx-auto mb-4" />
 					<h2 className="text-xl font-semibold text-gray-800">Cargando animal...</h2>
@@ -341,7 +344,7 @@ export default function EditarAnimalPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50/30">
+		<div className="min-h-screen bg-linear-to-br from-gray-50 to-teal-50/30">
 			{/* Header */}
 			<header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
 				<div className="px-6 py-4 flex items-center justify-between">
@@ -369,7 +372,7 @@ export default function EditarAnimalPage() {
 						<Button
 							onClick={handleSubmit(onSubmit)}
 							disabled={loading}
-							className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 shadow-lg"
+							className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 shadow-lg"
 						>
 							{loading ? (
 								<>

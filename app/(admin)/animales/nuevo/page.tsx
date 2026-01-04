@@ -131,7 +131,7 @@
 // 	};
 
 // 	return (
-// 		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50/30">
+// 		<div className="min-h-screen bg-linear-to-br from-gray-50 to-teal-50/30">
 // 			{/* Header */}
 // 			<header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-gray-200">
 // 				<div className="px-6 py-4 flex items-center justify-between">
@@ -158,7 +158,7 @@
 // 						<Button
 // 							onClick={handleSubmit}
 // 							disabled={loading}
-// 							className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800"
+// 							className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800"
 // 						>
 // 							{loading ? (
 // 								<>
@@ -798,10 +798,13 @@ export default function NuevoAnimalPage() {
 			setTimeout(() => {
 				router.push('/dashboard');
 			}, 1500);
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.error('Error creando animal:', error);
+
+			const message = error instanceof Error ? error.message : 'Por favor, intenta nuevamente.';
+
 			toast.error('Error al crear el animal', {
-				description: error.message || 'Por favor, intenta nuevamente.',
+				description: message,
 			});
 		} finally {
 			setLoading(false);
@@ -873,7 +876,7 @@ export default function NuevoAnimalPage() {
 	};
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50/30">
+		<div className="min-h-screen bg-linear-to-br from-gray-50 to-teal-50/30">
 			{/* Header */}
 			<header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-gray-200">
 				<div className="px-6 py-4 flex items-center justify-between">
@@ -900,7 +903,7 @@ export default function NuevoAnimalPage() {
 						<Button
 							onClick={handleSubmit(onSubmit)}
 							disabled={loading}
-							className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 cursor-pointer text-white"
+							className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 cursor-pointer text-white"
 						>
 							{loading ? (
 								<>
