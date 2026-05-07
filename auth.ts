@@ -2,20 +2,12 @@ import 'server-only';
 
 import NextAuth, { type AuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { PrismaClient } from '@/lib/generated/prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
+import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
-import 'dotenv/config';
-
-const adapter = new PrismaPg({
-	connectionString: process.env.DATABASE_URL,
-});
-
-const prisma = new PrismaClient({ adapter });
 
 export const authOptions: AuthOptions = {
 	session: {
-		strategy: 'jwt', // ✅ ahora es literal, no string
+		strategy: 'jwt',
 	},
 	providers: [
 		Credentials({
@@ -24,33 +16,16 @@ export const authOptions: AuthOptions = {
 				password: { type: 'password' },
 			},
 			authorize: async (credentials) => {
-				console.log('AUTHORIZE CREDENTIALS:', credentials);
-
-				if (!credentials?.email || !credentials.password) {
-					console.log('❌ faltan credenciales');
-					return null;
-				}
+				if (!credentials?.email || !credentials.password) return null;
 
 				const user = await prisma.user.findUnique({
 					where: { email: credentials.email },
 				});
 
-				console.log('USER FROM DB:', user);
-
-				if (!user) {
-					console.log('❌ usuario no existe');
-					return null;
-				}
+				if (!user) return null;
 
 				const ok = await bcrypt.compare(credentials.password, user.password);
-				console.log('PASSWORD OK:', ok);
-
-				if (!ok) {
-					console.log('❌ password incorrecta');
-					return null;
-				}
-
-				console.log('✅ LOGIN OK');
+				if (!ok) return null;
 
 				return {
 					id: user.id,

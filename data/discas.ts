@@ -1,6 +1,4 @@
-import { Disca } from '@/interface/interfaces';
-
-export const datosDiscas: Disca[] = [
+export const datosDiscas = [
 	{
 		id: '1',
 		nombre: 'Bella',

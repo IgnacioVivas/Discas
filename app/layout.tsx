@@ -1,4 +1,5 @@
 import './globals.css';
+import QueryProvider from '@/providers/QueryProvider';
 
 export default function RootLayout({
 	children,
@@ -17,7 +18,9 @@ export default function RootLayout({
 			</head>
 
 			<body className="antialiased bg-linear-to-b from-white via-teal-50/30 to-amber-50/30">
-				<main className="min-h-screen">{children}</main>
+				<QueryProvider>
+					<main className="min-h-screen">{children}</main>
+				</QueryProvider>
 			</body>
 		</html>
 	);
