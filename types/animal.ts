@@ -6,7 +6,7 @@ export const animalSchema = z.object({
 	edad: z.number().min(0, 'La edad no puede ser negativa').max(30, 'Edad no válida'),
 	genero: z.enum(['macho', 'hembra']),
 	tamaño: z.enum(['chico', 'mediano', 'grande']),
-	tipo: z.enum(['perro', 'gato']),
+	tipo: z.enum(['perro', 'gato', 'otro']),
 	discapacidad: z.string().optional(),
 	castrado: z.boolean(),
 	vacunado: z.boolean(),
@@ -18,6 +18,7 @@ export const animalSchema = z.object({
 	fotos: z.array(z.string()),
 	publicado: z.boolean(),
 	destacado: z.boolean(),
+	fallecido: z.boolean(),
 });
 
 export type AnimalFormData = z.infer<typeof animalSchema>;
@@ -40,6 +41,7 @@ export const ANIMAL_FORM_DEFAULTS: AnimalFormData = {
 	fotos: [],
 	publicado: false,
 	destacado: false,
+	fallecido: false,
 };
 
 export const OPCIONES_PERSONALIDAD = [

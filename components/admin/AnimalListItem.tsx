@@ -1,6 +1,6 @@
 'use client';
 
-import { Edit, Trash2, Eye, EyeOff, Star, ExternalLink, MoreVertical, Dog, Cat, MapPin, Clock, Sparkles, Heart, TrendingUp } from 'lucide-react';
+import { Edit, Trash2, Eye, EyeOff, ExternalLink, MoreVertical, Dog, Cat, MapPin, Clock, Sparkles, Heart, TrendingUp, Moon, PawPrint } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -13,14 +13,14 @@ interface Props {
 	animal: Disca;
 	index: number;
 	onTogglePublicado: (id: string) => void;
-	onToggleDestacado: (id: string) => void;
+	onToggleFallecido: (id: string) => void;
 	onEdit: (id: string) => void;
 	onDelete: (id: string, name: string) => void;
 	onViewPublic: (id: string) => void;
 	isPatching: boolean;
 }
 
-export default function AnimalListItem({ animal, index, onTogglePublicado, onToggleDestacado, onEdit, onDelete, onViewPublic, isPatching }: Props) {
+export default function AnimalListItem({ animal, index, onTogglePublicado, onToggleFallecido, onEdit, onDelete, onViewPublic, isPatching }: Props) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, x: -20 }}
@@ -28,13 +28,19 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 			transition={{ delay: index * 0.04 }}
 			whileHover={{ x: 4 }}
 		>
-			<Card className="border hover:border-teal-300 transition-colors overflow-hidden group">
+			<Card className={cn('border hover:border-teal-300 transition-colors overflow-hidden group', animal.fallecido && 'opacity-60 grayscale-[30%]')}>
 				<div className="p-4">
 					<div className="flex flex-col md:flex-row md:items-center gap-4">
 						<div className="relative w-24 h-24 shrink-0">
 							<img src={animal.imagenCard || '/placeholder.jpg'} alt={animal.nombre} className="w-full h-full object-cover rounded-lg" />
 							<div className="absolute top-1 left-1">
-								{animal.tipo === 'perro' ? <Dog className="w-4 h-4 text-white drop-shadow" /> : <Cat className="w-4 h-4 text-white drop-shadow" />}
+								{animal.tipo === 'perro' ? (
+									<Dog className="w-4 h-4 text-white drop-shadow" />
+								) : animal.tipo === 'gato' ? (
+									<Cat className="w-4 h-4 text-white drop-shadow" />
+								) : (
+									<PawPrint className="w-4 h-4 text-white drop-shadow" />
+								)}
 							</div>
 						</div>
 
@@ -45,14 +51,14 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 										<h3 className="font-bold text-lg text-gray-800 group-hover:text-teal-700 transition-colors">
 											{animal.nombre}
 										</h3>
-										{animal.destacado && (
-											<Badge className="bg-amber-100 text-amber-800 border-amber-200 text-xs">
-												<Star className="w-3 h-3 mr-1" />Destacado
-											</Badge>
-										)}
 										{animal.adoptado && (
 											<Badge className="bg-green-100 text-green-800 border-green-200 text-xs">
 												<Heart className="w-3 h-3 mr-1" />Adoptado
+											</Badge>
+										)}
+										{animal.fallecido && (
+											<Badge className="bg-purple-100 text-purple-800 border-purple-200 text-xs">
+												<Moon className="w-3 h-3 mr-1" />En el cielo
 											</Badge>
 										)}
 										{animal.publicado ? (
@@ -99,11 +105,11 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 											<DropdownMenuItem className="cursor-pointer" onClick={() => onEdit(animal.id)}>
 												<Edit className="w-4 h-4 mr-2" />Editar
 											</DropdownMenuItem>
-											<DropdownMenuItem className="cursor-pointer" onClick={() => onToggleDestacado(animal.id)}>
-												<Star className="w-4 h-4 mr-2" />{animal.destacado ? 'Quitar destacado' : 'Destacar'}
-											</DropdownMenuItem>
 											<DropdownMenuItem className="cursor-pointer" onClick={() => onViewPublic(animal.id)}>
 												<ExternalLink className="w-4 h-4 mr-2" />Ver público
+											</DropdownMenuItem>
+											<DropdownMenuItem className="cursor-pointer" onClick={() => onToggleFallecido(animal.id)}>
+												<Moon className="w-4 h-4 mr-2" />{animal.fallecido ? 'Marcar activo' : 'Fue al cielo'}
 											</DropdownMenuItem>
 											<DropdownMenuSeparator />
 											<DropdownMenuItem className="cursor-pointer text-red-600" onClick={() => onDelete(animal.id, animal.nombre)}>

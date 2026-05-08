@@ -22,7 +22,7 @@ export default function DashboardStats({ animales }: Props) {
 			value: animales.length,
 			icon: BarChart3,
 			color: 'from-amber-500 to-orange-500',
-			change: `${animales.filter((a) => a.destacado).length} destacados`,
+			change: `${animales.filter((a) => !a.fallecido && !a.adoptado).length} disponibles`,
 			description: 'En el sistema',
 		},
 		{
@@ -30,7 +30,7 @@ export default function DashboardStats({ animales }: Props) {
 			value: animales.filter((a) => a.adoptado).length,
 			icon: Heart,
 			color: 'from-pink-500 to-rose-500',
-			change: `${animales.filter((a) => a.publicado && !a.adoptado).length} disponibles`,
+			change: `${animales.filter((a) => a.fallecido).length} en el cielo`,
 			description: 'Encontraron hogar',
 		},
 	];

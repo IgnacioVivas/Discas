@@ -41,6 +41,7 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 				fotos: body.fotos ?? [],
 				publicado: body.publicado ?? false,
 				destacado: body.destacado ?? false,
+				fallecido: body.fallecido ?? false,
 			},
 		});
 
@@ -58,10 +59,11 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 		const { id } = await context.params;
 		const body = await req.json();
 
-		const allowed: { publicado?: boolean; destacado?: boolean; adoptado?: boolean } = {};
+		const allowed: { publicado?: boolean; destacado?: boolean; adoptado?: boolean; fallecido?: boolean } = {};
 		if (typeof body.publicado === 'boolean') allowed.publicado = body.publicado;
 		if (typeof body.destacado === 'boolean') allowed.destacado = body.destacado;
 		if (typeof body.adoptado === 'boolean') allowed.adoptado = body.adoptado;
+		if (typeof body.fallecido === 'boolean') allowed.fallecido = body.fallecido;
 
 		if (Object.keys(allowed).length === 0) {
 			return NextResponse.json({ error: 'No hay campos válidos para actualizar' }, { status: 400 });

@@ -7,7 +7,7 @@ export interface Disca {
 	edad: number;
 	genero: string;
 	tamaño: string;
-	tipo: 'perro' | 'gato';
+	tipo: 'perro' | 'gato' | 'otro';
 	castrado: boolean;
 	vacunado: boolean;
 	desparasitado: boolean;
@@ -18,6 +18,7 @@ export interface Disca {
 	publicado: boolean;
 	destacado: boolean;
 	adoptado: boolean;
+	fallecido: boolean;
 	createdAt: string;
 	updatedAt: string;
 }

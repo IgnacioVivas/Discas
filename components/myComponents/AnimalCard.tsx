@@ -13,17 +13,17 @@ import { Disca } from '@/interface/interfaces';
 interface AnimalCardProps {
 	animal: Disca;
 	index: number;
-	animalType: 'perro' | 'gato';
+	animalType: 'perro' | 'gato' | 'otro';
 }
 
 const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 
-	const getTypeColor = (type: 'perro' | 'gato') => {
-		return type === 'perro'
-			? 'bg-amber-100 text-amber-800 border-amber-200'
-			: 'bg-teal-100 text-teal-800 border-teal-200';
+	const getTypeColor = (type: 'perro' | 'gato' | 'otro') => {
+		if (type === 'perro') return 'bg-amber-100 text-amber-800 border-amber-200';
+		if (type === 'gato') return 'bg-teal-100 text-teal-800 border-teal-200';
+		return 'bg-gray-100 text-gray-800 border-gray-200';
 	};
 
 	const getSizeBadge = (size: string = 'mediano') => {
@@ -36,17 +36,6 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 		return 'bg-blue-100 text-blue-800 border-blue-200';
 	};
 
-	const hasSpecialNeeds = (descripcion: string): boolean => {
-		const lowerDesc = descripcion.toLowerCase();
-		return (
-			lowerDesc.includes('discapacidad') ||
-			lowerDesc.includes('especial') ||
-			lowerDesc.includes('cuidado') ||
-			lowerDesc.includes('silla') ||
-			lowerDesc.includes('rueda') ||
-			lowerDesc.includes('movilidad')
-		);
-	};
 
 	return (
 		<motion.div
@@ -85,9 +74,9 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 						{/* Badges superiores */}
 						<div className="absolute top-4 left-4 flex flex-wrap gap-2">
 							<Badge variant="outline" className={cn('font-semibold', getTypeColor(animalType))}>
-								{animalType === 'perro' ? '🐕 Perro' : '🐈 Gato'}
+								{animalType === 'perro' ? '🐕 Perro' : animalType === 'gato' ? '🐈 Gato' : '🐾 Otro'}
 							</Badge>
-							{hasSpecialNeeds(animal.descripcion) && (
+							{animal.discapacidad && (
 								<Badge
 									variant="outline"
 									className="bg-linear-to-r from-teal-500 to-teal-600 text-white border-teal-600"

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { PawPrint, Search, Plus, Dog, Cat, Eye, EyeOff, Star, MoreVertical, LogOut, Home } from 'lucide-react';
+import { PawPrint, Search, Plus, Dog, Cat, Eye, EyeOff, MoreVertical, LogOut, Home, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -17,26 +17,28 @@ import DashboardStats from '@/components/admin/DashboardStats';
 import AnimalListItem from '@/components/admin/AnimalListItem';
 import { DeleteModal } from '@/components/admin/DeleteModal';
 
-type Filter = 'todos' | 'publicados' | 'borradores' | 'destacados' | 'adoptados' | 'perros' | 'gatos';
+type Filter = 'todos' | 'publicados' | 'borradores' | 'adoptados' | 'fallecidos' | 'perros' | 'gatos' | 'otros';
 
 const FILTERS: { value: Filter; label: string; icon?: React.ElementType }[] = [
 	{ value: 'todos', label: 'Todos' },
 	{ value: 'publicados', label: 'Publicados', icon: Eye },
 	{ value: 'borradores', label: 'Borradores', icon: EyeOff },
-	{ value: 'destacados', label: 'Destacados', icon: Star },
 	{ value: 'adoptados', label: 'Adoptados' },
+	{ value: 'fallecidos', label: 'En el cielo', icon: Moon },
 	{ value: 'perros', label: 'Perros', icon: Dog },
 	{ value: 'gatos', label: 'Gatos', icon: Cat },
+	{ value: 'otros', label: 'Otros' },
 ];
 
 const FILTER_ACTIVE_CLASSES: Record<Filter, string> = {
 	todos: 'bg-gray-700 text-white',
 	publicados: 'bg-emerald-600 text-white',
 	borradores: 'bg-gray-600 text-white',
-	destacados: 'bg-amber-600 text-white',
 	adoptados: 'bg-green-600 text-white',
+	fallecidos: 'bg-purple-600 text-white',
 	perros: 'bg-blue-600 text-white',
 	gatos: 'bg-yellow-600 text-white',
+	otros: 'bg-gray-600 text-white',
 };
 
 export default function Dashboard() {
@@ -55,10 +57,11 @@ export default function Dashboard() {
 			filter === 'todos' ? true :
 			filter === 'publicados' ? a.publicado :
 			filter === 'borradores' ? !a.publicado :
-			filter === 'destacados' ? a.destacado :
 			filter === 'adoptados' ? a.adoptado :
+			filter === 'fallecidos' ? a.fallecido :
 			filter === 'perros' ? a.tipo === 'perro' :
-			filter === 'gatos' ? a.tipo === 'gato' : true;
+			filter === 'gatos' ? a.tipo === 'gato' :
+			filter === 'otros' ? a.tipo === 'otro' : true;
 		return matchSearch && matchFilter;
 	});
 
@@ -72,12 +75,12 @@ export default function Dashboard() {
 		);
 	};
 
-	const handleToggleDestacado = (id: string) => {
+	const handleToggleFallecido = (id: string) => {
 		const animal = animales.find((a) => a.id === id);
 		if (!animal) return;
 		patch(
-			{ id, data: { destacado: !animal.destacado } },
-			{ onSuccess: () => toast.success(animal.destacado ? 'Quitado de destacados' : `${animal.nombre} destacado`),
+			{ id, data: { fallecido: !animal.fallecido } },
+			{ onSuccess: () => toast.success(animal.fallecido ? `${animal.nombre} marcado activo` : `${animal.nombre} marcado en el cielo`),
 			  onError: () => toast.error('Error al actualizar') },
 		);
 	};
@@ -185,7 +188,7 @@ export default function Dashboard() {
 									index={i}
 									isPatching={patching}
 									onTogglePublicado={handleTogglePublicado}
-									onToggleDestacado={handleToggleDestacado}
+									onToggleFallecido={handleToggleFallecido}
 									onEdit={(id) => router.push(`/animales/${id}`)}
 									onDelete={(id, name) => setDeleteModal({ open: true, id, name })}
 									onViewPublic={(id) => router.push(`/adopta/${id}`)}
@@ -197,7 +200,7 @@ export default function Dashboard() {
 									<PawPrint className="w-12 h-12 mx-auto mb-3 opacity-30" />
 									<p className="font-medium">{animales.length === 0 ? 'No hay animales cargados' : 'Sin resultados para este filtro'}</p>
 									{animales.length === 0 && (
-										<Button className="mt-4" onClick={() => router.push('/animales/nuevo')}>
+										<Button className="mt-4 bg-teal-600 hover:bg-teal-700 text-white" onClick={() => router.push('/animales/nuevo')}>
 											<Plus className="w-4 h-4 mr-2" />Crear el primero
 										</Button>
 									)}
@@ -213,6 +216,12 @@ export default function Dashboard() {
 						<span className="flex items-center gap-1"><Dog className="w-3.5 h-3.5" />{animales.filter((a) => a.tipo === 'perro').length} perros</span>
 						<span className="text-gray-300">•</span>
 						<span className="flex items-center gap-1"><Cat className="w-3.5 h-3.5" />{animales.filter((a) => a.tipo === 'gato').length} gatos</span>
+						{animales.filter((a) => a.tipo === 'otro').length > 0 && (
+							<>
+								<span className="text-gray-300">•</span>
+								<span className="flex items-center gap-1"><PawPrint className="w-3.5 h-3.5" />{animales.filter((a) => a.tipo === 'otro').length} otros</span>
+							</>
+						)}
 					</div>
 				</footer>
 			</div>

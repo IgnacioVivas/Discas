@@ -6,10 +6,8 @@ export function useAnimalFilter(limit?: number, randomize?: boolean) {
 	const { data: allAnimals = [], isLoading } = useAnimals();
 	const [filter, setFilter] = useState<'todos' | 'perros' | 'gatos'>('todos');
 
-	const detectAnimalType = useCallback((animal: Disca): 'perro' | 'gato' => {
-		if (animal.tipo) return animal.tipo;
-		const text = `${animal.nombre} ${animal.descripcion}`.toLowerCase();
-		return text.includes('perro') || text.includes('canino') ? 'perro' : 'gato';
+	const detectAnimalType = useCallback((animal: Disca): 'perro' | 'gato' | 'otro' => {
+		return animal.tipo ?? 'gato';
 	}, []);
 
 	const shuffled = useMemo(() => {

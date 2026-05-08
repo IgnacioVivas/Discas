@@ -1,0 +1,1 @@
+ALTER TABLE "Animal" ADD COLUMN "fallecido" BOOLEAN NOT NULL DEFAULT false;

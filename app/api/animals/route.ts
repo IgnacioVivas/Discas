@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
 		const isAdmin = token?.role === 'admin';
 
 		const animals = await prisma.animal.findMany({
-			where: isAdmin ? undefined : { publicado: true },
+			where: isAdmin ? undefined : { publicado: true, fallecido: false },
 			orderBy: { createdAt: 'desc' },
 		});
 
@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
 				fotos: body.fotos ?? [],
 				publicado: body.publicado ?? false,
 				destacado: body.destacado ?? false,
+				fallecido: body.fallecido ?? false,
 			},
 		});
 

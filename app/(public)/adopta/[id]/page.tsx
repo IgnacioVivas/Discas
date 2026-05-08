@@ -6,45 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import Image from 'next/image';
-
-const detectAnimalType = (nombre: string, descripcion: string): 'perro' | 'gato' => {
-	const lowerNombre = nombre.toLowerCase();
-	const lowerDesc = descripcion.toLowerCase();
-
-	if (
-		lowerDesc.includes('perro') ||
-		lowerDesc.includes('canino') ||
-		lowerDesc.includes('can') ||
-		lowerNombre.includes('perro')
-	) {
-		return 'perro';
-	}
-	return 'gato';
-};
-
-const hasSpecialNeeds = (descripcion: string): boolean => {
-	const lowerDesc = descripcion.toLowerCase();
-	return (
-		lowerDesc.includes('discapacidad') ||
-		lowerDesc.includes('especial') ||
-		lowerDesc.includes('cuidado') ||
-		lowerDesc.includes('silla') ||
-		lowerDesc.includes('rueda') ||
-		lowerDesc.includes('movilidad')
-	);
-};
 
 export default async function AnimalDetailPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
 	const animal = await prisma.animal.findUnique({
-		where: { id, publicado: true },
+		where: { id, publicado: true, fallecido: false },
 	});
 
 	if (!animal) return notFound();
-
-	const animalType = detectAnimalType(animal.nombre, animal.descripcion);
-	const specialNeeds = hasSpecialNeeds(animal.descripcion);
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-white to-amber-50/30">
@@ -63,12 +32,12 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 						<div>
 							<div className="flex items-center gap-3 mb-4">
 								<Badge className="bg-white/20 text-white border-0">
-									{animalType === 'perro' ? '🐕 Perro' : '🐈 Gato'}
+									{animal.tipo === 'perro' ? '🐕 Perro' : animal.tipo === 'gato' ? '🐈 Gato' : '🐾 Otro'}
 								</Badge>
-								{specialNeeds && (
+								{animal.discapacidad && (
 									<Badge className="bg-amber-100 text-amber-800 border-amber-200">
 										<Shield className="w-3 h-3 mr-1" />
-										Necesidades especiales
+										{animal.discapacidad}
 									</Badge>
 								)}
 								<Badge className="bg-white/20 text-white border-0">
@@ -80,7 +49,7 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 							<p className="text-xl text-white/90 flex items-center gap-4 flex-wrap">
 								<span className="flex items-center gap-1">
 									<MapPin className="w-4 h-4" />
-									Córdoba, Argentina
+									{animal.ubicacion || 'Córdoba, Argentina'}
 								</span>
 								<span className="text-white/70">•</span>
 								<span>{animal.genero}</span>
@@ -304,26 +273,31 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 								Salud y cuidados
 							</h3>
 							<div className="space-y-4">
-								<div className="p-3 bg-green-50 rounded-lg border border-green-200">
-									<h4 className="font-semibold text-green-800 mb-1">Vacunas</h4>
-									<p className="text-green-700">✓ Completas y al día</p>
+								<div className={`p-3 rounded-lg border ${animal.vacunado ? 'bg-green-50 border-green-200' : 'bg-amber-50 border-amber-200'}`}>
+									<h4 className="font-semibold mb-1">Vacunas</h4>
+									<p className={animal.vacunado ? 'text-green-700' : 'text-amber-700'}>
+										{animal.vacunado ? '✓ Vacunado' : '● Pendiente de vacunación'}
+									</p>
 								</div>
 
-								<div
-									className={`p-3 rounded-lg border ${
-										animal.castrado ? 'bg-green-50 border-green-200' : 'bg-amber-50 border-amber-200'
-									}`}
-								>
+								<div className={`p-3 rounded-lg border ${animal.desparasitado ? 'bg-green-50 border-green-200' : 'bg-amber-50 border-amber-200'}`}>
+									<h4 className="font-semibold mb-1">Desparasitado</h4>
+									<p className={animal.desparasitado ? 'text-green-700' : 'text-amber-700'}>
+										{animal.desparasitado ? '✓ Desparasitado' : '● Pendiente de desparasitación'}
+									</p>
+								</div>
+
+								<div className={`p-3 rounded-lg border ${animal.castrado ? 'bg-green-50 border-green-200' : 'bg-amber-50 border-amber-200'}`}>
 									<h4 className="font-semibold mb-1">Esterilización</h4>
 									<p className={animal.castrado ? 'text-green-700' : 'text-amber-700'}>
 										{animal.castrado ? '✓ Esterilizado' : '● Programar esterilización'}
 									</p>
 								</div>
 
-								{specialNeeds && (
+								{animal.discapacidad && (
 									<div className="p-3 bg-amber-50 rounded-lg border border-amber-200">
-										<h4 className="font-semibold text-amber-800 mb-1">Cuidados especiales</h4>
-										<p className="text-amber-700">Requiere atención específica y amor extra</p>
+										<h4 className="font-semibold text-amber-800 mb-1">Discapacidad</h4>
+										<p className="text-amber-700">{animal.discapacidad}</p>
 									</div>
 								)}
 							</div>

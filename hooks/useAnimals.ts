@@ -43,7 +43,7 @@ export function useUpdateAnimal(id: string) {
 export function usePatchAnimal() {
 	const qc = useQueryClient();
 	return useMutation({
-		mutationFn: ({ id, data }: { id: string; data: { publicado?: boolean; destacado?: boolean; adoptado?: boolean } }) =>
+		mutationFn: ({ id, data }: { id: string; data: { publicado?: boolean; destacado?: boolean; adoptado?: boolean; fallecido?: boolean } }) =>
 			animalsService.patch(id, data),
 		onMutate: async ({ id, data }) => {
 			await qc.cancelQueries({ queryKey: ANIMALS_KEY });

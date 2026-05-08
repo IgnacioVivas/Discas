@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, Save, Sparkles, Heart, Shield, AlertCircle, Camera, Loader2, Plus, Minus, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -97,12 +98,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 							{/* Info básica */}
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-								<Card className="border-0 shadow-lg">
+								<Card className="border-0 shadow-lg border-l-4 border-l-teal-400">
 									<CardHeader>
 										<CardTitle className="flex items-center gap-2"><Sparkles className="w-5 h-5 text-teal-600" />Información Básica</CardTitle>
 										<CardDescription>Datos principales del animal</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-5">
+									<CardContent className="space-y-5 p-6">
 										<div className="grid md:grid-cols-2 gap-4">
 											<div className="space-y-1.5">
 												<Label htmlFor="nombre">Nombre *</Label>
@@ -135,11 +136,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											</div>
 											<div className="space-y-1.5">
 												<Label>Tipo *</Label>
-												<Select value={values.tipo} onValueChange={(v) => setValue('tipo', v as 'perro' | 'gato')}>
+												<Select value={values.tipo} onValueChange={(v) => setValue('tipo', v as 'perro' | 'gato' | 'otro')}>
 													<SelectTrigger><SelectValue /></SelectTrigger>
-													<SelectContent>
+													<SelectContent className="bg-white">
 														<SelectItem value="perro">🐕 Perro</SelectItem>
 														<SelectItem value="gato">🐈 Gato</SelectItem>
+														<SelectItem value="otro">🐾 Otro</SelectItem>
 													</SelectContent>
 												</Select>
 											</div>
@@ -147,7 +149,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 												<Label>Tamaño *</Label>
 												<Select value={values.tamaño} onValueChange={(v) => setValue('tamaño', v as 'chico' | 'mediano' | 'grande')}>
 													<SelectTrigger><SelectValue /></SelectTrigger>
-													<SelectContent>
+													<SelectContent className="bg-white">
 														<SelectItem value="chico">Chico</SelectItem>
 														<SelectItem value="mediano">Mediano</SelectItem>
 														<SelectItem value="grande">Grande</SelectItem>
@@ -166,12 +168,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 							{/* Salud */}
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
-								<Card className="border-0 shadow-lg">
+								<Card className="border-0 shadow-lg border-l-4 border-l-emerald-400">
 									<CardHeader>
 										<CardTitle className="flex items-center gap-2"><Shield className="w-5 h-5 text-teal-600" />Salud y Cuidados</CardTitle>
 										<CardDescription>Estado sanitario del animal</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-4">
+									<CardContent className="space-y-4 p-6">
 										<div className="flex flex-wrap gap-6">
 											{(['castrado', 'vacunado', 'desparasitado'] as const).map((field) => (
 												<div key={field} className="flex items-center gap-2">
@@ -200,12 +202,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 							{/* Personalidad */}
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}>
-								<Card className="border-0 shadow-lg">
+								<Card className="border-0 shadow-lg border-l-4 border-l-pink-400">
 									<CardHeader>
 										<CardTitle className="flex items-center gap-2"><Heart className="w-5 h-5 text-pink-500" />Personalidad</CardTitle>
 										<CardDescription>Características del animal</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-4">
+									<CardContent className="space-y-4 p-6">
 										<div className="flex flex-wrap gap-2">
 											{values.personalidad.map((item) => (
 												<Badge key={item} className="pl-3 pr-2 py-1 bg-pink-100 text-pink-800 border-pink-200">
@@ -233,12 +235,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 							{/* Requisitos */}
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}>
-								<Card className="border-0 shadow-lg">
+								<Card className="border-0 shadow-lg border-l-4 border-l-amber-400">
 									<CardHeader>
 										<CardTitle className="flex items-center gap-2"><AlertCircle className="w-5 h-5 text-amber-500" />Requisitos de Adopción</CardTitle>
 										<CardDescription>Condiciones para el hogar adoptante</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-4">
+									<CardContent className="space-y-4 p-6">
 										<div className="flex flex-wrap gap-2">
 											{values.requisitosDeAdopcion.map((item) => (
 												<Badge key={item} className="pl-3 pr-2 py-1 bg-amber-100 text-amber-800 border-amber-200">
@@ -274,7 +276,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 										<CardTitle className="flex items-center gap-2"><Camera className="w-5 h-5 text-teal-600" />Imágenes</CardTitle>
 										<CardDescription>Foto de portada y galería</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-5">
+									<CardContent className="space-y-5 p-6">
 										<div className="space-y-1.5">
 											<Label>Imagen principal *</Label>
 											<ImageUploader value={values.imagenCard} onChange={(url) => setValue('imagenCard', url, { shouldValidate: true })} />
@@ -288,20 +290,32 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 								</Card>
 
 								<Card className="border-0 shadow-lg mt-6">
-									<CardHeader><CardTitle>Publicación</CardTitle></CardHeader>
-									<CardContent className="space-y-4">
-										<div className="flex items-start gap-3">
-											<Checkbox id="destacado" checked={values.destacado} onCheckedChange={(c) => setValue('destacado', c as boolean)} />
-											<div>
-												<Label htmlFor="destacado" className="font-medium cursor-pointer">Destacar</Label>
-												<p className="text-xs text-gray-500">Aparece en la sección destacada</p>
-											</div>
+									<CardHeader className="pb-3">
+										<div className="flex items-center justify-between">
+											<CardTitle className="text-base">Publicación</CardTitle>
+											<span className={cn(
+												'text-xs font-medium px-2 py-0.5 rounded-full',
+												values.fallecido ? 'bg-purple-100 text-purple-700' :
+												values.publicado ? 'bg-emerald-100 text-emerald-700' :
+												'bg-gray-100 text-gray-600'
+											)}>
+												{values.fallecido ? "En el cielo" : values.publicado ? "Publicado" : "Borrador"}
+											</span>
 										</div>
+									</CardHeader>
+									<CardContent className="space-y-4 p-6">
 										<div className="flex items-start gap-3">
 											<Checkbox id="publicado" checked={values.publicado} onCheckedChange={(c) => setValue('publicado', c as boolean)} />
 											<div>
 												<Label htmlFor="publicado" className="font-medium cursor-pointer">Publicar</Label>
 												<p className="text-xs text-gray-500">Visible en el sitio público</p>
+											</div>
+										</div>
+										<div className="flex items-start gap-3 pt-2 border-t border-gray-100">
+											<Checkbox id="fallecido" checked={values.fallecido} onCheckedChange={(c) => setValue('fallecido', c as boolean)} />
+											<div>
+												<Label htmlFor="fallecido" className="font-medium cursor-pointer text-gray-700">Fue al cielo</Label>
+												<p className="text-xs text-gray-500">Se oculta del sitio pero queda en el sistema</p>
 											</div>
 										</div>
 										{Object.keys(errors).length > 0 && (

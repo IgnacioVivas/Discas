@@ -13,10 +13,7 @@ import { signIn } from 'next-auth/react';
 import { LoginFormValues, loginSchema } from '@/schemas/login';
 
 export default function LoginPage() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
-	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const router = useRouter();
 
