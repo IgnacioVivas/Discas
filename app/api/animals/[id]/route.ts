@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth-admin';
+import { UTApi } from 'uploadthing/server';
 
 export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
 	try {
@@ -20,6 +21,8 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 
 		const { id } = await context.params;
 		const body = await req.json();
+
+		const existing = await prisma.animal.findUnique({ where: { id } });
 
 		const animal = await prisma.animal.update({
 			where: { id },
@@ -44,6 +47,19 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 				fallecido: body.fallecido ?? false,
 			},
 		});
+
+		if (existing) {
+			const newUrls = new Set([body.imagenCard, ...(body.fotos ?? [])].filter(Boolean));
+			const oldUrls = [existing.imagenCard, ...existing.fotos].filter(Boolean) as string[];
+			const orphanedKeys = oldUrls
+				.filter((url) => !newUrls.has(url))
+				.map(extractUtKey)
+				.filter(Boolean) as string[];
+			if (orphanedKeys.length > 0) {
+				const utapi = new UTApi();
+				await utapi.deleteFiles(orphanedKeys);
+			}
+		}
 
 		return NextResponse.json(animal);
 	} catch {
@@ -76,12 +92,32 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 	}
 }
 
+function extractUtKey(url: string): string | null {
+	try {
+		const match = url.match(/\/f\/([^/?#]+)/);
+		return match ? match[1] : null;
+	} catch {
+		return null;
+	}
+}
+
 export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
 	try {
 		const auth = await requireAdmin(req);
 		if (!auth.ok) return NextResponse.json({ error: auth.error }, { status: auth.status });
 
 		const { id } = await context.params;
+
+		const animal = await prisma.animal.findUnique({ where: { id } });
+		if (animal) {
+			const urls = [animal.imagenCard, ...animal.fotos].filter(Boolean) as string[];
+			const keys = urls.map(extractUtKey).filter(Boolean) as string[];
+			if (keys.length > 0) {
+				const utapi = new UTApi();
+				await utapi.deleteFiles(keys);
+			}
+		}
+
 		await prisma.animal.delete({ where: { id } });
 		return NextResponse.json({ ok: true });
 	} catch {
