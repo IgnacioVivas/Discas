@@ -75,14 +75,6 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 							<Badge variant="outline" className={cn('font-semibold', getTypeColor(animalType))}>
 								{animalType === 'perro' ? '🐕 Perro' : animalType === 'gato' ? '🐈 Gato' : '🐾 Otro'}
 							</Badge>
-							{animal.discapacidad && (
-								<Badge
-									variant="outline"
-									className="bg-linear-to-r from-teal-500 to-teal-600 text-white border-teal-600"
-								>
-									💝 Especial
-								</Badge>
-							)}
 						</div>
 
 						{/* Nombre en la imagen */}

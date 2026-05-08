@@ -29,7 +29,14 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 			transition={{ delay: index * 0.04 }}
 			whileHover={{ x: 4 }}
 		>
-			<Card className={cn('border hover:border-teal-300 transition-colors overflow-hidden group', animal.fallecido && 'opacity-60 grayscale-[30%]')}>
+			<Card className={cn(
+			'border transition-colors overflow-hidden group',
+			animal.fallecido
+				? 'border-l-4 border-l-purple-400 bg-purple-50/20 opacity-70 grayscale-[20%]'
+				: animal.adoptado
+				? 'border-l-4 border-l-green-400 bg-green-50/30 hover:border-l-green-500'
+				: 'hover:border-teal-300',
+		)}>
 				<div className="p-4">
 					<div className="flex flex-col md:flex-row md:items-center gap-4">
 						<div className="relative w-24 h-24 shrink-0">
@@ -113,7 +120,7 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 												<Heart className="w-4 h-4 mr-2" />{animal.adoptado ? 'Marcar disponible' : 'Marcar adoptado'}
 											</DropdownMenuItem>
 											<DropdownMenuItem className="cursor-pointer" onClick={() => onToggleFallecido(animal.id)}>
-												<Moon className="w-4 h-4 mr-2" />{animal.fallecido ? 'Marcar activo' : 'Fue al cielo'}
+												<Moon className="w-4 h-4 mr-2" />{animal.fallecido ? 'Marcar activo' : 'Registrar fallecimiento'}
 											</DropdownMenuItem>
 											<DropdownMenuSeparator />
 											<DropdownMenuItem className="cursor-pointer text-red-600" onClick={() => onDelete(animal.id, animal.nombre)}>

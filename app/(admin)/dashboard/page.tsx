@@ -24,7 +24,7 @@ const FILTERS: { value: Filter; label: string; icon?: React.ElementType }[] = [
 	{ value: 'publicados', label: 'Publicados', icon: Eye },
 	{ value: 'borradores', label: 'Borradores', icon: EyeOff },
 	{ value: 'adoptados', label: 'Adoptados' },
-	{ value: 'fallecidos', label: 'En el cielo', icon: Moon },
+	{ value: 'fallecidos', label: 'Fallecidos', icon: Moon },
 	{ value: 'perros', label: 'Perros', icon: Dog },
 	{ value: 'gatos', label: 'Gatos', icon: Cat },
 	{ value: 'otros', label: 'Otros' },
@@ -90,7 +90,7 @@ export default function Dashboard() {
 		if (!animal) return;
 		patch(
 			{ id, data: { fallecido: !animal.fallecido } },
-			{ onSuccess: () => toast.success(animal.fallecido ? `${animal.nombre} marcado activo` : `${animal.nombre} marcado en el cielo`),
+			{ onSuccess: () => toast.success(animal.fallecido ? `${animal.nombre} marcado activo` : `Se registró el fallecimiento de ${animal.nombre}`),
 			  onError: () => toast.error('Error al actualizar') },
 		);
 	};

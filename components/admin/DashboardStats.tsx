@@ -30,7 +30,7 @@ export default function DashboardStats({ animales }: Props) {
 			value: animales.filter((a) => a.adoptado).length,
 			icon: Heart,
 			color: 'from-pink-500 to-rose-500',
-			change: `${animales.filter((a) => a.fallecido).length} en el cielo`,
+			change: `${animales.filter((a) => a.fallecido).length} fallecidos`,
 			description: 'Encontraron hogar',
 		},
 	];

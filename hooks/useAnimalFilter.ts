@@ -10,10 +10,15 @@ export function useAnimalFilter(limit?: number, randomize?: boolean) {
 		return animal.tipo ?? 'gato';
 	}, []);
 
+	const publicAnimals = useMemo(
+		() => allAnimals.filter((a) => a.publicado && !a.fallecido && !a.adoptado),
+		[allAnimals],
+	);
+
 	const shuffled = useMemo(() => {
-		if (!randomize) return allAnimals;
-		return [...allAnimals].sort(() => 0.5 - Math.random());
-	}, [allAnimals, randomize]);
+		if (!randomize) return publicAnimals;
+		return [...publicAnimals].sort(() => 0.5 - Math.random());
+	}, [publicAnimals, randomize]);
 
 	const displayedAnimals = useMemo(() => {
 		let result = shuffled;
@@ -23,8 +28,8 @@ export function useAnimalFilter(limit?: number, randomize?: boolean) {
 		return result;
 	}, [shuffled, filter, limit, detectAnimalType]);
 
-	const totalPerros = useMemo(() => allAnimals.filter((a) => detectAnimalType(a) === 'perro').length, [allAnimals, detectAnimalType]);
-	const totalGatos = useMemo(() => allAnimals.filter((a) => detectAnimalType(a) === 'gato').length, [allAnimals, detectAnimalType]);
+	const totalPerros = useMemo(() => publicAnimals.filter((a) => detectAnimalType(a) === 'perro').length, [publicAnimals, detectAnimalType]);
+	const totalGatos = useMemo(() => publicAnimals.filter((a) => detectAnimalType(a) === 'gato').length, [publicAnimals, detectAnimalType]);
 
 	return {
 		filter,
@@ -34,7 +39,7 @@ export function useAnimalFilter(limit?: number, randomize?: boolean) {
 		detectAnimalType,
 		totalPerros,
 		totalGatos,
-		totalAnimals: allAnimals.length,
+		totalAnimals: publicAnimals.length,
 		allAnimals,
 	};
 }
