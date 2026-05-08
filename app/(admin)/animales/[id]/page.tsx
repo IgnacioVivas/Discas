@@ -36,7 +36,7 @@ export default function EditarAnimalPage() {
 		<AnimalFormPage
 			title={`Editar: ${animal?.nombre ?? ''}`}
 			subtitle="Actualizá la información del disca"
-			initialValues={animal as any}
+			initialValues={animal as unknown as AnimalFormData}
 			onSubmit={handleSubmit}
 			isLoading={isPending}
 		/>
