@@ -16,7 +16,6 @@ export interface Disca {
 	personalidad: string[];
 	requisitosDeAdopcion: string[];
 	publicado: boolean;
-	destacado: boolean;
 	adoptado: boolean;
 	fallecido: boolean;
 	createdAt: string;

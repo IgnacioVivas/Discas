@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, PawPrint, Calendar, MapPin } from 'lucide-react';
+import { PawPrint, Calendar, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -18,7 +18,6 @@ interface AnimalCardProps {
 
 const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) => {
 	const [isHovered, setIsHovered] = useState(false);
-	const [isLiked, setIsLiked] = useState(false);
 
 	const getTypeColor = (type: 'perro' | 'gato' | 'otro') => {
 		if (type === 'perro') return 'bg-amber-100 text-amber-800 border-amber-200';
@@ -85,20 +84,6 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 								</Badge>
 							)}
 						</div>
-
-						{/* Botón like */}
-						<button
-							onClick={(e) => {
-								e.preventDefault();
-								e.stopPropagation();
-								setIsLiked(!isLiked);
-							}}
-							className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors z-10"
-						>
-							<Heart
-								className={cn('w-5 h-5 transition-colors', isLiked ? 'fill-pink-500 text-pink-500' : 'text-gray-400')}
-							/>
-						</button>
 
 						{/* Nombre en la imagen */}
 						<div className="absolute bottom-4 left-4">

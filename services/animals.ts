@@ -40,7 +40,7 @@ export const animalsService = {
 			body: JSON.stringify(toPayload(data)),
 		}).then((r) => handleResponse<Disca>(r)),
 
-	patch: (id: string, data: { publicado?: boolean; destacado?: boolean; adoptado?: boolean }): Promise<Disca> =>
+	patch: (id: string, data: { publicado?: boolean; adoptado?: boolean; fallecido?: boolean }): Promise<Disca> =>
 		fetch(`${BASE}/${id}`, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json' },

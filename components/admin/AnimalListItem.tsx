@@ -13,6 +13,7 @@ interface Props {
 	animal: Disca;
 	index: number;
 	onTogglePublicado: (id: string) => void;
+	onToggleAdoptado: (id: string) => void;
 	onToggleFallecido: (id: string) => void;
 	onEdit: (id: string) => void;
 	onDelete: (id: string, name: string) => void;
@@ -20,7 +21,7 @@ interface Props {
 	isPatching: boolean;
 }
 
-export default function AnimalListItem({ animal, index, onTogglePublicado, onToggleFallecido, onEdit, onDelete, onViewPublic, isPatching }: Props) {
+export default function AnimalListItem({ animal, index, onTogglePublicado, onToggleAdoptado, onToggleFallecido, onEdit, onDelete, onViewPublic, isPatching }: Props) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, x: -20 }}
@@ -107,6 +108,9 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 											</DropdownMenuItem>
 											<DropdownMenuItem className="cursor-pointer" onClick={() => onViewPublic(animal.id)}>
 												<ExternalLink className="w-4 h-4 mr-2" />Ver público
+											</DropdownMenuItem>
+											<DropdownMenuItem className="cursor-pointer" onClick={() => onToggleAdoptado(animal.id)}>
+												<Heart className="w-4 h-4 mr-2" />{animal.adoptado ? 'Marcar disponible' : 'Marcar adoptado'}
 											</DropdownMenuItem>
 											<DropdownMenuItem className="cursor-pointer" onClick={() => onToggleFallecido(animal.id)}>
 												<Moon className="w-4 h-4 mr-2" />{animal.fallecido ? 'Marcar activo' : 'Fue al cielo'}

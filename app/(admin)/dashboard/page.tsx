@@ -75,6 +75,16 @@ export default function Dashboard() {
 		);
 	};
 
+	const handleToggleAdoptado = (id: string) => {
+		const animal = animales.find((a) => a.id === id);
+		if (!animal) return;
+		patch(
+			{ id, data: { adoptado: !animal.adoptado } },
+			{ onSuccess: () => toast.success(animal.adoptado ? `${animal.nombre} marcado disponible` : `${animal.nombre} marcado como adoptado`),
+			  onError: () => toast.error('Error al actualizar') },
+		);
+	};
+
 	const handleToggleFallecido = (id: string) => {
 		const animal = animales.find((a) => a.id === id);
 		if (!animal) return;
@@ -118,7 +128,7 @@ export default function Dashboard() {
 					</div>
 
 					<div className="flex items-center gap-3">
-						<Button variant="outline" size="sm" onClick={() => router.push('/')} className="hidden sm:flex items-center gap-2">
+						<Button variant="outline" size="sm" onClick={() => router.push('/')} className="hidden sm:flex items-center gap-2 cursor-pointer">
 							<Home className="w-4 h-4" />Ver sitio
 						</Button>
 						<DropdownMenu>
@@ -156,7 +166,7 @@ export default function Dashboard() {
 								</CardTitle>
 								<CardDescription>Gestión de animales de la fundación</CardDescription>
 							</div>
-							<Button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md" onClick={() => router.push('/animales/nuevo')}>
+							<Button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md cursor-pointer" onClick={() => router.push('/animales/nuevo')}>
 								<Plus className="w-4 h-4 mr-2" />Nuevo Disca
 							</Button>
 						</div>
@@ -188,6 +198,7 @@ export default function Dashboard() {
 									index={i}
 									isPatching={patching}
 									onTogglePublicado={handleTogglePublicado}
+									onToggleAdoptado={handleToggleAdoptado}
 									onToggleFallecido={handleToggleFallecido}
 									onEdit={(id) => router.push(`/animales/${id}`)}
 									onDelete={(id, name) => setDeleteModal({ open: true, id, name })}

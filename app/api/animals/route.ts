@@ -9,12 +9,13 @@ export async function GET(req: NextRequest) {
 		const isAdmin = token?.role === 'admin';
 
 		const animals = await prisma.animal.findMany({
-			where: isAdmin ? undefined : { publicado: true, fallecido: false },
+			where: isAdmin ? undefined : { publicado: true, fallecido: false, adoptado: false },
 			orderBy: { createdAt: 'desc' },
 		});
 
 		return NextResponse.json(animals);
-	} catch {
+	} catch (err) {
+		console.error('[GET /api/animals]', err);
 		return NextResponse.json({ error: 'Error al obtener animales' }, { status: 500 });
 	}
 }
@@ -44,13 +45,14 @@ export async function POST(req: NextRequest) {
 				imagenCard: body.imagenCard,
 				fotos: body.fotos ?? [],
 				publicado: body.publicado ?? false,
-				destacado: body.destacado ?? false,
+				adoptado: body.adoptado ?? false,
 				fallecido: body.fallecido ?? false,
 			},
 		});
 
 		return NextResponse.json(animal, { status: 201 });
-	} catch {
+	} catch (err) {
+		console.error('[POST /api/animals]', err);
 		return NextResponse.json({ error: 'Error al crear animal' }, { status: 500 });
 	}
 }

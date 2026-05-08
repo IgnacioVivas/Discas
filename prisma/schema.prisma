@@ -32,7 +32,6 @@ model Animal {
   imagenCard           String
   fotos                String[]
   publicado            Boolean  @default(false)
-  destacado            Boolean  @default(false)
   adoptado             Boolean  @default(false)
   fallecido            Boolean  @default(false)
   createdAt            DateTime @default(now())
@@ -41,7 +40,6 @@ model Animal {
   @@index([tipo])
   @@index([discapacidad])
   @@index([publicado])
-  @@index([destacado])
   @@index([genero])
   @@index([publicado, tipo])
 }

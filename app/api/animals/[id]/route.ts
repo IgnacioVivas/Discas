@@ -9,7 +9,8 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
 		const animal = await prisma.animal.findUnique({ where: { id } });
 		if (!animal) return NextResponse.json({ error: 'Animal no encontrado' }, { status: 404 });
 		return NextResponse.json(animal);
-	} catch {
+	} catch (err) {
+		console.error('[GET /api/animals/:id]', err);
 		return NextResponse.json({ error: 'Error al obtener el animal' }, { status: 500 });
 	}
 }
@@ -43,7 +44,7 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 				imagenCard: body.imagenCard,
 				fotos: body.fotos ?? [],
 				publicado: body.publicado ?? false,
-				destacado: body.destacado ?? false,
+				adoptado: body.adoptado ?? false,
 				fallecido: body.fallecido ?? false,
 			},
 		});
@@ -62,7 +63,8 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 		}
 
 		return NextResponse.json(animal);
-	} catch {
+	} catch (err) {
+		console.error('[PUT /api/animals/:id]', err);
 		return NextResponse.json({ error: 'Error al actualizar el animal' }, { status: 500 });
 	}
 }
@@ -75,9 +77,8 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 		const { id } = await context.params;
 		const body = await req.json();
 
-		const allowed: { publicado?: boolean; destacado?: boolean; adoptado?: boolean; fallecido?: boolean } = {};
+		const allowed: { publicado?: boolean; adoptado?: boolean; fallecido?: boolean } = {};
 		if (typeof body.publicado === 'boolean') allowed.publicado = body.publicado;
-		if (typeof body.destacado === 'boolean') allowed.destacado = body.destacado;
 		if (typeof body.adoptado === 'boolean') allowed.adoptado = body.adoptado;
 		if (typeof body.fallecido === 'boolean') allowed.fallecido = body.fallecido;
 
@@ -87,7 +88,8 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 
 		const animal = await prisma.animal.update({ where: { id }, data: allowed });
 		return NextResponse.json(animal);
-	} catch {
+	} catch (err) {
+		console.error('[PATCH /api/animals/:id]', err);
 		return NextResponse.json({ error: 'Error al actualizar el animal' }, { status: 500 });
 	}
 }
@@ -120,7 +122,8 @@ export async function DELETE(req: NextRequest, context: { params: Promise<{ id: 
 
 		await prisma.animal.delete({ where: { id } });
 		return NextResponse.json({ ok: true });
-	} catch {
+	} catch (err) {
+		console.error('[DELETE /api/animals/:id]', err);
 		return NextResponse.json({ error: 'Error al eliminar el animal' }, { status: 500 });
 	}
 }

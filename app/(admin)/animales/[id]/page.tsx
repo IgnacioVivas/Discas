@@ -16,9 +16,17 @@ export default function EditarAnimalPage() {
 	const { mutateAsync: update, isPending } = useUpdateAnimal(id);
 
 	const handleSubmit = async (data: AnimalFormData) => {
-		await update(data);
-		toast.success('¡Cambios guardados!');
-		router.push('/dashboard');
+		try {
+			await update(data);
+			toast.success('¡Cambios guardados!', {
+				description: `${data.nombre} fue actualizado correctamente.`,
+			});
+			router.push('/dashboard');
+		} catch (err) {
+			toast.error('No se pudieron guardar los cambios', {
+				description: err instanceof Error ? err.message : 'Revisá tu conexión e intentá de nuevo.',
+			});
+		}
 	};
 
 	if (isLoading) {

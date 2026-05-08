@@ -11,9 +11,17 @@ export default function NuevoAnimalPage() {
 	const { mutateAsync: create, isPending } = useCreateAnimal();
 
 	const handleSubmit = async (data: AnimalFormData) => {
-		await create(data);
-		toast.success('¡Disca creado con éxito!');
-		router.push('/dashboard');
+		try {
+			await create(data);
+			toast.success('¡Disca creado con éxito!', {
+				description: 'Ya está disponible en el sistema.',
+			});
+			router.push('/dashboard');
+		} catch (err) {
+			toast.error('No se pudo crear el disca', {
+				description: err instanceof Error ? err.message : 'Revisá tu conexión e intentá de nuevo.',
+			});
+		}
 	};
 
 	return (

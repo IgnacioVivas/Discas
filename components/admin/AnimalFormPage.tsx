@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { motion } from 'framer-motion';
 import ImageUploader from '@/components/admin/ImageUploader';
 import GalleryUploader from '@/components/admin/GalleryUploader';
-import { animalSchema, AnimalFormData, ANIMAL_FORM_DEFAULTS, OPCIONES_PERSONALIDAD, OPCIONES_REQUISITOS } from '@/types/animal';
+import {
+	animalSchema,
+	AnimalFormData,
+	ANIMAL_FORM_DEFAULTS,
+	OPCIONES_PERSONALIDAD,
+	OPCIONES_REQUISITOS,
+} from '@/types/animal';
 
 interface Props {
 	title: string;
@@ -33,7 +39,14 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 	const [inputPersonalidad, setInputPersonalidad] = useState('');
 	const [inputRequisito, setInputRequisito] = useState('');
 
-	const { register, handleSubmit, setValue, watch, formState: { errors }, getValues } = useForm<AnimalFormData>({
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		watch,
+		formState: { errors },
+		getValues,
+	} = useForm<AnimalFormData>({
 		resolver: zodResolver(animalSchema),
 		defaultValues: { ...ANIMAL_FORM_DEFAULTS, ...initialValues },
 		mode: 'onChange',
@@ -43,7 +56,9 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 	const toggleArray = (field: 'personalidad' | 'requisitosDeAdopcion', item: string) => {
 		const current = getValues(field);
-		setValue(field, current.includes(item) ? current.filter((i) => i !== item) : [...current, item], { shouldValidate: true });
+		setValue(field, current.includes(item) ? current.filter((i) => i !== item) : [...current, item], {
+			shouldValidate: true,
+		});
 	};
 
 	const addCustom = (field: 'personalidad' | 'requisitosDeAdopcion', value: string, clear: () => void) => {
@@ -61,7 +76,12 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 			<header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
 				<div className="px-6 py-4 flex items-center justify-between">
 					<div className="flex items-center gap-4">
-						<Button variant="ghost" size="sm" onClick={() => router.back()} className="flex items-center gap-2">
+						<Button
+							variant="ghost"
+							size="sm"
+							onClick={() => router.back()}
+							className="flex items-center gap-2 cursor-pointer"
+						>
 							<ArrowLeft className="w-4 h-4" />
 							Volver
 						</Button>
@@ -76,31 +96,46 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 							variant="outline"
 							type="button"
 							onClick={() => setValue('publicado', !values.publicado)}
-							className={values.publicado ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : ''}
+							className={cn(
+								'cursor-pointer',
+								values.publicado ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : '',
+							)}
 						>
 							{values.publicado ? 'Publicado' : 'Borrador'}
 						</Button>
 						<Button
 							onClick={handleSubmit(onSubmit)}
 							disabled={isLoading}
-							className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md"
+							className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md cursor-pointer"
 						>
-							{isLoading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Guardando...</> : <><Save className="w-4 h-4 mr-2" />Guardar</>}
+							{isLoading ? (
+								<>
+									<Loader2 className="w-4 h-4 mr-2 animate-spin" />
+									Guardando...
+								</>
+							) : (
+								<>
+									<Save className="w-4 h-4 mr-2" />
+									Guardar
+								</>
+							)}
 						</Button>
 					</div>
 				</div>
 			</header>
 
-			<div className="px-4 sm:px-6 py-8 max-w-6xl mx-auto">
+			<div className="px-4 sm:px-8 py-8 w-full mx-auto">
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="grid lg:grid-cols-3 gap-8">
 						<div className="lg:col-span-2 space-y-6">
-
 							{/* Info básica */}
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
 								<Card className="border-0 shadow-lg border-l-4 border-l-teal-400">
 									<CardHeader>
-										<CardTitle className="flex items-center gap-2"><Sparkles className="w-5 h-5 text-teal-600" />Información Básica</CardTitle>
+										<CardTitle className="flex items-center gap-2">
+											<Sparkles className="w-5 h-5 text-teal-600" />
+											Información Básica
+										</CardTitle>
 										<CardDescription>Datos principales del animal</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-5 p-6">
@@ -113,31 +148,73 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											<div className="space-y-1.5">
 												<Label>Edad (años) *</Label>
 												<div className="flex items-center gap-2">
-													<Button type="button" variant="outline" size="icon" onClick={() => setValue('edad', Math.max(0, values.edad - 1))}><Minus className="w-4 h-4" /></Button>
-													<Input type="number" min="0" max="30" {...register('edad', { valueAsNumber: true })} className="text-center" />
-													<Button type="button" variant="outline" size="icon" onClick={() => setValue('edad', values.edad + 1)}><Plus className="w-4 h-4" /></Button>
+													<Button
+														type="button"
+														variant="outline"
+														size="icon"
+														className="cursor-pointer"
+														onClick={() => setValue('edad', Math.max(0, values.edad - 1))}
+													>
+														<Minus className="w-4 h-4" />
+													</Button>
+													<Input
+														type="number"
+														min="0"
+														max="30"
+														{...register('edad', { valueAsNumber: true })}
+														className="text-center"
+													/>
+													<Button
+														type="button"
+														variant="outline"
+														size="icon"
+														className="cursor-pointer"
+														onClick={() => setValue('edad', values.edad + 1)}
+													>
+														<Plus className="w-4 h-4" />
+													</Button>
 												</div>
 											</div>
 										</div>
 
 										<div className="space-y-1.5">
 											<Label>Descripción *</Label>
-											<Textarea {...register('descripcion')} placeholder="Contá la historia del animal..." rows={4} className="resize-none" />
+											<Textarea
+												{...register('descripcion')}
+												placeholder="Contá la historia del animal..."
+												rows={4}
+												className="resize-none"
+											/>
 											{errors.descripcion && <p className="text-xs text-red-500">{errors.descripcion.message}</p>}
 										</div>
 
 										<div className="grid md:grid-cols-3 gap-4">
 											<div className="space-y-1.5">
 												<Label>Género *</Label>
-												<RadioGroup value={values.genero} onValueChange={(v) => setValue('genero', v as 'macho' | 'hembra')} className="flex gap-4 pt-1">
-													<div className="flex items-center gap-2"><RadioGroupItem value="macho" id="macho" /><Label htmlFor="macho">Macho</Label></div>
-													<div className="flex items-center gap-2"><RadioGroupItem value="hembra" id="hembra" /><Label htmlFor="hembra">Hembra</Label></div>
+												<RadioGroup
+													value={values.genero}
+													onValueChange={(v) => setValue('genero', v as 'macho' | 'hembra')}
+													className="flex gap-4 pt-1"
+												>
+													<div className="flex items-center gap-2">
+														<RadioGroupItem value="macho" id="macho" />
+														<Label htmlFor="macho">Macho</Label>
+													</div>
+													<div className="flex items-center gap-2">
+														<RadioGroupItem value="hembra" id="hembra" />
+														<Label htmlFor="hembra">Hembra</Label>
+													</div>
 												</RadioGroup>
 											</div>
 											<div className="space-y-1.5">
 												<Label>Tipo *</Label>
-												<Select value={values.tipo} onValueChange={(v) => setValue('tipo', v as 'perro' | 'gato' | 'otro')}>
-													<SelectTrigger><SelectValue /></SelectTrigger>
+												<Select
+													value={values.tipo}
+													onValueChange={(v) => setValue('tipo', v as 'perro' | 'gato' | 'otro')}
+												>
+													<SelectTrigger>
+														<SelectValue />
+													</SelectTrigger>
 													<SelectContent className="bg-white">
 														<SelectItem value="perro">🐕 Perro</SelectItem>
 														<SelectItem value="gato">🐈 Gato</SelectItem>
@@ -147,8 +224,13 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											</div>
 											<div className="space-y-1.5">
 												<Label>Tamaño *</Label>
-												<Select value={values.tamaño} onValueChange={(v) => setValue('tamaño', v as 'chico' | 'mediano' | 'grande')}>
-													<SelectTrigger><SelectValue /></SelectTrigger>
+												<Select
+													value={values.tamaño}
+													onValueChange={(v) => setValue('tamaño', v as 'chico' | 'mediano' | 'grande')}
+												>
+													<SelectTrigger>
+														<SelectValue />
+													</SelectTrigger>
 													<SelectContent className="bg-white">
 														<SelectItem value="chico">Chico</SelectItem>
 														<SelectItem value="mediano">Mediano</SelectItem>
@@ -160,7 +242,11 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 
 										<div className="space-y-1.5">
 											<Label htmlFor="discapacidad">Discapacidad / Condición especial</Label>
-											<Input id="discapacidad" {...register('discapacidad')} placeholder="Ej: tres patas, ciego, sordo, artritis..." />
+											<Input
+												id="discapacidad"
+												{...register('discapacidad')}
+												placeholder="Ej: tres patas, ciego, sordo, artritis..."
+											/>
 										</div>
 									</CardContent>
 								</Card>
@@ -170,16 +256,27 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
 								<Card className="border-0 shadow-lg border-l-4 border-l-emerald-400">
 									<CardHeader>
-										<CardTitle className="flex items-center gap-2"><Shield className="w-5 h-5 text-teal-600" />Salud y Cuidados</CardTitle>
+										<CardTitle className="flex items-center gap-2">
+											<Shield className="w-5 h-5 text-teal-600" />
+											Salud y Cuidados
+										</CardTitle>
 										<CardDescription>Estado sanitario del animal</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-4 p-6">
 										<div className="flex flex-wrap gap-6">
 											{(['castrado', 'vacunado', 'desparasitado'] as const).map((field) => (
 												<div key={field} className="flex items-center gap-2">
-													<Checkbox id={field} checked={values[field]} onCheckedChange={(c) => setValue(field, c as boolean)} />
+													<Checkbox
+														id={field}
+														checked={values[field]}
+														onCheckedChange={(c) => setValue(field, c as boolean)}
+													/>
 													<Label htmlFor={field} className="font-medium cursor-pointer capitalize">
-														{field === 'castrado' ? 'Castrado/Esterilizado' : field === 'vacunado' ? 'Vacunado al día' : 'Desparasitado'}
+														{field === 'castrado'
+															? 'Castrado/Esterilizado'
+															: field === 'vacunado'
+																? 'Vacunado al día'
+																: 'Desparasitado'}
 													</Label>
 												</div>
 											))}
@@ -187,7 +284,9 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 										<div className="space-y-1.5">
 											<Label>Ubicación</Label>
 											<Select value={values.ubicacion ?? ''} onValueChange={(v) => setValue('ubicacion', v)}>
-												<SelectTrigger><SelectValue placeholder="Seleccionar ubicación" /></SelectTrigger>
+												<SelectTrigger>
+													<SelectValue placeholder="Seleccionar ubicación" />
+												</SelectTrigger>
 												<SelectContent className="bg-white">
 													<SelectItem value="Córdoba Capital">Córdoba Capital</SelectItem>
 													<SelectItem value="Interior">Interior de Córdoba</SelectItem>
@@ -204,7 +303,10 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}>
 								<Card className="border-0 shadow-lg border-l-4 border-l-pink-400">
 									<CardHeader>
-										<CardTitle className="flex items-center gap-2"><Heart className="w-5 h-5 text-pink-500" />Personalidad</CardTitle>
+										<CardTitle className="flex items-center gap-2">
+											<Heart className="w-5 h-5 text-pink-500" />
+											Personalidad
+										</CardTitle>
 										<CardDescription>Características del animal</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-4 p-6">
@@ -212,22 +314,53 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											{values.personalidad.map((item) => (
 												<Badge key={item} className="pl-3 pr-2 py-1 bg-pink-100 text-pink-800 border-pink-200">
 													{item}
-													<button type="button" onClick={() => toggleArray('personalidad', item)} className="ml-1.5 hover:text-pink-900"><X className="w-3 h-3" /></button>
+													<button
+														type="button"
+														onClick={() => toggleArray('personalidad', item)}
+														className="ml-1.5 hover:text-pink-900"
+													>
+														<X className="w-3 h-3" />
+													</button>
 												</Badge>
 											))}
 										</div>
 										<div className="flex flex-wrap gap-2">
 											{OPCIONES_PERSONALIDAD.map((op) => (
-												<Button key={op} type="button" variant="outline" size="sm"
+												<Button
+													key={op}
+													type="button"
+													variant="outline"
+													size="sm"
 													onClick={() => toggleArray('personalidad', op)}
-													className={values.personalidad.includes(op) ? 'bg-pink-50 border-pink-200 text-pink-700' : ''}
-												>{op}</Button>
+													className={cn(
+														'cursor-pointer',
+														values.personalidad.includes(op) ? 'bg-pink-50 border-pink-200 text-pink-700' : '',
+													)}
+												>
+													{op}
+												</Button>
 											))}
 										</div>
 										<div className="flex gap-2">
-											<Input value={inputPersonalidad} onChange={(e) => setInputPersonalidad(e.target.value)} placeholder="Agregar personalizada"
-												onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addCustom('personalidad', inputPersonalidad, () => setInputPersonalidad('')); } }} />
-											<Button type="button" variant="outline" onClick={() => addCustom('personalidad', inputPersonalidad, () => setInputPersonalidad(''))}><Plus className="w-4 h-4" /></Button>
+											<Input
+												value={inputPersonalidad}
+												onChange={(e) => setInputPersonalidad(e.target.value)}
+												placeholder="Agregar personalizada"
+												onKeyDown={(e) => {
+													if (e.key === 'Enter') {
+														e.preventDefault();
+														addCustom('personalidad', inputPersonalidad, () => setInputPersonalidad(''));
+													}
+												}}
+											/>
+											<Button
+												type="button"
+												variant="outline"
+												className="cursor-pointer"
+												onClick={() => addCustom('personalidad', inputPersonalidad, () => setInputPersonalidad(''))}
+											>
+												<Plus className="w-4 h-4" />
+											</Button>
 										</div>
 									</CardContent>
 								</Card>
@@ -237,7 +370,10 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 							<motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}>
 								<Card className="border-0 shadow-lg border-l-4 border-l-amber-400">
 									<CardHeader>
-										<CardTitle className="flex items-center gap-2"><AlertCircle className="w-5 h-5 text-amber-500" />Requisitos de Adopción</CardTitle>
+										<CardTitle className="flex items-center gap-2">
+											<AlertCircle className="w-5 h-5 text-amber-500" />
+											Requisitos de Adopción
+										</CardTitle>
 										<CardDescription>Condiciones para el hogar adoptante</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-4 p-6">
@@ -245,44 +381,87 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											{values.requisitosDeAdopcion.map((item) => (
 												<Badge key={item} className="pl-3 pr-2 py-1 bg-amber-100 text-amber-800 border-amber-200">
 													{item}
-													<button type="button" onClick={() => toggleArray('requisitosDeAdopcion', item)} className="ml-1.5"><X className="w-3 h-3" /></button>
+													<button
+														type="button"
+														onClick={() => toggleArray('requisitosDeAdopcion', item)}
+														className="ml-1.5"
+													>
+														<X className="w-3 h-3" />
+													</button>
 												</Badge>
 											))}
 										</div>
 										<div className="flex flex-wrap gap-2">
 											{OPCIONES_REQUISITOS.map((op) => (
-												<Button key={op} type="button" variant="outline" size="sm"
+												<Button
+													key={op}
+													type="button"
+													variant="outline"
+													size="sm"
 													onClick={() => toggleArray('requisitosDeAdopcion', op)}
-													className={values.requisitosDeAdopcion.includes(op) ? 'bg-amber-50 border-amber-200 text-amber-700' : ''}
-												>{op}</Button>
+													className={cn(
+														'cursor-pointer',
+														values.requisitosDeAdopcion.includes(op)
+															? 'bg-amber-50 border-amber-200 text-amber-700'
+															: '',
+													)}
+												>
+													{op}
+												</Button>
 											))}
 										</div>
 										<div className="flex gap-2">
-											<Input value={inputRequisito} onChange={(e) => setInputRequisito(e.target.value)} placeholder="Agregar personalizado"
-												onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addCustom('requisitosDeAdopcion', inputRequisito, () => setInputRequisito('')); } }} />
-											<Button type="button" variant="outline" onClick={() => addCustom('requisitosDeAdopcion', inputRequisito, () => setInputRequisito(''))}><Plus className="w-4 h-4" /></Button>
+											<Input
+												value={inputRequisito}
+												onChange={(e) => setInputRequisito(e.target.value)}
+												placeholder="Agregar personalizado"
+												onKeyDown={(e) => {
+													if (e.key === 'Enter') {
+														e.preventDefault();
+														addCustom('requisitosDeAdopcion', inputRequisito, () => setInputRequisito(''));
+													}
+												}}
+											/>
+											<Button
+												type="button"
+												variant="outline"
+												className="cursor-pointer"
+												onClick={() => addCustom('requisitosDeAdopcion', inputRequisito, () => setInputRequisito(''))}
+											>
+												<Plus className="w-4 h-4" />
+											</Button>
 										</div>
 									</CardContent>
 								</Card>
 							</motion.div>
-
 						</div>
 
 						{/* Columna derecha */}
 						<div className="space-y-6">
-							<motion.div initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="sticky top-24">
+							<motion.div
+								initial={{ opacity: 0, x: 16 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ delay: 0.1 }}
+								className="sticky top-24"
+							>
 								<Card className="border-0 shadow-lg">
 									<CardHeader>
-										<CardTitle className="flex items-center gap-2"><Camera className="w-5 h-5 text-teal-600" />Imágenes</CardTitle>
+										<CardTitle className="flex items-center gap-2">
+											<Camera className="w-5 h-5 text-teal-600" />
+											Imágenes
+										</CardTitle>
 										<CardDescription>Foto de portada y galería</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-5 p-6">
-										<div className="space-y-1.5">
+										<div className="space-y-3 flex flex-col gap-0.5">
 											<Label>Imagen principal *</Label>
-											<ImageUploader value={values.imagenCard} onChange={(url) => setValue('imagenCard', url, { shouldValidate: true })} />
+											<ImageUploader
+												value={values.imagenCard}
+												onChange={(url) => setValue('imagenCard', url, { shouldValidate: true })}
+											/>
 											{errors.imagenCard && <p className="text-xs text-red-500">{errors.imagenCard.message}</p>}
 										</div>
-										<div className="space-y-1.5">
+										<div className="space-y-3 flex flex-col gap-0.5">
 											<Label>Galería de fotos</Label>
 											<GalleryUploader value={values.fotos} onChange={(urls) => setValue('fotos', urls)} />
 										</div>
@@ -293,33 +472,72 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 									<CardHeader className="pb-3">
 										<div className="flex items-center justify-between">
 											<CardTitle className="text-base">Publicación</CardTitle>
-											<span className={cn(
-												'text-xs font-medium px-2 py-0.5 rounded-full',
-												values.fallecido ? 'bg-purple-100 text-purple-700' :
-												values.publicado ? 'bg-emerald-100 text-emerald-700' :
-												'bg-gray-100 text-gray-600'
-											)}>
-												{values.fallecido ? "En el cielo" : values.publicado ? "Publicado" : "Borrador"}
+											<span
+												className={cn(
+													'text-xs font-medium px-2 py-0.5 rounded-full',
+													values.fallecido
+														? 'bg-purple-100 text-purple-700'
+														: values.adoptado
+															? 'bg-green-100 text-green-700'
+															: values.publicado
+																? 'bg-emerald-100 text-emerald-700'
+																: 'bg-gray-100 text-gray-600',
+												)}
+											>
+												{values.fallecido
+													? 'En el cielo'
+													: values.adoptado
+														? 'Adoptado'
+														: values.publicado
+															? 'Publicado'
+															: 'Borrador'}
 											</span>
 										</div>
 									</CardHeader>
 									<CardContent className="space-y-4 p-6">
 										<div className="flex items-start gap-3">
-											<Checkbox id="publicado" checked={values.publicado} onCheckedChange={(c) => setValue('publicado', c as boolean)} />
+											<Checkbox
+												id="publicado"
+												checked={values.publicado}
+												onCheckedChange={(c) => setValue('publicado', c as boolean)}
+											/>
 											<div>
-												<Label htmlFor="publicado" className="font-medium cursor-pointer">Publicar</Label>
+												<Label htmlFor="publicado" className="font-medium cursor-pointer">
+													Publicar
+												</Label>
 												<p className="text-xs text-gray-500">Visible en el sitio público</p>
 											</div>
 										</div>
 										<div className="flex items-start gap-3 pt-2 border-t border-gray-100">
-											<Checkbox id="fallecido" checked={values.fallecido} onCheckedChange={(c) => setValue('fallecido', c as boolean)} />
+											<Checkbox
+												id="adoptado"
+												checked={values.adoptado}
+												onCheckedChange={(c) => setValue('adoptado', c as boolean)}
+											/>
 											<div>
-												<Label htmlFor="fallecido" className="font-medium cursor-pointer text-gray-700">Fue al cielo</Label>
+												<Label htmlFor="adoptado" className="font-medium cursor-pointer text-green-700">
+													Adoptado
+												</Label>
+												<p className="text-xs text-gray-500">Encontró hogar, se oculta del listado</p>
+											</div>
+										</div>
+										<div className="flex items-start gap-3 pt-2 border-t border-gray-100">
+											<Checkbox
+												id="fallecido"
+												checked={values.fallecido}
+												onCheckedChange={(c) => setValue('fallecido', c as boolean)}
+											/>
+											<div>
+												<Label htmlFor="fallecido" className="font-medium cursor-pointer text-gray-700">
+													Fue al cielo
+												</Label>
 												<p className="text-xs text-gray-500">Se oculta del sitio pero queda en el sistema</p>
 											</div>
 										</div>
 										{Object.keys(errors).length > 0 && (
-											<p className="text-xs text-red-500 pt-2 border-t">Hay errores en el formulario. Revisalos antes de guardar.</p>
+											<p className="text-xs text-red-500 pt-2 border-t">
+												Hay errores en el formulario. Revisalos antes de guardar.
+											</p>
 										)}
 									</CardContent>
 								</Card>

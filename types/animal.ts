@@ -17,7 +17,7 @@ export const animalSchema = z.object({
 	imagenCard: z.string().min(1, 'La imagen principal es obligatoria'),
 	fotos: z.array(z.string()),
 	publicado: z.boolean(),
-	destacado: z.boolean(),
+	adoptado: z.boolean(),
 	fallecido: z.boolean(),
 });
 
@@ -40,7 +40,7 @@ export const ANIMAL_FORM_DEFAULTS: AnimalFormData = {
 	imagenCard: '',
 	fotos: [],
 	publicado: false,
-	destacado: false,
+	adoptado: false,
 	fallecido: false,
 };
 
