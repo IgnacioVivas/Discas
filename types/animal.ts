@@ -14,7 +14,7 @@ export const animalSchema = z.object({
 	ubicacion: z.string().optional(),
 	personalidad: z.array(z.string()),
 	requisitosDeAdopcion: z.array(z.string()),
-	imagenCard: z.string().min(1, 'La imagen principal es obligatoria'),
+	imagenCard: z.string().min(1, 'Agregá al menos una foto a la galería'),
 	fotos: z.array(z.string()),
 	publicado: z.boolean(),
 	adoptado: z.boolean(),

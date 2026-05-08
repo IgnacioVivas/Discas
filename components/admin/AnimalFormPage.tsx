@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowLeft, Save, Sparkles, Heart, Shield, AlertCircle, Camera, Loader2, Plus, Minus, X } from 'lucide-react';
+import { ArrowLeft, Save, Sparkles, Heart, Shield, AlertCircle, Images, Loader2, Plus, Minus, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,7 +16,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { motion } from 'framer-motion';
-import ImageUploader from '@/components/admin/ImageUploader';
 import GalleryUploader from '@/components/admin/GalleryUploader';
 import {
 	animalSchema,
@@ -447,24 +446,22 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 								<Card className="border-0 shadow-lg">
 									<CardHeader>
 										<CardTitle className="flex items-center gap-2">
-											<Camera className="w-5 h-5 text-teal-600" />
-											Imágenes
+											<Images className="w-5 h-5 text-teal-600" />
+											Galería de fotos
 										</CardTitle>
-										<CardDescription>Foto de portada y galería</CardDescription>
+										<CardDescription>La primera foto se usa como portada en el listado</CardDescription>
 									</CardHeader>
-									<CardContent className="space-y-5 p-6">
-										<div className="space-y-3 flex flex-col gap-0.5">
-											<Label>Imagen principal *</Label>
-											<ImageUploader
-												value={values.imagenCard}
-												onChange={(url) => setValue('imagenCard', url, { shouldValidate: true })}
-											/>
-											{errors.imagenCard && <p className="text-xs text-red-500">{errors.imagenCard.message}</p>}
-										</div>
-										<div className="space-y-3 flex flex-col gap-0.5">
-											<Label>Galería de fotos</Label>
-											<GalleryUploader value={values.fotos} onChange={(urls) => setValue('fotos', urls)} />
-										</div>
+									<CardContent className="p-6">
+										<GalleryUploader
+											value={values.fotos}
+											onChange={(urls) => {
+												setValue('fotos', urls);
+												setValue('imagenCard', urls[0] ?? '', { shouldValidate: true });
+											}}
+										/>
+										{errors.imagenCard && (
+											<p className="text-xs text-red-500 mt-2">{errors.imagenCard.message}</p>
+										)}
 									</CardContent>
 								</Card>
 
@@ -485,7 +482,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 												)}
 											>
 												{values.fallecido
-													? 'En el cielo'
+													? 'Fallecido'
 													: values.adoptado
 														? 'Adoptado'
 														: values.publicado
@@ -529,7 +526,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											/>
 											<div>
 												<Label htmlFor="fallecido" className="font-medium cursor-pointer text-gray-700">
-													Fue al cielo
+													Fallecido
 												</Label>
 												<p className="text-xs text-gray-500">Se oculta del sitio pero queda en el sistema</p>
 											</div>
