@@ -276,11 +276,10 @@ const Donaciones = () => {
 							</p>
 						</div>
 
-						<div className="grid lg:grid-cols-2 gap-8">
-							{/* Mercado Pago */}
+						<div className="max-w-2xl mx-auto">
 							<motion.div
-								initial={{ opacity: 0, x: -30 }}
-								whileInView={{ opacity: 1, x: 0 }}
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true }}
 								className="relative"
 							>
@@ -297,82 +296,37 @@ const Donaciones = () => {
 											</div>
 										</div>
 
-										<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-											{['$100', '$200', '$500', '$1000', '$2000', 'Otro monto'].map((monto, idx) => (
+										<div className="grid grid-cols-2 gap-3 mb-6">
+											{[
+												{ label: 'Monto libre', sub: 'Lo que puedas', href: 'https://link.mercadopago.com.ar/discasfundacion', highlight: true },
+												{ label: '$1.000', sub: 'Una colaboración', href: 'https://mpago.la/1KhrdzE', highlight: false },
+												{ label: '$3.000', sub: 'Ayuda más completa', href: 'https://mpago.la/1roAL7Z', highlight: false },
+												{ label: '$5.000', sub: 'Gran apoyo', href: 'https://mpago.la/1Pwj1uv', highlight: false },
+											].map((item) => (
 												<motion.a
-													key={idx}
-													href={monto !== 'Otro monto' ? `https://mpago.la/...` : '#'}
-													whileHover={{ scale: 1.05 }}
-													whileTap={{ scale: 0.95 }}
-													className={`p-4 rounded-xl text-center font-semibold transition-all ${
-														monto === 'Otro monto'
-															? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
-															: 'bg-teal-600 text-white hover:bg-teal-700'
+													key={item.label}
+													href={item.href}
+													target="_blank"
+													rel="noopener noreferrer"
+													whileHover={{ scale: 1.03 }}
+													whileTap={{ scale: 0.97 }}
+													className={`p-4 rounded-xl text-center font-semibold transition-all border ${
+														item.highlight
+															? 'bg-teal-600 text-white hover:bg-teal-700 border-teal-600 shadow-md'
+															: 'bg-white text-teal-800 hover:bg-teal-50 border-teal-200'
 													}`}
 												>
-													{monto}
+													<p className="text-lg">{item.label}</p>
+													<p className={`text-xs mt-0.5 ${item.highlight ? 'text-teal-100' : 'text-gray-500'}`}>{item.sub}</p>
 												</motion.a>
 											))}
 										</div>
 
-										<div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
-											<p className="text-sm text-teal-800 font-medium">
-												Buscanos como <span className="font-bold">Discas.cba</span> en Mercado Pago
+										<div className="bg-teal-50 border border-teal-200 rounded-lg p-4 space-y-1">
+											<p className="text-sm text-teal-800">
+												Alias: <span className="font-bold font-mono">fundaciondiscas.mp</span>
 											</p>
-										</div>
-									</CardContent>
-								</Card>
-							</motion.div>
-
-							{/* Transferencia Bancaria */}
-							<motion.div
-								initial={{ opacity: 0, x: 30 }}
-								whileInView={{ opacity: 1, x: 0 }}
-								viewport={{ once: true }}
-								className="relative"
-							>
-								<div className="absolute -inset-4 bg-linear-to-r from-amber-400 to-amber-600 rounded-3xl blur-xl opacity-20" />
-								<Card className="relative bg-linear-to-br from-amber-50 to-white border-amber-200 shadow-xl">
-									<CardContent className="p-8">
-										<div className="flex items-center gap-4 mb-6">
-											<div className="p-3 bg-amber-100 rounded-xl">
-												<div className="text-2xl">🏦</div>
-											</div>
-											<div>
-												<h3 className="text-2xl font-bold text-amber-900">Transferencia bancaria</h3>
-												<p className="text-amber-700">Datos para transferir</p>
-											</div>
-										</div>
-
-										<div className="space-y-4 mb-6">
-											<div>
-												<p className="text-sm text-gray-600 mb-2">Alias</p>
-												<div className="bg-white border border-gray-300 p-3 rounded-lg font-mono text-gray-800">
-													DISCAS.CORDOBA.ARG
-												</div>
-											</div>
-											<div>
-												<p className="text-sm text-gray-600 mb-2">CBU</p>
-												<div className="bg-white border border-gray-300 p-3 rounded-lg font-mono text-sm text-gray-800 break-all">
-													0340070808709868055000
-												</div>
-											</div>
-											<div>
-												<p className="text-sm text-gray-600 mb-2">Banco</p>
-												<div className="bg-white border border-gray-300 p-3 rounded-lg text-gray-800">
-													Banco Patagonia
-												</div>
-											</div>
-										</div>
-
-										<div className="bg-amber-50 border border-amber-300 rounded-lg p-4">
-											<div className="flex items-start gap-3">
-												<AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-												<p className="text-sm text-amber-800">
-													<span className="font-bold">Importante:</span> Enviá el comprobante por WhatsApp para que
-													podamos agradecerte personalmente.
-												</p>
-											</div>
+											<p className="text-xs text-teal-600">A nombre de Silvina Capellino</p>
 										</div>
 									</CardContent>
 								</Card>

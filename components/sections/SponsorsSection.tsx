@@ -1,41 +1,54 @@
-import { Building2, HeartHandshake, Sparkles } from 'lucide-react';
+import { HeartHandshake, Sparkles, Phone, Instagram } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import Image from 'next/image';
-import client1 from '@/public/image/client-1.png';
-import client2 from '@/public/image/client-2.png';
-import client3 from '@/public/image/client-3.png';
-import client4 from '@/public/image/client-4.png';
 
-const sponsorsData = [
+const sponsors = [
 	{
-		imagen: client1,
-		alt: 'Patrocinador 1',
-		name: 'Empresa Solidaria',
-		type: 'Patrocinador Platino',
+		nombre: 'San Nicolás Salud Mental',
+		instagram: '@sannicolas.saludmental',
+		descripcion: 'Clínica Privada Integral de Salud Mental',
+		telefono: '351 703 4611',
 	},
 	{
-		imagen: client2,
-		alt: 'Patrocinador 2',
-		name: 'Veterinaria Amiga',
-		type: 'Aliado de Salud',
+		nombre: 'Andrea Bertini Pastelería',
+		instagram: '@andreabertinipasteleria',
+		descripcion: 'Pastelería profesional ¡Riquísimo!',
+		telefono: null,
 	},
 	{
-		imagen: client3,
-		alt: 'Patrocinador 3',
-		name: 'Tienda Mascotas',
-		type: 'Proveedor Oficial',
+		nombre: 'Traslados Guau',
+		instagram: '@gabiszafran',
+		descripcion: 'Servicio de traslado para llevarte a vos y a tu peludo donde necesiten ❤',
+		telefono: '351 200 6168',
 	},
 	{
-		imagen: client4,
-		alt: 'Patrocinador 4',
-		name: 'Fundación Hermanos',
-		type: 'Aliado Estratégico',
+		nombre: 'Hand Made Arte Textil',
+		instagram: '@handmadeartetextil',
+		descripcion: 'Productos únicos personalizados a tu gusto ✨',
+		telefono: null,
+	},
+	{
+		nombre: 'Asesor Inmobiliario M&L',
+		instagram: '@asesor_inmobiliario_myl',
+		descripcion: 'Esteban Cuello — Si necesitás un agente inmobiliario, lo acabás de encontrar!',
+		telefono: '351 766 7169',
+	},
+	{
+		nombre: 'ONG NAMO — Masajista Profesional',
+		instagram: '@masajista_profesional25',
+		descripcion: 'Masajes relajantes, descontracturantes. Aromaterapia y Musicoterapia',
+		telefono: '351 631 7739',
+	},
+	{
+		nombre: 'Consultor Psicológico — Parejas',
+		instagram: '@anacamargo320',
+		descripcion: 'Espacio de escucha y acompañamiento para parejas',
+		telefono: '351 223 0025',
 	},
 ];
 
 const SponsorsSection = () => {
 	return (
-		<section className="bg-linear-to-b from-white to-amber-50/30">
+		<section className="bg-linear-to-b from-white to-amber-50/30 py-16">
 			<div className="container mx-auto px-4">
 				{/* Encabezado */}
 				<div className="text-center mb-12">
@@ -45,34 +58,48 @@ const SponsorsSection = () => {
 					</div>
 
 					<h2 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-teal-800 via-amber-700 to-teal-800 bg-clip-text text-transparent">
-						Nuestros Aliados
+						Nuestros Sponsors
 					</h2>
 
-					<p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-						Empresas y organizaciones que creen en nuestra causa y nos acompañan en este camino.
+					<p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+						Conocé a los Sponsors que nos permiten seguir rescatando y rehabilitando vidas ❤
 					</p>
 				</div>
 
 				{/* Grid de sponsors */}
-				<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-					{sponsorsData.map((sponsor, index) => (
-						<Card key={index} className="border-0 shadow-sm hover:shadow-lg transition-shadow">
-							<CardContent className="p-6">
-								<div className="flex flex-col items-center text-center">
-									{/* Logo del sponsor */}
-									<div className="w-32 h-32 relative mb-6">
-										<Image src={sponsor.imagen} alt={sponsor.alt} fill className="object-contain" />
+				<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+					{sponsors.map((sponsor) => (
+						<Card key={sponsor.instagram} className="border-0 shadow-sm hover:shadow-md transition-shadow">
+							<CardContent className="p-5">
+								<div className="flex items-start gap-3 mb-3">
+									<div className="p-2 bg-amber-50 rounded-lg shrink-0">
+										<HeartHandshake className="w-4 h-4 text-amber-600" />
 									</div>
-
-									{/* Información */}
-									<h3 className="font-bold text-gray-800 mb-2">{sponsor.name}</h3>
-									<p className="text-sm text-teal-600 font-medium mb-4">{sponsor.type}</p>
-
-									{/* Icono decorativo */}
-									<div className="p-2 bg-amber-50 rounded-lg">
-										<HeartHandshake className="w-5 h-5 text-amber-600" />
+									<div className="min-w-0">
+										<h3 className="font-bold text-gray-800 text-sm leading-snug">{sponsor.nombre}</h3>
+										<a
+											href={`https://www.instagram.com/${sponsor.instagram.replace('@', '')}`}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-1 text-xs text-teal-600 hover:text-teal-700 mt-0.5"
+										>
+											<Instagram className="w-3 h-3" />
+											{sponsor.instagram}
+										</a>
 									</div>
 								</div>
+
+								<p className="text-sm text-gray-600 leading-relaxed mb-3">{sponsor.descripcion}</p>
+
+								{sponsor.telefono && (
+									<a
+										href={`tel:${sponsor.telefono.replace(/\s/g, '')}`}
+										className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-teal-600 transition-colors"
+									>
+										<Phone className="w-3 h-3" />
+										{sponsor.telefono}
+									</a>
+								)}
 							</CardContent>
 						</Card>
 					))}
@@ -80,18 +107,22 @@ const SponsorsSection = () => {
 
 				{/* Llamado a ser sponsor */}
 				<div className="text-center">
-					<div className="inline-flex flex-col md:flex-row items-center gap-8 p-8 bg-linear-to-r from-white to-teal-50 rounded-2xl border border-teal-200 max-w-3xl mx-auto shadow-lg">
-						<div className="flex-1 text-center md:text-left">
-							<h3 className="text-2xl font-bold text-gray-800 mb-2">¿Querés ser nuestro aliado?</h3>
-							<p className="text-gray-600 mb-4">
-								Sumate a esta red de organizaciones comprometidas con el bienestar animal.
+					<div className="inline-flex flex-col sm:flex-row items-center gap-6 p-7 bg-linear-to-r from-white to-teal-50 rounded-2xl border border-teal-200 max-w-2xl mx-auto shadow-lg">
+						<div className="flex-1 text-center sm:text-left">
+							<h3 className="text-xl font-bold text-gray-800 mb-1">¿Querés sumarte como Sponsor?</h3>
+							<p className="text-gray-600 text-sm">
+								Visibilizá tu emprendimiento y apoyá a Fundación Discas.
 							</p>
 						</div>
-
-						<button className="px-6 py-3 bg-linear-to-r from-teal-600 to-teal-700 text-white font-semibold rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg">
-							<Building2 className="w-5 h-5 inline mr-2" />
-							Ser patrocinador
-						</button>
+						<a
+							href="https://wa.me/5493516858771"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex items-center gap-2 px-5 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition-colors shadow-md shrink-0 text-sm"
+						>
+							<Phone className="w-4 h-4" />
+							Contactar a Silvina
+						</a>
 					</div>
 				</div>
 			</div>
