@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Users, Shield, Sparkles, Gift } from 'lucide-react';
+import { Heart, Users, Shield, Sparkles, Gift, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
@@ -84,7 +84,7 @@ const Apadrina = () => {
 								<div className="space-y-2">
 									<div className="flex justify-between items-center">
 										<span className="text-gray-700">Costo de guardería por perrito:</span>
-										<span className="text-2xl font-bold text-teal-700">$100.000</span>
+										<span className="text-2xl font-bold text-teal-700">$200.000</span>
 									</div>
 									<p className="text-sm text-gray-600">
 										Se abona cada 15 días por adelantado. Podés colaborar a principios, a mitad o a fin de mes.
@@ -94,15 +94,33 @@ const Apadrina = () => {
 						</div>
 
 						{/* Botón de acción */}
-						<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-							<Button
-								size="lg"
-								className="bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg px-8 py-6 text-lg"
+						<div className="space-y-4">
+							<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+								<a
+									href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c9380847e9b1dd5017ea37b241703ae"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Button
+										size="lg"
+										className="bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg px-8 py-6 text-lg text-white cursor-pointer w-full md:w-auto"
+									>
+										<Users className="w-5 h-5 mr-2" />
+										Quiero ser padrino/madrina
+									</Button>
+								</a>
+							</motion.div>
+
+							<a
+								href="https://www.instagram.com/clubdemadris.discascba"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl text-sm font-medium hover:from-pink-600 hover:to-purple-700 transition-all shadow-sm"
 							>
-								<Users className="w-5 h-5 mr-2" />
-								Quiero ser padrino/madrina
-							</Button>
-						</motion.div>
+								<Instagram className="w-4 h-4" />
+								Club de Madrinas y Padrinos — @clubdemadris.discascba
+							</a>
+						</div>
 					</motion.div>
 
 					{/* Columna de imagen */}

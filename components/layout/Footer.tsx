@@ -93,7 +93,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart, PawPrint, Instagram, Facebook, Mail, MapPin, Phone, ChevronRight, Sparkles } from 'lucide-react';
+import { Heart, PawPrint, Instagram, Facebook, Mail, MapPin, ChevronRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
@@ -123,18 +123,12 @@ const SOCIAL_LINKS = [
 		href: 'https://www.facebook.com/discas.rodandoporlavida',
 		color: 'hover:bg-blue-600',
 	},
-	{
-		name: 'Email',
-		icon: Mail,
-		href: 'mailto:discas.cba@gmail.com',
-		color: 'hover:bg-red-500',
-	},
 ];
 
 const CONTACT_INFO = [
-	{ icon: Phone, text: '+54 351 123-4567', description: 'Emergencias 24/7' },
-	{ icon: MapPin, text: 'Córdoba, Argentina', description: 'Refugio principal' },
-	{ icon: Heart, text: '+500 animales rescatados', description: 'Desde 2018' },
+	{ icon: Mail, text: 'discasrodandoporlavida@gmail.com', description: 'Escribinos por email' },
+	{ icon: MapPin, text: 'Córdoba Capital, Argentina', description: 'Sede principal' },
+	{ icon: Heart, text: '+500 animales rescatados', description: 'Desde 2015' },
 ];
 
 const Footer = () => {
@@ -174,7 +168,7 @@ const Footer = () => {
 						</div>
 
 						<p className="text-gray-300 leading-relaxed">
-							Desde 2018, brindamos amor y cuidados especializados a perritos y gatitos con discapacidad. Cada patita
+							Desde 2015, brindamos amor y cuidados especializados a perritos y gatitos con discapacidad. Cada patita
 							cuenta, cada vida importa.
 						</p>
 
@@ -203,6 +197,21 @@ const Footer = () => {
 										</Link>
 									);
 								})}
+								{/* TikTok */}
+								<Link
+									href="https://www.tiktok.com/@discasrodandoporlavida"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Seguir a Discas en TikTok"
+									className={cn(
+										'w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300',
+										'hover:scale-110 hover:shadow-lg hover:bg-black',
+									)}
+								>
+									<svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+										<path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.87a8.18 8.18 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z" />
+									</svg>
+								</Link>
 							</div>
 						</div>
 					</div>

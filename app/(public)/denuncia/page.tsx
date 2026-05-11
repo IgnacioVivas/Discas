@@ -125,63 +125,6 @@ function Denuncia() {
 							})}
 						</div>
 
-						{/* Tus InfoCards originales */}
-						{/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-						<InfoCard
-							icon="/image/emojis/1F4DC.svg"
-							title="¿Qué dice la Ley 14.346?"
-							description="La Ley Nacional de Protección Animal prohíbe el maltrato y los actos de crueldad. Toda persona puede denunciar."
-						/>
-
-						<InfoCard
-							icon="/image/emojis/1F4CD.svg"
-							title="Dónde realizar la denuncia"
-							description={
-								<>
-									Debés dirigirte a la Unidad Judicial del lugar del hecho. Consultá ubicaciones en{' '}
-									<a
-										href="http://www.mpfcordoba.gob.ar/unidades-judiciales/"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-teal-700 font-medium underline hover:text-teal-900 transition"
-									>
-										mpfcordoba.gob.ar/unidades-judiciales
-									</a>
-									.
-								</>
-							}
-						/>
-
-						<InfoCard
-							icon="/image/emojis/26A0.svg"
-							title="Si te niegan la denuncia"
-							description="Tomá los datos del empleado y dirigite a las Mesas de Atención Permanente en Tribunales I o II."
-						/>
-
-						<InfoCard
-							icon="/image/emojis/1F4DD.svg"
-							title="Requisitos y contenido"
-							description="Presentate con DNI. Relatá los hechos con detalles, fechas, lugares, datos del acusado y material como fotos o videos."
-						/>
-
-						<InfoCard
-							icon="/image/emojis/260E.svg"
-							title="Seguimiento de la causa"
-							description="Hacé seguimiento en Fiscalía o con ONGs. Podés solicitar el depósito del animal para protegerlo."
-						/>
-
-						<InfoCard
-							icon="/image/emojis/1F6A8.svg"
-							title="Contactos útiles"
-							description={
-								<>
-									Patrulla Ambiental: 4344163 <br />
-									Córdoba Contra el Delito: 0810-888-3368 <br />
-								</>
-							}
-						/>
-					</div> */}
-
 						{/* Llamado a la acción */}
 						<div className="text-center">
 							<div className="inline-flex flex-col md:flex-row items-center gap-8 p-8 bg-linear-to-r from-white to-red-50 rounded-2xl border border-red-200 max-w-3xl mx-auto shadow-lg">
@@ -192,14 +135,16 @@ function Denuncia() {
 									</p>
 								</div>
 
-								<Button
-									size="lg"
-									className="bg-linear-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 font-semibold shadow-lg"
-								>
-									<Shield className="w-5 h-5 mr-2" />
-									Orientación inmediata
-									<ArrowRight className="w-5 h-5 ml-2" />
-								</Button>
+								<a href="mailto:discasrodandoporlavida@gmail.com?subject=Orientación%20-%20Denuncia%20de%20maltrato">
+									<Button
+										size="lg"
+										className="bg-linear-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 font-semibold shadow-lg text-white cursor-pointer"
+									>
+										<Shield className="w-5 h-5 mr-2" />
+										Orientación inmediata
+										<ArrowRight className="w-5 h-5 ml-2" />
+									</Button>
+								</a>
 							</div>
 						</div>
 					</div>

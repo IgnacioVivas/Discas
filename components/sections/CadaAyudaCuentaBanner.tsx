@@ -89,23 +89,31 @@ const CadaAyudaCuentaBanner = () => {
 							transition={{ delay: 0.5 }}
 							className="flex flex-wrap justify-center gap-4 pt-8"
 						>
-							<Button
-								size="lg"
-								className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg"
+							<a
+								href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2c9380847e9b1dd5017ea37b241703ae"
+								target="_blank"
+								rel="noopener noreferrer"
 							>
-								<Heart className="w-5 h-5 mr-2" />
-								Ser padrino/madrina
-								<ArrowRight className="w-5 h-5 ml-2" />
-							</Button>
+								<Button
+									size="lg"
+									className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg text-white cursor-pointer"
+								>
+									<Heart className="w-5 h-5 mr-2" />
+									Ser padrino/madrina
+									<ArrowRight className="w-5 h-5 ml-2" />
+								</Button>
+							</a>
 
-							<Button
-								size="lg"
-								variant="outline"
-								className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm"
-							>
-								<Users className="w-5 h-5 mr-2" />
-								Ser voluntario
-							</Button>
+							<a href="https://wa.me/5493885003055" target="_blank" rel="noopener noreferrer">
+								<Button
+									size="lg"
+									variant="outline"
+									className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm cursor-pointer"
+								>
+									<Users className="w-5 h-5 mr-2" />
+									Ser voluntario
+								</Button>
+							</a>
 						</motion.div>
 					</motion.div>
 				</div>

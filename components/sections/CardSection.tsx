@@ -146,7 +146,7 @@ const CardSection = () => {
 						<Button
 							asChild
 							size="lg"
-							className="bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg"
+							className="bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 font-semibold shadow-lg text-white cursor-pointer"
 						>
 							<Link href="/adopta" className="group">
 								Ver todos los animales

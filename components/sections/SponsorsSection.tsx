@@ -48,7 +48,7 @@ const sponsors = [
 
 const SponsorsSection = () => {
 	return (
-		<section className="bg-linear-to-b from-white to-amber-50/30 py-16">
+		<section className="bg-linear-to-b from-white to-amber-50/30">
 			<div className="container mx-auto px-4">
 				{/* Encabezado */}
 				<div className="text-center mb-12">
@@ -110,9 +110,7 @@ const SponsorsSection = () => {
 					<div className="inline-flex flex-col sm:flex-row items-center gap-6 p-7 bg-linear-to-r from-white to-teal-50 rounded-2xl border border-teal-200 max-w-2xl mx-auto shadow-lg">
 						<div className="flex-1 text-center sm:text-left">
 							<h3 className="text-xl font-bold text-gray-800 mb-1">¿Querés sumarte como Sponsor?</h3>
-							<p className="text-gray-600 text-sm">
-								Visibilizá tu emprendimiento y apoyá a Fundación Discas.
-							</p>
+							<p className="text-gray-600 text-sm">Visibilizá tu emprendimiento y apoyá a Fundación Discas.</p>
 						</div>
 						<a
 							href="https://wa.me/5493516858771"

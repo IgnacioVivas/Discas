@@ -1,6 +1,7 @@
 import Apadrina from '@/components/sections/Apadrina';
 import SeVoluntario from '@/components/sections/SeVoluntario';
 import NuestrosPadrinos from '@/components/sections/NuestrosPadrinos';
+import HogarTransito from '@/components/sections/HogarTransito';
 import HeaderDos from '@/components/layout/HeaderDos';
 import CadaAyudaCuentaBanner from '@/components/sections/CadaAyudaCuentaBanner';
 
@@ -21,6 +22,9 @@ const Participa = () => {
 
 				{/* Sección SeVoluntario */}
 				<SeVoluntario />
+
+				{/* Hogar de Tránsito */}
+				<HogarTransito />
 
 				{/* Nuestros Padrinos */}
 				<NuestrosPadrinos />

@@ -94,14 +94,16 @@ function Conocenos() {
 									</p>
 								</div>
 
-								<Button
-									size="lg"
-									className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg"
-								>
-									<Users className="w-5 h-5 mr-2" />
-									Unite a nuestra causa
-									<ArrowRight className="w-5 h-5 ml-2" />
-								</Button>
+								<a href="mailto:discasrodandoporlavida@gmail.com" target="_blank" rel="noopener noreferrer">
+									<Button
+										size="lg"
+										className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg text-white cursor-pointer"
+									>
+										<Users className="w-5 h-5 mr-2" />
+										Unite a nuestra causa
+										<ArrowRight className="w-5 h-5 ml-2" />
+									</Button>
+								</a>
 							</div>
 
 							{/* Columna de imagen */}

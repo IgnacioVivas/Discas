@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
-import { PawPrint, Users, Heart, Star, Sparkles, Mail, Phone } from 'lucide-react';
+import { PawPrint, Users, Heart, Star, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -140,28 +140,6 @@ const OurTeam = () => {
 										{/* Descripción */}
 										<p className="text-gray-600 text-sm text-center mb-6 leading-relaxed">{persona.descripcion}</p>
 
-										{/* Separador */}
-										<Separator className="my-4" />
-
-										{/* Botones de contacto */}
-										<div className="flex gap-2">
-											<Button
-												variant="outline"
-												size="sm"
-												className={`flex-1 border ${currentColor.border} hover:${currentColor.bg}`}
-											>
-												<Mail className="w-3 h-3 mr-1" />
-												Email
-											</Button>
-											<Button
-												variant="outline"
-												size="sm"
-												className={`flex-1 border ${currentColor.border} hover:${currentColor.bg}`}
-											>
-												<Phone className="w-3 h-3 mr-1" />
-												Llamar
-											</Button>
-										</div>
 									</CardContent>
 								</Card>
 							</motion.div>
@@ -185,13 +163,15 @@ const OurTeam = () => {
 							</p>
 						</div>
 
-						<Button
-							size="lg"
-							className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg"
-						>
-							<Users className="w-5 h-5 mr-2" />
-							Contactar equipo
-						</Button>
+						<a href="mailto:discasrodandoporlavida@gmail.com" target="_blank" rel="noopener noreferrer">
+							<Button
+								size="lg"
+								className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg text-white cursor-pointer"
+							>
+								<Users className="w-5 h-5 mr-2" />
+								Contactar equipo
+							</Button>
+						</a>
 					</div>
 				</motion.div>
 

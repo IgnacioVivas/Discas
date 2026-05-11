@@ -2,24 +2,12 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-	Heart,
-	Copy,
-	Check,
-	ArrowRight,
-	Sparkles,
-	Wallet,
-	Smartphone,
-	Banknote,
-	Gift,
-	Users,
-	Globe,
-} from 'lucide-react';
+import { Heart, Copy, Check, ArrowRight, Sparkles, Smartphone, Gift, Users, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
-type DonateTab = 'mercado-pago' | 'transferencia' | 'sierras';
+type DonateTab = 'mercado-pago' | 'sierras';
 
 type DonateTabItem = {
 	id: DonateTab;
@@ -27,25 +15,17 @@ type DonateTabItem = {
 	icon: React.ElementType;
 };
 
-// Datos de donaciones
 const MERCADO_PAGO_LINKS = [
-	{ amount: '$100', url: 'https://mpago.la/2L3qsrT' },
-	{ amount: '$200', url: 'https://mpago.la/1TL3cpz' },
-	{ amount: '$300', url: 'https://mpago.la/1VJsKJZ' },
-	{ amount: '$500', url: 'https://mpago.la/2zv8Nbc' },
-	{ amount: '$1000', url: 'https://mpago.la/1rfV1sS' },
+	{
+		amount: 'Monto libre',
+		sub: 'Lo que puedas',
+		url: 'https://link.mercadopago.com.ar/discasfundacion',
+		highlight: true,
+	},
+	{ amount: '$1.000', sub: 'Una colaboración', url: 'https://mpago.la/1KhrdzE', highlight: false },
+	{ amount: '$3.000', sub: 'Ayuda más completa', url: 'https://mpago.la/1roAL7Z', highlight: false },
+	{ amount: '$5.000', sub: 'Gran apoyo', url: 'https://mpago.la/1Pwj1uv', highlight: false },
 ];
-
-const BANK_INFO = {
-	banco: 'Banco PATAGONIA',
-	cajaAhorros: 'CA $ 070-709868055-000',
-	titular: 'Quiñones Sabrina',
-	cbu: '0340070808709868055000',
-	cuil: '27281140758',
-	alias: 'DISCAS.CORDOBA.ARG',
-	contacto: 'Nati 3885003055',
-	email: 'discasrodandoporlavida@gmail.com',
-};
 
 const DISCAS_SIERRAS = {
 	cvu: '0000003100091826882228',
@@ -60,7 +40,7 @@ const DISCAS_SIERRAS = {
 
 const DonateSection = () => {
 	const [copiedField, setCopiedField] = useState<string | null>(null);
-	const [activeTab, setActiveTab] = useState<'mercado-pago' | 'transferencia' | 'sierras'>('mercado-pago');
+	const [activeTab, setActiveTab] = useState<DonateTab>('mercado-pago');
 
 	const copyToClipboard = (text: string, field: string) => {
 		navigator.clipboard.writeText(text).then(() => {
@@ -94,12 +74,11 @@ const DonateSection = () => {
 
 	const tabs: DonateTabItem[] = [
 		{ id: 'mercado-pago', label: 'Mercado Pago', icon: Smartphone },
-		{ id: 'transferencia', label: 'Transferencia', icon: Banknote },
 		{ id: 'sierras', label: 'Discas Sierras', icon: Users },
 	];
 
 	return (
-		<section className="relative overflow-hidden py-16 md:py-24 bg-linear-to-br from-teal-50 via-white to-amber-50">
+		<section className="relative overflow-hidden py-16 bg-linear-to-br from-teal-50 via-white to-amber-50">
 			{/* Elementos decorativos */}
 			<div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full blur-3xl opacity-20 -translate-y-48 translate-x-48" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-20 -translate-x-48 translate-y-48" />
@@ -183,11 +162,14 @@ const DonateSection = () => {
 										</div>
 
 										<div className="space-y-4">
-											<p className="text-gray-700">
-												Buscanos en Mercado Pago como: <span className="font-bold text-teal-700">Discas.cba</span>
-											</p>
+											<div className="p-3 bg-teal-50 rounded-xl border border-teal-100">
+												<p className="text-sm text-gray-700">
+													Alias Mercado Pago: <span className="font-bold text-teal-700">fundaciondiscas.mp</span>
+												</p>
+												<p className="text-xs text-gray-500 mt-0.5">A nombre de Silvina Capellino</p>
+											</div>
 
-											<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+											<div className="grid grid-cols-2 gap-3">
 												{MERCADO_PAGO_LINKS.map((link) => (
 													<motion.a
 														key={link.amount}
@@ -196,13 +178,18 @@ const DonateSection = () => {
 														rel="noopener noreferrer"
 														whileHover={{ scale: 1.05 }}
 														whileTap={{ scale: 0.95 }}
-														className="group"
+														className={cn(
+															'block rounded-xl p-4 text-center border-2 transition-all duration-300',
+															link.highlight
+																? 'bg-teal-600 border-teal-600 text-white hover:bg-teal-700 hover:border-teal-700 col-span-2'
+																: 'bg-white border-teal-200 hover:border-teal-400 hover:bg-teal-50',
+														)}
 													>
-														<div className="bg-white border-2 border-teal-200 rounded-xl p-4 text-center hover:border-teal-400 hover:bg-teal-50 transition-all duration-300">
-															<div className="text-2xl font-bold text-teal-700 group-hover:text-teal-800">
-																{link.amount}
-															</div>
-															<div className="text-xs text-gray-500 mt-1">Donar ahora</div>
+														<div className={cn('text-xl font-bold', link.highlight ? 'text-white' : 'text-teal-700')}>
+															{link.amount}
+														</div>
+														<div className={cn('text-xs mt-1', link.highlight ? 'text-teal-100' : 'text-gray-500')}>
+															{link.sub}
 														</div>
 													</motion.a>
 												))}
@@ -225,10 +212,10 @@ const DonateSection = () => {
 
 										<div className="space-y-4">
 											{[
-												{ amount: '$100', text: '1 día de alimento especial' },
-												{ amount: '$300', text: 'Medicación para una semana' },
-												{ amount: '$500', text: 'Pañales para 15 días' },
-												{ amount: '$1000', text: 'Tratamiento médico completo' },
+												{ amount: '$1.000', text: '1 día de alimento especial' },
+												{ amount: '$3.000', text: 'Medicación para una semana' },
+												{ amount: '$5.000', text: 'Pañales para 15 días' },
+												{ amount: '$10.000', text: 'Ayuda a un tratamiento médico' },
 											].map((item, index) => (
 												<motion.div
 													key={index}
@@ -246,92 +233,6 @@ const DonateSection = () => {
 													</div>
 												</motion.div>
 											))}
-										</div>
-
-										<div className="mt-8 p-4 bg-linear-to-r from-teal-500/10 to-amber-500/10 rounded-xl border border-teal-200/50">
-											<p className="text-sm text-gray-700">
-												<strong>Recordá:</strong> Enviar el comprobante por mensaje privado a{' '}
-												<span className="font-semibold text-teal-700">{BANK_INFO.contacto}</span> para control.
-											</p>
-										</div>
-									</CardContent>
-								</Card>
-							</motion.div>
-						)}
-
-						{/* Transferencia Bancaria */}
-						{activeTab === 'transferencia' && (
-							<motion.div
-								key="transferencia"
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -20 }}
-							>
-								<Card className="bg-linear-to-br from-white to-blue-50 border-blue-100 shadow-xl">
-									<CardContent className="p-8">
-										<div className="flex items-center gap-3 mb-8">
-											<div className="p-3 bg-blue-100 rounded-xl">
-												<Wallet className="w-6 h-6 text-blue-700" />
-											</div>
-											<div>
-												<h3 className="text-2xl font-bold text-gray-800">Transferencia bancaria</h3>
-												<p className="text-gray-600">Datos para transferir desde tu banco</p>
-											</div>
-										</div>
-
-										<div className="grid md:grid-cols-2 gap-6">
-											{Object.entries({
-												Banco: BANK_INFO.banco,
-												'Caja de ahorros': BANK_INFO.cajaAhorros,
-												Titular: BANK_INFO.titular,
-												CBU: BANK_INFO.cbu,
-												CUIL: BANK_INFO.cuil,
-												Alias: BANK_INFO.alias,
-											}).map(([key, value], index) => (
-												<motion.div
-													key={key}
-													initial={{ opacity: 0, y: 20 }}
-													animate={{ opacity: 1, y: 0 }}
-													transition={{ delay: index * 0.1 }}
-													className="space-y-2"
-												>
-													<label className="text-sm font-medium text-gray-500">{key}</label>
-													<div className="flex items-center gap-2">
-														<div className="flex-1 p-3 bg-white border border-gray-200 rounded-lg font-mono text-gray-800">
-															{value}
-														</div>
-														<Button
-															size="sm"
-															variant="outline"
-															onClick={() => copyToClipboard(value, key)}
-															className="shrink-0"
-														>
-															{copiedField === key ? (
-																<Check className="w-4 h-4 text-green-600" />
-															) : (
-																<Copy className="w-4 h-4" />
-															)}
-														</Button>
-													</div>
-												</motion.div>
-											))}
-										</div>
-
-										<div className="mt-8 space-y-4">
-											<div className="p-4 bg-linear-to-r from-blue-500/10 to-teal-500/10 rounded-xl border border-blue-200">
-												<p className="text-sm text-gray-700">
-													<strong>Importante:</strong> Después de transferir, enviá el comprobante por mensaje privado a{' '}
-													<span className="font-semibold text-blue-700">{BANK_INFO.contacto}</span>
-												</p>
-											</div>
-											<div className="p-4 bg-amber-50 rounded-xl border border-amber-200">
-												<p className="text-sm text-amber-800">
-													💌 También podés contactarnos por email:{' '}
-													<a href={`mailto:${BANK_INFO.email}`} className="font-semibold underline">
-														{BANK_INFO.email}
-													</a>
-												</p>
-											</div>
 										</div>
 									</CardContent>
 								</Card>
@@ -467,15 +368,16 @@ const DonateSection = () => {
 								<p className="text-gray-600 mb-4">
 									Cada donación, por pequeña que sea, ayuda a un animal a tener una vida mejor.
 								</p>
-								<Button
-									size="lg"
-									className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold"
-									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-								>
-									<Heart className="w-5 h-5 mr-2" />
-									Quiero donar ahora
-									<ArrowRight className="w-5 h-5 ml-2" />
-								</Button>
+								<a href="https://link.mercadopago.com.ar/discasfundacion" target="_blank" rel="noopener noreferrer">
+									<Button
+										size="lg"
+										className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold text-white cursor-pointer"
+									>
+										<Heart className="w-5 h-5 mr-2" />
+										Quiero donar ahora
+										<ArrowRight className="w-5 h-5 ml-2" />
+									</Button>
+								</a>
 							</div>
 
 							<div className="hidden md:block">

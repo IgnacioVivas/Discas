@@ -197,12 +197,14 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 							<p className="text-white/75 text-xs mb-4 leading-relaxed">
 								Contactanos y comenzá el proceso. ¡{animal.nombre} te está esperando!
 							</p>
-							<Link
-								href="/contacto"
-								className="block w-full text-center bg-white text-teal-700 font-semibold py-2.5 rounded-xl hover:bg-white/90 transition-colors text-sm"
+							<a
+								href="https://docs.google.com/forms/d/e/1FAIpQLSebGiJ32_soPpFQRk-VFLzpS72P1rAuqu5z-18diHp03eJBZw/viewform"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block w-full text-center bg-white text-teal-700 font-semibold py-2.5 rounded-xl hover:bg-white/90 transition-colors text-sm cursor-pointer"
 							>
 								Quiero adoptarlo
-							</Link>
+							</a>
 						</div>
 					</div>
 				</div>

@@ -7,7 +7,9 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Heart, Menu, PawPrint, ChevronUp } from 'lucide-react';
+import { Heart, Menu, PawPrint, ChevronUp, ShoppingBag } from 'lucide-react';
+
+const TIENDA_WA = 'https://wa.me/5493513599984?text=' + encodeURIComponent('Hola! Me interesa ver el catálogo de la Tiendita Discas 🛍️');
 
 // Tu logo - asegurate de tenerlo en la ruta correcta
 import logoDiscas from '@/public/image/LOGO DISCAS.png';
@@ -185,12 +187,25 @@ const NavBar = () => {
 							</Link>
 						))}
 
+						{/* Botón Tienda - Desktop */}
+						<a href={TIENDA_WA} target="_blank" rel="noopener noreferrer">
+							<Button
+								className={cn(
+									'ml-2 transition-all duration-300',
+									'text-white bg-linear-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 cursor-pointer',
+								)}
+							>
+								<ShoppingBag className="w-4 h-4 mr-2" />
+								Tiendita Discas
+							</Button>
+						</a>
+
 						{/* Botón Donar - Desktop */}
 						<Button
 							onClick={handleDonate}
 							className={cn(
-								'ml-4 transition-all duration-300',
-								'text-white bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800',
+								'ml-2 transition-all duration-300',
+								'text-white bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 cursor-pointer',
 							)}
 						>
 							<Heart className="w-4 h-4 mr-2" />
@@ -200,6 +215,16 @@ const NavBar = () => {
 
 					{/* Mobile Menu Button */}
 					<div className="flex lg:hidden items-center space-x-2">
+						<a href={TIENDA_WA} target="_blank" rel="noopener noreferrer">
+							<Button
+								size="sm"
+								className="bg-linear-to-r text-white from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-semibold shadow-lg cursor-pointer"
+							>
+								<ShoppingBag className="w-3 h-3 mr-1" />
+								Tienda
+							</Button>
+						</a>
+
 						<Button
 							onClick={handleDonate}
 							size="sm"
