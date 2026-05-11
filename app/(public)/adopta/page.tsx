@@ -51,7 +51,7 @@ export default function Adopta() {
 					<TabsList className="bg-gray-100 p-1 rounded-2xl">
 						<TabsTrigger
 							value="todos"
-							className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm"
+							className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm cursor-pointer"
 						>
 							<div className="flex items-center gap-2">
 								<Filter className="w-4 h-4" />
@@ -60,7 +60,7 @@ export default function Adopta() {
 						</TabsTrigger>
 						<TabsTrigger
 							value="perros"
-							className="rounded-xl data-[state=active]:bg-amber-50 data-[state=active]:shadow-sm"
+							className="rounded-xl data-[state=active]:bg-amber-50 data-[state=active]:shadow-sm cursor-pointer"
 						>
 							<div className="flex items-center gap-2">
 								<Dog className="w-4 h-4" />
@@ -69,7 +69,7 @@ export default function Adopta() {
 						</TabsTrigger>
 						<TabsTrigger
 							value="gatos"
-							className="rounded-xl data-[state=active]:bg-teal-50 data-[state=active]:shadow-sm"
+							className="rounded-xl data-[state=active]:bg-teal-50 data-[state=active]:shadow-sm cursor-pointer"
 						>
 							<div className="flex items-center gap-2">
 								<Cat className="w-4 h-4" />

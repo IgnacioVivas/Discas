@@ -105,21 +105,12 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 										<PawPrint className="w-4 h-4 text-amber-600" />
 									</div>
 									<div>
-										<p className="font-medium text-gray-800">{animal.genero}</p>
 										<p className="text-sm text-gray-500">Sexo</p>
+										<p className="font-medium text-gray-800 capitalize">{animal.genero}</p>
 									</div>
 								</div>
 
-								<div className="flex items-center gap-3">
-									<div className="p-2 bg-teal-50 rounded-lg">
-										<span className="w-4 h-4 block text-teal-600">✓</span>
-									</div>
-									<div>
-										<p className="font-medium text-gray-800">{animal.castrado ? 'Sí' : 'No'}</p>
-										<p className="text-sm text-gray-500">Castrado</p>
-									</div>
 								</div>
-							</div>
 
 							{/* Descripción */}
 							<p className="text-gray-600 line-clamp-2 text-sm leading-relaxed min-h-10">
@@ -127,14 +118,19 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 							</p>
 
 							{/* Personalidad tags */}
-							{animal.personalidad && animal.personalidad.length > 0 && (
+							{(animal.castrado || (animal.personalidad && animal.personalidad.length > 0)) && (
 								<div className="flex flex-wrap gap-2">
-									{animal.personalidad.slice(0, 2).map((trait, idx) => (
+									{animal.castrado && (
+										<span className="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-full border border-teal-200">
+											✓ Castrado
+										</span>
+									)}
+									{animal.personalidad && animal.personalidad.slice(0, 2).map((trait, idx) => (
 										<span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
 											{trait}
 										</span>
 									))}
-									{animal.personalidad.length > 2 && (
+									{animal.personalidad && animal.personalidad.length > 2 && (
 										<span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
 											+{animal.personalidad.length - 2} más
 										</span>

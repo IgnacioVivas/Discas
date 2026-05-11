@@ -196,7 +196,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 															type="button"
 															onClick={() => setValue('genero', opt.value)}
 															className={cn(
-																'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all',
+																'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer',
 																values.genero === opt.value
 																	? 'bg-teal-600 border-teal-600 text-white'
 																	: 'bg-white border-gray-200 text-gray-500 hover:border-teal-300 hover:text-teal-700',
@@ -507,7 +507,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 														type="button"
 														onClick={() => setValue('publicado', opt.value)}
 														className={cn(
-															'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all',
+															'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer',
 															values.publicado === opt.value
 																? opt.active
 																: 'bg-white border-gray-200 text-gray-500 hover:border-gray-300',
@@ -540,7 +540,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 																if (opt.value !== 'disponible') setValue('publicado', false);
 															}}
 															className={cn(
-																'w-full flex items-center justify-between px-4 py-2.5 rounded-lg border-2 text-left transition-all',
+																'w-full flex items-center justify-between px-4 py-2.5 rounded-lg border-2 text-left transition-all cursor-pointer',
 																isActive ? opt.active : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300',
 															)}
 														>
