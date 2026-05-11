@@ -1,5 +1,18 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Denunciá Maltrato Animal | Discas Córdoba',
+	description:
+		'¿Viste un animal maltratado o abandonado en Córdoba? Denuncialo aquí. Fundación Discas te guía paso a paso para hacer una denuncia efectiva y proteger a los animales.',
+	alternates: { canonical: 'https://discas.com.ar/denuncia' },
+	openGraph: {
+		title: 'Denunciá Maltrato Animal | Discas Córdoba',
+		description: 'Guía paso a paso para denunciar maltrato animal en Córdoba. Fundación Discas te ayuda a proteger a los animales.',
+		url: 'https://discas.com.ar/denuncia',
+	},
+};
+
 import HeaderDos from '@/components/layout/HeaderDos';
-// import InfoCard from '@/components/myComponents/InfoCard';
 import { Shield, AlertTriangle, FileText, Phone, MapPin, Clock, Heart, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';

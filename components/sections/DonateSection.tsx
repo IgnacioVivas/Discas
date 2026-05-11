@@ -32,9 +32,7 @@ const DISCAS_SIERRAS = {
 	alias: 'Discas-ayuda',
 	contactos: ['3513233112 (Lau)', '3541580485 (Euge)'],
 	redes: [
-		{ name: 'Facebook', url: '@discas.sierras' },
-		{ name: 'Instagram', url: '@discassierras' },
-		{ name: 'TikTok', url: '@discassierras' },
+		{ name: 'Instagram', url: 'https://www.instagram.com/discassierras/' },
 	],
 };
 
@@ -325,7 +323,9 @@ const DonateSection = () => {
 														{DISCAS_SIERRAS.redes.map((red, index) => (
 															<motion.a
 																key={index}
-																href="#"
+																href={red.url}
+																target="_blank"
+																rel="noopener noreferrer"
 																whileHover={{ x: 5 }}
 																className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colors"
 															>

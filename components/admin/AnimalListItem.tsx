@@ -37,9 +37,9 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 				? 'border-l-4 border-l-green-400 bg-green-50/30 hover:border-l-green-500'
 				: 'hover:border-teal-300',
 		)}>
-				<div className="p-4">
-					<div className="flex flex-col md:flex-row md:items-center gap-4">
-						<div className="relative w-24 h-24 shrink-0">
+				<div className="p-3 md:p-4">
+					<div className="flex flex-row items-start gap-3 md:gap-4">
+						<div className="relative w-16 h-16 md:w-24 md:h-24 shrink-0">
 							<img src={animal.imagenCard || '/placeholder.jpg'} alt={animal.nombre} className="w-full h-full object-cover rounded-lg" />
 							<div className="absolute top-1 left-1">
 								{animal.tipo === 'perro' ? (
@@ -56,7 +56,7 @@ export default function AnimalListItem({ animal, index, onTogglePublicado, onTog
 							<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
 								<div className="flex-1">
 									<div className="flex items-center gap-2 mb-1 flex-wrap">
-										<h3 className="font-bold text-lg text-gray-800 group-hover:text-teal-700 transition-colors">
+										<h3 className="font-bold text-base md:text-lg text-gray-800 group-hover:text-teal-700 transition-colors">
 											{animal.nombre}
 										</h3>
 										{animal.adoptado && (

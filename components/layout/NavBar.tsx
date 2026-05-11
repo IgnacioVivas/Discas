@@ -215,16 +215,6 @@ const NavBar = () => {
 
 					{/* Mobile Menu Button */}
 					<div className="flex lg:hidden items-center space-x-2">
-						<a href={TIENDA_WA} target="_blank" rel="noopener noreferrer">
-							<Button
-								size="sm"
-								className="bg-linear-to-r text-white from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 font-semibold shadow-lg cursor-pointer"
-							>
-								<ShoppingBag className="w-3 h-3 mr-1" />
-								Tienda
-							</Button>
-						</a>
-
 						<Button
 							onClick={handleDonate}
 							size="sm"
@@ -283,13 +273,12 @@ const NavBar = () => {
 										<div className="px-4 py-4 bg-linear-to-r from-teal-50 to-teal-100 rounded-xl">
 											<h3 className="font-semibold text-teal-800 mb-2">¿Encontraste un animal que necesita ayuda?</h3>
 											<p className="text-sm text-teal-700 mb-3">Contactanos inmediatamente</p>
-											<Button
-												onClick={() => handleNavClick('/contacto')}
-												className="w-full text-white bg-teal-600 hover:bg-teal-700"
-											>
-												<PawPrint className="w-4 h-4 mr-2" />
-												Contactar emergencia
-											</Button>
+											<a href="mailto:discasrodandoporlavida@gmail.com?subject=Emergencia%20-%20Animal%20que%20necesita%20ayuda" className="block w-full">
+												<Button className="w-full text-white bg-teal-600 hover:bg-teal-700 cursor-pointer">
+													<PawPrint className="w-4 h-4 mr-2" />
+													Contactar emergencia
+												</Button>
+											</a>
 										</div>
 									</div>
 

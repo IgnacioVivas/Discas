@@ -178,11 +178,11 @@ export default function Dashboard() {
 								<Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
 								<Input placeholder="Buscar por nombre o descripción..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
 							</div>
-							<div className="flex flex-wrap gap-2">
+							<div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
 								{FILTERS.map(({ value, label, icon: Icon }) => (
 									<Button key={value} variant={filter === value ? 'default' : 'outline'} size="sm"
 										onClick={() => setFilter(value)}
-										className={cn('cursor-pointer text-xs', filter === value && FILTER_ACTIVE_CLASSES[value])}
+										className={cn('cursor-pointer text-xs shrink-0', filter === value && FILTER_ACTIVE_CLASSES[value])}
 									>
 										{Icon && <Icon className="w-3 h-3 mr-1" />}{label}
 									</Button>

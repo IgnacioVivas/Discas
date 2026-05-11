@@ -1,3 +1,17 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Quiénes Somos | Fundación Discas Córdoba',
+	description:
+		'Conocé la historia de Fundación Discas, nuestra misión de rescatar animales con discapacidad en Córdoba desde 2015. Conocé al equipo que trabaja con amor por cada patita.',
+	alternates: { canonical: 'https://discas.com.ar/conocenos' },
+	openGraph: {
+		title: 'Quiénes Somos | Fundación Discas Córdoba',
+		description: 'Conocé nuestra historia, misión y al equipo detrás de Discas Córdoba. Desde 2015 rescatando animales con discapacidad.',
+		url: 'https://discas.com.ar/conocenos',
+	},
+};
+
 import OurTeam from '@/components/sections/OurTeam';
 import SponsorsSection from '@/components/sections/SponsorsSection';
 import OurValue from '@/components/sections/OurValue';

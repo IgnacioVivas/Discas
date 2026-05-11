@@ -1,3 +1,17 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Información sobre Animales con Discapacidad | Discas',
+	description:
+		'Todo lo que necesitás saber para cuidar animales con discapacidad. Recursos, préstamo de sillas de ruedas, información veterinaria y más. Aprendé con Fundación Discas Córdoba.',
+	alternates: { canonical: 'https://discas.com.ar/informate' },
+	openGraph: {
+		title: 'Información sobre Animales con Discapacidad | Discas',
+		description: 'Recursos, préstamo de equipos y todo lo que necesitás saber para cuidar animales con discapacidad. Fundación Discas Córdoba.',
+		url: 'https://discas.com.ar/informate',
+	},
+};
+
 import HeaderDos from '@/components/layout/HeaderDos';
 import InfoCard from '@/components/myComponents/InfoCard';
 import Image from 'next/image';

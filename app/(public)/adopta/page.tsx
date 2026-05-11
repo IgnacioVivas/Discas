@@ -6,7 +6,6 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import AnimalCard from '@/components/myComponents/AnimalCard';
 import { useAnimalFilter } from '@/hooks/useAnimalFilter';
-import SponsorsSection from '@/components/sections/SponsorsSection';
 
 export default function Adopta() {
 	const { filter, setFilter, displayedAnimals, isLoading, detectAnimalType, totalPerros, totalGatos, totalAnimals } =
@@ -21,7 +20,7 @@ export default function Adopta() {
 	};
 
 	return (
-		<div className="min-h-screen bg-linear-to-b from-white to-amber-50 pt-24 pb-16 px-4">
+		<div className="min-h-screen bg-linear-to-b from-white to-amber-50 pt-24 pb-16 px-4 md:px-10 xl:px-20">
 			{/* Header */}
 			<div className="container mx-auto mb-10 flex flex-col justify-center items-center">
 				<div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-amber-100 to-pink-100 rounded-full mb-4">

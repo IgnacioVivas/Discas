@@ -76,9 +76,6 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 
 					<div className="flex flex-wrap gap-2 mb-3">
 						<Badge className={cn('border-0 font-medium text-xs', tipoBadge.cls)}>{tipoBadge.label}</Badge>
-						{animal.discapacidad && (
-							<Badge className="bg-amber-400/90 text-amber-900 border-0 text-xs">💝 Necesidades especiales</Badge>
-						)}
 					</div>
 
 					<h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{animal.nombre}</h1>

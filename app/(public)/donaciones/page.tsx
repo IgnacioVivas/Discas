@@ -397,15 +397,13 @@ const Donaciones = () => {
 							{/* Redes sociales */}
 							<Card className="border-0 shadow-lg">
 								<CardContent className="p-8">
-									<h3 className="font-bold text-lg text-gray-800 mb-6">Seguinos en redes</h3>
+									<h4 className="font-bold text-gray-700 mb-3">Redes sociales</h4>
 									<div className="space-y-3">
 										{[
-											{ name: 'Facebook', handle: '@discas.sierras', url: 'https://www.facebook.com/discas.sierras' },
-											{ name: 'Instagram', handle: '@discassierras', url: 'https://www.instagram.com/discassierras' },
-											{ name: 'TikTok', handle: '@discassierras', url: 'https://www.tiktok.com/@discassierras' },
-										].map((red) => (
+											{ name: 'Instagram', url: 'https://www.instagram.com/discassierras/' },
+										].map((red, index) => (
 											<motion.a
-												key={red.name}
+												key={index}
 												href={red.url}
 												target="_blank"
 												rel="noopener noreferrer"
@@ -416,17 +414,17 @@ const Donaciones = () => {
 													<Globe className="w-4 h-4 text-purple-600" />
 												</div>
 												<div>
-													<p className="font-medium text-gray-800 text-sm">{red.name}</p>
-													<p className="text-xs text-gray-500">{red.handle}</p>
+													<div className="font-medium text-gray-800">{red.name}</div>
+													<div className="text-sm text-gray-600">{red.url}</div>
 												</div>
 											</motion.a>
 										))}
 									</div>
 
 									<div className="mt-6 p-4 bg-linear-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-200">
-										<p className="text-sm text-gray-700 font-medium">¡Conocé su trabajo!</p>
-										<p className="text-sm text-gray-600 mt-1">
-											Historias de rescate y rehabilitación desde las sierras de Córdoba.
+										<h4 className="font-bold text-purple-800 mb-2">¡Seguilos!</h4>
+										<p className="text-sm text-gray-700">
+											Conocé las historias de rescate y el trabajo increíble que hacen en las sierras.
 										</p>
 									</div>
 								</CardContent>

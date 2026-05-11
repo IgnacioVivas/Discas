@@ -1,4 +1,4 @@
-import { PawPrint, BarChart3, Heart } from 'lucide-react';
+import { PawPrint, BarChart3, Heart, CloudRain } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { Disca } from '@/interface/interfaces';
@@ -30,13 +30,21 @@ export default function DashboardStats({ animales }: Props) {
 			value: animales.filter((a) => a.adoptado).length,
 			icon: Heart,
 			color: 'from-pink-500 to-rose-500',
-			change: `${animales.filter((a) => a.fallecido).length} fallecidos`,
-			description: 'Encontraron hogar',
+			change: 'Encontraron hogar',
+			description: 'Con familia para siempre',
+		},
+		{
+			label: 'Fallecidos',
+			value: animales.filter((a) => a.fallecido).length,
+			icon: CloudRain,
+			color: 'from-slate-400 to-slate-500',
+			change: 'En nuestro corazón',
+			description: 'Siempre recordados',
 		},
 	];
 
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+		<div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
 			{stats.map((stat, i) => (
 				<motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} whileHover={{ y: -4 }}>
 					<Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">

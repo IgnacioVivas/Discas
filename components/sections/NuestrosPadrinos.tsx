@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Card, CardContent } from '../ui/card';
-// import confetti from 'canvas-confetti';
 import Image from 'next/image';
 
 const padrinos = [

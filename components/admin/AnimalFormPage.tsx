@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -73,30 +72,30 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50/30">
 			<header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
-				<div className="px-6 py-4 flex items-center justify-between">
-					<div className="flex items-center gap-4">
+				<div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
+					<div className="flex items-center gap-2 sm:gap-4 min-w-0">
 						<Button
 							variant="ghost"
 							size="sm"
 							onClick={() => router.back()}
-							className="flex items-center gap-2 cursor-pointer"
+							className="flex items-center gap-1 cursor-pointer shrink-0"
 						>
 							<ArrowLeft className="w-4 h-4" />
-							Volver
+							<span className="hidden sm:inline">Volver</span>
 						</Button>
-						<div>
-							<h1 className="text-xl font-bold text-gray-800">{title}</h1>
-							<p className="text-sm text-gray-500">{subtitle}</p>
+						<div className="min-w-0">
+							<h1 className="text-base sm:text-xl font-bold text-gray-800 truncate">{title}</h1>
+							<p className="text-xs sm:text-sm text-gray-500 hidden sm:block">{subtitle}</p>
 						</div>
 					</div>
 
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-2 shrink-0">
 						<Button
 							variant="outline"
 							type="button"
 							onClick={() => setValue('publicado', !values.publicado)}
 							className={cn(
-								'cursor-pointer',
+								'cursor-pointer hidden sm:flex',
 								values.publicado ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : '',
 							)}
 						>
@@ -109,13 +108,13 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 						>
 							{isLoading ? (
 								<>
-									<Loader2 className="w-4 h-4 mr-2 animate-spin" />
-									Guardando...
+									<Loader2 className="w-4 h-4 sm:mr-2 animate-spin" />
+									<span className="hidden sm:inline">Guardando...</span>
 								</>
 							) : (
 								<>
-									<Save className="w-4 h-4 mr-2" />
-									Guardar
+									<Save className="w-4 h-4 sm:mr-2" />
+									<span className="hidden sm:inline">Guardar</span>
 								</>
 							)}
 						</Button>
@@ -190,20 +189,23 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 										<div className="grid md:grid-cols-3 gap-4">
 											<div className="space-y-1.5">
 												<Label>Género *</Label>
-												<RadioGroup
-													value={values.genero}
-													onValueChange={(v) => setValue('genero', v as 'macho' | 'hembra')}
-													className="flex gap-4 pt-1"
-												>
-													<div className="flex items-center gap-2">
-														<RadioGroupItem value="macho" id="macho" />
-														<Label htmlFor="macho">Macho</Label>
-													</div>
-													<div className="flex items-center gap-2">
-														<RadioGroupItem value="hembra" id="hembra" />
-														<Label htmlFor="hembra">Hembra</Label>
-													</div>
-												</RadioGroup>
+												<div className="flex gap-2 pt-1">
+													{([{ value: 'macho', label: '♂ Macho' }, { value: 'hembra', label: '♀ Hembra' }] as const).map((opt) => (
+														<button
+															key={opt.value}
+															type="button"
+															onClick={() => setValue('genero', opt.value)}
+															className={cn(
+																'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all',
+																values.genero === opt.value
+																	? 'bg-teal-600 border-teal-600 text-white'
+																	: 'bg-white border-gray-200 text-gray-500 hover:border-teal-300 hover:text-teal-700',
+															)}
+														>
+															{opt.label}
+														</button>
+													))}
+												</div>
 											</div>
 											<div className="space-y-1.5">
 												<Label>Tipo *</Label>
@@ -441,7 +443,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 								initial={{ opacity: 0, x: 16 }}
 								animate={{ opacity: 1, x: 0 }}
 								transition={{ delay: 0.1 }}
-								className="sticky top-24"
+								className="lg:sticky lg:top-24"
 							>
 								<Card className="border-0 shadow-lg">
 									<CardHeader>
@@ -491,46 +493,65 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 											</span>
 										</div>
 									</CardHeader>
-									<CardContent className="space-y-4 p-6">
-										<div className="flex items-start gap-3">
-											<Checkbox
-												id="publicado"
-												checked={values.publicado}
-												onCheckedChange={(c) => setValue('publicado', c as boolean)}
-											/>
-											<div>
-												<Label htmlFor="publicado" className="font-medium cursor-pointer">
-													Publicar
-												</Label>
-												<p className="text-xs text-gray-500">Visible en el sitio público</p>
+									<CardContent className="space-y-5 p-6">
+										{/* Visibilidad */}
+										<div className="space-y-2">
+											<Label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Visibilidad</Label>
+											<div className="flex gap-2">
+												{([
+													{ value: true, label: 'Publicado', active: 'bg-emerald-600 border-emerald-600 text-white' },
+													{ value: false, label: 'Borrador', active: 'bg-gray-500 border-gray-500 text-white' },
+												] as const).map((opt) => (
+													<button
+														key={String(opt.value)}
+														type="button"
+														onClick={() => setValue('publicado', opt.value)}
+														className={cn(
+															'flex-1 py-2 rounded-lg border-2 text-sm font-medium transition-all',
+															values.publicado === opt.value
+																? opt.active
+																: 'bg-white border-gray-200 text-gray-500 hover:border-gray-300',
+														)}
+													>
+														{opt.label}
+													</button>
+												))}
 											</div>
 										</div>
-										<div className="flex items-start gap-3 pt-2 border-t border-gray-100">
-											<Checkbox
-												id="adoptado"
-												checked={values.adoptado}
-												onCheckedChange={(c) => setValue('adoptado', c as boolean)}
-											/>
-											<div>
-												<Label htmlFor="adoptado" className="font-medium cursor-pointer text-green-700">
-													Adoptado
-												</Label>
-												<p className="text-xs text-gray-500">Encontró hogar, se oculta del listado</p>
+
+										{/* Estado del animal */}
+										<div className="space-y-2 pt-2 border-t border-gray-100">
+											<Label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Estado del animal</Label>
+											<div className="space-y-2">
+												{([
+													{ value: 'disponible', label: 'Disponible', desc: 'En proceso de adopción', active: 'bg-teal-600 border-teal-600 text-white' },
+													{ value: 'adoptado', label: 'Adoptado ✓', desc: 'Encontró su hogar', active: 'bg-green-600 border-green-600 text-white' },
+													{ value: 'fallecido', label: 'Fallecido', desc: 'Se oculta, queda en el sistema', active: 'bg-gray-600 border-gray-600 text-white' },
+												] as const).map((opt) => {
+													const current = values.fallecido ? 'fallecido' : values.adoptado ? 'adoptado' : 'disponible';
+													const isActive = current === opt.value;
+													return (
+														<button
+															key={opt.value}
+															type="button"
+															onClick={() => {
+																setValue('adoptado', opt.value === 'adoptado');
+																setValue('fallecido', opt.value === 'fallecido');
+																if (opt.value !== 'disponible') setValue('publicado', false);
+															}}
+															className={cn(
+																'w-full flex items-center justify-between px-4 py-2.5 rounded-lg border-2 text-left transition-all',
+																isActive ? opt.active : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300',
+															)}
+														>
+															<span className="text-sm font-medium">{opt.label}</span>
+															<span className={cn('text-xs', isActive ? 'text-white/70' : 'text-gray-400')}>{opt.desc}</span>
+														</button>
+													);
+												})}
 											</div>
 										</div>
-										<div className="flex items-start gap-3 pt-2 border-t border-gray-100">
-											<Checkbox
-												id="fallecido"
-												checked={values.fallecido}
-												onCheckedChange={(c) => setValue('fallecido', c as boolean)}
-											/>
-											<div>
-												<Label htmlFor="fallecido" className="font-medium cursor-pointer text-gray-700">
-													Fallecido
-												</Label>
-												<p className="text-xs text-gray-500">Se oculta del sitio pero queda en el sistema</p>
-											</div>
-										</div>
+
 										{Object.keys(errors).length > 0 && (
 											<p className="text-xs text-red-500 pt-2 border-t">
 												Hay errores en el formulario. Revisalos antes de guardar.
