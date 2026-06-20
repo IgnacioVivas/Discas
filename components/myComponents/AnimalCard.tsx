@@ -45,7 +45,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 			whileHover={{ y: -8 }}
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
-			className="relative"
+			className="relative h-full"
 		>
 			{/* Efecto de fondo en hover */}
 			<div
@@ -55,10 +55,10 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 				)}
 			/>
 
-			<Link href={`/adopta/${animal.id}`} className="block">
-				<Card className="relative overflow-hidden border-2 border-gray-100 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full">
+			<Link href={`/adopta/${animal.id}`} className="block h-full">
+				<Card className="relative overflow-hidden border-2 border-gray-100 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
 					{/* Header con imagen */}
-					<div className="relative h-64 overflow-hidden">
+					<div className="relative h-64 overflow-hidden shrink-0">
 						<Image
 							src={animal.imagenCard}
 							alt={animal.nombre}
@@ -96,8 +96,8 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 					</div>
 
 					{/* Contenido */}
-					<CardContent className="p-6">
-						<div className="space-y-4">
+					<CardContent className="p-6 flex-1 flex flex-col">
+						<div className="space-y-4 flex-1">
 							{/* Información básica */}
 							<div className="flex items-center justify-between">
 								<div className="flex items-center gap-3">
@@ -141,7 +141,7 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal, index, animalType }) =>
 
 						{/* Footer */}
 						<motion.div
-							className="mt-6 pt-6 border-t border-gray-100"
+							className="mt-auto pt-6 border-t border-gray-100"
 							animate={isHovered ? { opacity: 1 } : { opacity: 0.9 }}
 						>
 							<div className="flex items-center justify-between">
