@@ -78,18 +78,42 @@ const Apadrina = () => {
 									<div className="p-2 bg-white rounded-lg">
 										<Heart className="w-5 h-5 text-teal-600" />
 									</div>
-									<h4 className="font-bold text-teal-800 text-lg">Inversión mensual</h4>
+									<h4 className="font-bold text-teal-800 text-lg">Gastos en guardería</h4>
 								</div>
 								<div className="space-y-2">
-									<div className="flex justify-between items-center">
-										<span className="text-gray-700">Costo de guardería por perrito:</span>
-										<span className="text-2xl font-bold text-teal-700">$200.000</span>
-									</div>
 									<p className="text-sm text-gray-600">
-										Se abona cada 15 días por adelantado. Podés colaborar a principios, a mitad o a fin de mes.
+										Cada disca que espera una familia en guardería representa un gasto mensual de{' '}
+										<span className="text-teal-700 font-bold">$200.000</span>{' '}
+										que debemos cubrir para que tenga un lugar seguro donde vivir.
 									</p>
 								</div>
 							</div>
+						</div>
+
+						{/* Suscripción mensual */}
+						<div className="p-6 bg-linear-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-200">
+							<div className="flex items-center gap-3 mb-4">
+								<div className="p-2 bg-white rounded-lg">
+									<Sparkles className="w-5 h-5 text-amber-600" />
+								</div>
+								<h4 className="font-bold text-amber-800 text-lg">Suscripción mensual</h4>
+							</div>
+							<p className="text-sm text-gray-600 mb-4">
+								Con una suscripción mensual podés ayudar a sostener los gastos de nuestros discas.
+							</p>
+							<ul className="space-y-2">
+								{[
+									'Elegís el monto que querés aportar',
+									'Se renueva automáticamente cada mes',
+									'Podés cancelarla cuando quieras',
+									'Incluso un aporte pequeño hace la diferencia',
+								].map((item) => (
+									<li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+										<span className="text-teal-600 font-bold mt-0.5">✔</span>
+										{item}
+									</li>
+								))}
+							</ul>
 						</div>
 
 						{/* Botón de acción */}

@@ -34,6 +34,7 @@ model Animal {
   publicado            Boolean  @default(false)
   adoptado             Boolean  @default(false)
   fallecido            Boolean  @default(false)
+  fechaIngreso         DateTime?
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
 

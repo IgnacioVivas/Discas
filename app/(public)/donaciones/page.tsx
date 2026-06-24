@@ -152,27 +152,46 @@ const Donaciones = () => {
 										'Vendas comunes y Coban (5 a 10 cm)',
 										'Gasas y algodón',
 										'Agua oxigenada, pervinox',
-										'Cremas: Adermicina, Hipoglós',
+										'Toallitas húmedas sin alcohol',
+										'Cremas: con vitamina A, antimicóticas o cicatrizantes',
 									],
 									color: 'teal',
 								},
 								{
 									icon: '💊',
 									title: 'Medicación',
-									items: ['Cefalexina 500', 'Complejo B, vitamina C', 'Quelantes, Urovier'],
+									items: [
+										'Antibióticos',
+										'Suplementos',
+										'Desparasitantes',
+										'Complejo B, Vitamina C',
+										'Urovier, Cisticalm',
+										'Meloxicam, Pregabalina, Dipirona',
+									],
 									color: 'amber',
 									alert: 'Debe estar vigente y en buen estado',
 								},
 								{
 									icon: '👶',
 									title: 'Pañales y absorbentes',
-									items: ['Bebé: P, XG, XXG y XXXG', 'Adulto: talle G', 'Juveniles (cualquier marca)'],
+									items: [
+										'Niño: PRE, P, M, XG, XXG y XXXG',
+										'Adulto: anatómicos o rectos',
+										'Juvenil (cualquier marca)',
+										'Zaleas o paños absorbentes',
+									],
 									color: 'pink',
 								},
 								{
 									icon: '🐕',
 									title: 'Alimentos',
-									items: ['Urinary y renal (perro)', 'Urinary (gato)', 'Balanceados +21% proteínas'],
+									items: [
+										'Urinary (perro o gato)',
+										'Renal (perro)',
+										'Gastrointestinal (perro o gato)',
+										'Senior',
+										'Balanceado 21%+ de proteínas',
+									],
 									color: 'emerald',
 								},
 							].map((categoria, index) => (
@@ -488,10 +507,10 @@ const Donaciones = () => {
 
 											<div className="p-5 bg-white border border-amber-200 rounded-xl">
 												<h4 className="font-bold text-amber-800 mb-2">Veterinaria Ánima</h4>
-												<p className="text-gray-700">Av. Colón 1034</p>
+												<p className="text-gray-700">Chubut 190</p>
 												<div className="flex items-center gap-2 mt-3 text-sm text-gray-600">
 													<Calendar className="w-4 h-4" />
-													<span>Lunes a Sábado 8:00 - 21:00</span>
+													<span>Lunes a Sábado 8:00 - 20:00</span>
 												</div>
 											</div>
 										</div>

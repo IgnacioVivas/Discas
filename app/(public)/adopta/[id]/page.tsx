@@ -5,7 +5,7 @@ import Link from 'next/link';
 import PhotoGallery from '@/components/myComponents/PhotoGallery';
 import {
 	ArrowLeft, MapPin, Calendar, Ruler, User,
-	Syringe, Bug, Scissors, HeartHandshake, Star, ClipboardList, AlertCircle,
+	Syringe, Bug, Scissors, HeartHandshake, Star, ClipboardList, AlertCircle, Clock,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -39,6 +39,7 @@ const MOCK_ANIMAL = {
 	publicado: true,
 	adoptado: false,
 	fallecido: false,
+	fechaIngreso: null,
 	createdAt: new Date().toISOString(),
 	updatedAt: new Date().toISOString(),
 };
@@ -60,6 +61,10 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 		: animal.tipo === 'gato' ? { label: '🐈 Gato', cls: 'bg-teal-100 text-teal-800' }
 		: { label: '🐾 Otro', cls: 'bg-gray-100 text-gray-700' };
 
+	const diasEsperando = animal.fechaIngreso
+		? Math.floor((Date.now() - new Date(animal.fechaIngreso).getTime()) / 86_400_000)
+		: null;
+
 	return (
 		<div className="min-h-screen bg-gray-50">
 
@@ -79,6 +84,16 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 					</div>
 
 					<h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{animal.nombre}</h1>
+
+					{diasEsperando !== null && (
+						<div className="inline-flex items-center gap-2 mb-3 px-4 py-2 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-sm">
+							<Clock className="w-4 h-4 text-amber-200 shrink-0" />
+							<span className="text-sm font-semibold text-amber-100">
+								{animal.nombre} espera una familia hace{' '}
+								<span className="text-white font-extrabold">{diasEsperando.toLocaleString('es-AR')} {diasEsperando === 1 ? 'día' : 'días'}</span>
+							</span>
+						</div>
+					)}
 
 					<div className="flex flex-wrap gap-3 text-white/80 text-sm">
 						<span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{animal.edad} {animal.edad === 1 ? 'año' : 'años'}</span>

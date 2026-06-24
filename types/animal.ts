@@ -19,6 +19,7 @@ export const animalSchema = z.object({
 	publicado: z.boolean(),
 	adoptado: z.boolean(),
 	fallecido: z.boolean(),
+	fechaIngreso: z.string().optional(),
 });
 
 export type AnimalFormData = z.infer<typeof animalSchema>;
@@ -42,6 +43,7 @@ export const ANIMAL_FORM_DEFAULTS: AnimalFormData = {
 	publicado: false,
 	adoptado: false,
 	fallecido: false,
+	fechaIngreso: '',
 };
 
 export const OPCIONES_PERSONALIDAD = [

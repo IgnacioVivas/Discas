@@ -46,6 +46,7 @@ export async function PUT(req: NextRequest, context: { params: Promise<{ id: str
 				publicado: body.publicado ?? false,
 				adoptado: body.adoptado ?? false,
 				fallecido: body.fallecido ?? false,
+				fechaIngreso: body.fechaIngreso ? new Date(body.fechaIngreso) : null,
 			},
 		});
 

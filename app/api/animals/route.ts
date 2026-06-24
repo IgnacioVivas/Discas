@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
 				publicado: body.publicado ?? false,
 				adoptado: body.adoptado ?? false,
 				fallecido: body.fallecido ?? false,
+				fechaIngreso: body.fechaIngreso ? new Date(body.fechaIngreso) : null,
 			},
 		});
 

@@ -296,6 +296,22 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 												</SelectContent>
 											</Select>
 										</div>
+
+										<div className="space-y-1.5">
+											<Label htmlFor="fechaIngreso" className="flex items-center gap-2">
+												Fecha de ingreso a la fundación
+												<span className="text-xs text-gray-400 font-normal">(opcional)</span>
+											</Label>
+											<Input
+												id="fechaIngreso"
+												type="date"
+												max={new Date().toISOString().split('T')[0]}
+												{...register('fechaIngreso')}
+											/>
+											<p className="text-xs text-gray-400">
+												Se usará para mostrar cuántos días lleva esperando una familia.
+											</p>
+										</div>
 									</CardContent>
 								</Card>
 							</motion.div>

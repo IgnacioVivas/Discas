@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 import HeaderDos from '@/components/layout/HeaderDos';
 import InfoCard from '@/components/myComponents/InfoCard';
 import Image from 'next/image';
-import { Shield, Clock, Eye, Heart, Sparkles, ArrowRight, MapPin, Phone, Mail } from 'lucide-react';
+import { Shield, Clock, Eye, Heart, Sparkles, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
@@ -410,7 +410,35 @@ function Informate() {
 								}
 							/>
 
-							<InfoCard icon="/image/emojis/1F9B4.svg" title="Taller Discas" description="Gretel (+54 3517668348)" />
+							<InfoCard
+								icon="/image/emojis/1F9B4.svg"
+								title="Taller Discas"
+								description={
+									<div className="flex flex-col items-center gap-2 mt-1">
+										<span className="text-stone-500 text-sm">Pedinos asesoría a través de las redes sociales</span>
+										<div className="flex gap-3 mt-1">
+											<a
+												href="https://ig.me/m/discascordoba"
+												target="_blank"
+												rel="noopener noreferrer"
+												className="text-pink-500 hover:text-pink-600 transition-colors"
+												aria-label="Instagram"
+											>
+												<Instagram className="w-6 h-6" />
+											</a>
+											<a
+												href="https://www.facebook.com/discas.rodandoporlavida"
+												target="_blank"
+												rel="noopener noreferrer"
+												className="text-blue-600 hover:text-blue-700 transition-colors"
+												aria-label="Facebook"
+											>
+												<Facebook className="w-6 h-6" />
+											</a>
+										</div>
+									</div>
+								}
+							/>
 
 							<InfoCard
 								icon="/image/emojis/1F468-200D-2695-FE0F.svg"
@@ -436,7 +464,7 @@ function Informate() {
 								</div>
 
 								<a
-									href="https://wa.me/5493517668348"
+									href="https://ig.me/m/discascordoba"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -444,8 +472,7 @@ function Informate() {
 										size="lg"
 										className="bg-linear-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 font-semibold shadow-lg cursor-pointer text-white"
 									>
-										<Phone className="w-5 h-5 mr-2" />
-										Información y préstamos — Gretel
+										Información y préstamos
 									</Button>
 								</a>
 							</div>

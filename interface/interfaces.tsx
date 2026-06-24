@@ -18,6 +18,7 @@ export interface Disca {
 	publicado: boolean;
 	adoptado: boolean;
 	fallecido: boolean;
+	fechaIngreso?: string | null;
 	createdAt: string;
 	updatedAt: string;
 }
