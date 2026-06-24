@@ -86,12 +86,21 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 					<h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{animal.nombre}</h1>
 
 					{diasEsperando !== null && (
-						<div className="inline-flex items-center gap-2 mb-3 px-4 py-2 rounded-full bg-amber-400/20 border border-amber-300/40 backdrop-blur-sm">
-							<Clock className="w-4 h-4 text-amber-200 shrink-0" />
-							<span className="text-sm font-semibold text-amber-100">
-								{animal.nombre} espera una familia hace{' '}
-								<span className="text-white font-extrabold">{diasEsperando.toLocaleString('es-AR')} {diasEsperando === 1 ? 'día' : 'días'}</span>
-							</span>
+						<div className="mt-4 mb-1 inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4">
+							<div className="text-center min-w-[60px]">
+								<div className="text-4xl sm:text-5xl font-black text-amber-300 leading-none">
+									{diasEsperando.toLocaleString('es-AR')}
+								</div>
+								<div className="text-[11px] text-white/60 uppercase tracking-widest mt-1">
+									{diasEsperando === 1 ? 'día' : 'días'}
+								</div>
+							</div>
+							<div className="w-px h-12 bg-white/20 shrink-0" />
+							<div className="text-left">
+								<p className="text-white font-bold text-base leading-tight">{animal.nombre} lleva</p>
+								<p className="text-white/80 text-sm leading-snug">esperando una familia</p>
+								<p className="text-amber-300 text-xs font-semibold mt-1">Podés ser vos quien cambie eso 💛</p>
+							</div>
 						</div>
 					)}
 

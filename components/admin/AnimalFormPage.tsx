@@ -32,10 +32,30 @@ interface Props {
 	isLoading: boolean;
 }
 
+function isoToDisplay(iso: string | undefined | null): string {
+	if (!iso) return '';
+	const d = new Date(iso);
+	if (isNaN(d.getTime())) return '';
+	const dd = String(d.getUTCDate()).padStart(2, '0');
+	const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+	const yyyy = d.getUTCFullYear();
+	return `${dd}/${mm}/${yyyy}`;
+}
+
+function displayToIso(str: string): string | null {
+	const match = str.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+	if (!match) return null;
+	const [, dd, mm, yyyy] = match;
+	const d = new Date(`${yyyy}-${mm}-${dd}`);
+	if (isNaN(d.getTime()) || d > new Date()) return null;
+	return `${yyyy}-${mm}-${dd}`;
+}
+
 export default function AnimalFormPage({ title, subtitle, initialValues, onSubmit, isLoading }: Props) {
 	const router = useRouter();
 	const [inputPersonalidad, setInputPersonalidad] = useState('');
 	const [inputRequisito, setInputRequisito] = useState('');
+	const [rawFecha, setRawFecha] = useState(() => isoToDisplay(initialValues?.fechaIngreso));
 
 	const {
 		register,
@@ -302,12 +322,33 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 												Fecha de ingreso a la fundación
 												<span className="text-xs text-gray-400 font-normal">(opcional)</span>
 											</Label>
-											<Input
-												id="fechaIngreso"
-												type="date"
-												max={new Date().toISOString().split('T')[0]}
-												{...register('fechaIngreso')}
-											/>
+											<div className="flex items-center gap-3">
+												<Input
+													id="fechaIngreso"
+													type="text"
+													placeholder="DD/MM/AAAA"
+													maxLength={10}
+													value={rawFecha}
+													onChange={(e) => {
+														const val = e.target.value;
+														setRawFecha(val);
+														const iso = displayToIso(val);
+														setValue('fechaIngreso', iso ?? '');
+													}}
+													className="max-w-[160px] font-mono"
+												/>
+												{(() => {
+													const iso = displayToIso(rawFecha);
+													if (!iso) return null;
+													const dias = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
+													if (dias < 0) return null;
+													return (
+														<span className="text-sm font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1.5 rounded-lg">
+															{dias.toLocaleString('es-AR')} {dias === 1 ? 'día' : 'días'} en la fundación
+														</span>
+													);
+												})()}
+											</div>
 											<p className="text-xs text-gray-400">
 												Se usará para mostrar cuántos días lleva esperando una familia.
 											</p>
