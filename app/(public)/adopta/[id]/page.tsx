@@ -85,25 +85,6 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 
 					<h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{animal.nombre}</h1>
 
-					{diasEsperando !== null && (
-						<div className="mt-4 mb-1 inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4">
-							<div className="text-center min-w-[60px]">
-								<div className="text-4xl sm:text-5xl font-black text-amber-300 leading-none">
-									{diasEsperando.toLocaleString('es-AR')}
-								</div>
-								<div className="text-[11px] text-white/60 uppercase tracking-widest mt-1">
-									{diasEsperando === 1 ? 'día' : 'días'}
-								</div>
-							</div>
-							<div className="w-px h-12 bg-white/20 shrink-0" />
-							<div className="text-left">
-								<p className="text-white font-bold text-base leading-tight">{animal.nombre} lleva</p>
-								<p className="text-white/80 text-sm leading-snug">esperando una familia</p>
-								<p className="text-amber-300 text-xs font-semibold mt-1">Podés ser vos quien cambie eso 💛</p>
-							</div>
-						</div>
-					)}
-
 					<div className="flex flex-wrap gap-3 text-white/80 text-sm">
 						<span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{animal.edad} {animal.edad === 1 ? 'año' : 'años'}</span>
 						<span className="flex items-center gap-1.5"><User className="w-3.5 h-3.5" />{animal.genero}</span>
@@ -112,6 +93,29 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 					</div>
 				</div>
 			</div>
+
+			{/* Banner días esperando */}
+			{diasEsperando !== null && (
+				<div className="bg-gradient-to-r from-amber-400 to-orange-400">
+					<div className="container mx-auto max-w-5xl px-4 py-4 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3">
+						<div className="flex items-baseline gap-2">
+							<span className="text-5xl sm:text-6xl font-black text-white leading-none">
+								{diasEsperando.toLocaleString('es-AR')}
+							</span>
+							<span className="text-xl font-bold text-white/80">
+								{diasEsperando === 1 ? 'día' : 'días'}
+							</span>
+						</div>
+						<div className="w-px h-10 bg-white/30 hidden sm:block" />
+						<div className="text-center sm:text-left">
+							<p className="text-white font-bold text-base leading-tight">
+								{animal.nombre} lleva esperando una familia
+							</p>
+							<p className="text-white/80 text-sm">Podés ser vos quien cambie eso 💛</p>
+						</div>
+					</div>
+				</div>
+			)}
 
 			{/* Contenido */}
 			<div className="container mx-auto max-w-5xl px-4 py-8">
