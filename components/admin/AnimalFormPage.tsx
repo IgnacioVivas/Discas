@@ -340,7 +340,7 @@ export default function AnimalFormPage({ title, subtitle, initialValues, onSubmi
 												{(() => {
 													const iso = displayToIso(rawFecha);
 													if (!iso) return null;
-													const dias = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
+													const dias = Math.floor((Date.now() - 3 * 3_600_000 - new Date(iso).getTime()) / 86_400_000);
 													if (dias < 0) return null;
 													return (
 														<span className="text-sm font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-1.5 rounded-lg">

@@ -62,7 +62,7 @@ export default async function AnimalDetailPage({ params }: { params: Promise<{ i
 		: { label: '🐾 Otro', cls: 'bg-gray-100 text-gray-700' };
 
 	const diasEsperando = animal.fechaIngreso
-		? Math.floor((Date.now() - new Date(animal.fechaIngreso).getTime()) / 86_400_000)
+		? Math.floor((Date.now() - 3 * 3_600_000 - new Date(animal.fechaIngreso).getTime()) / 86_400_000)
 		: null;
 
 	return (
